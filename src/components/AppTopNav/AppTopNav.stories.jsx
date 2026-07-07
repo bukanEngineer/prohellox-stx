@@ -1,11 +1,14 @@
 import React from "react";
 import { AppTopNav } from "./AppTopNav.jsx";
+import { Button } from "../Button/Button.jsx";
+import { LinkButton } from "../LinkButton/LinkButton.jsx";
 
 export default {
   title: "Compositions/App Top Nav",
   component: AppTopNav,
   parameters: { layout: "fullscreen" },
   argTypes: {
+    variant: { control: "inline-radio", options: ["app", "marketing"] },
     account: {
       control: "inline-radio",
       options: ["personal", "business", "sandbox"],
@@ -87,4 +90,42 @@ export const MobileSandbox = {
     onMenuClick: () => {},
     onProfileClick: () => {},
   },
+};
+
+const MARKETING_LINKS = [
+  { label: "Products", href: "#products", children: true },
+  { label: "Stablecoins", href: "#xsgd" },
+  { label: "Developers", href: "#docs" },
+  { label: "Company", href: "#about" },
+  { label: "Blog", href: "#blog" },
+];
+
+export const MarketingLight = {
+  args: {
+    variant: "marketing",
+    links: MARKETING_LINKS,
+    activeHref: "#xsgd",
+    actions: (
+      <>
+        <Button variant="tertiary" size="sm">Sign in</Button>
+        <Button variant="primary" size="sm">Open account</Button>
+      </>
+    ),
+  },
+};
+
+export const MarketingDark = {
+  args: {
+    variant: "marketing",
+    appearance: "dark",
+    links: MARKETING_LINKS,
+    activeHref: "#xsgd",
+    actions: (
+      <>
+        <LinkButton onDark size="md" as="a" href="#signin">Sign in</LinkButton>
+        <Button variant="primary" size="md">Open account</Button>
+      </>
+    ),
+  },
+  parameters: { backgrounds: { default: "ivy" } },
 };

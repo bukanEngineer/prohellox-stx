@@ -6,20 +6,23 @@ import { Logomark } from "../Logomark/Logomark.jsx";
 import "./AppTopNav.css";
 
 /**
- * AppTopNav — dashboard app-shell top bar (Figma "Top Navigation", 1998:71939).
+ * AppTopNav — top bar for both the dashboard app-shell and the marketing site
+ * (Figma "Top Navigation", 1998:71939).
  *
- * Renders the platform/account variants of the dashboard top bar:
+ * variant: "app" (default) | "marketing"
+ *
+ * "app" variant renders the platform/account variants of the dashboard top bar:
  *   platform: "desktop" | "mobile"
  *   account:  "personal" | "business" | "sandbox"
  *
- * Desktop layout: StraitsX logo (left) · optional center nav links ·
+ *   Desktop layout: StraitsX logo (left) · optional center nav links ·
  *   right cluster = notifications bell (optional count Badge) + account/profile
  *   area (avatar/initials + name + chevron). The profile area triggers
  *   onProfileClick and is meant to anchor a CompanyProfileMenu dropdown.
  *   Sandbox shows a "Sandbox" Tag indicator; Business shows the company name,
  *   Personal shows the user's name.
  *
- * Mobile layout: compact bar = hamburger (onMenuClick) + centered logo +
+ *   Mobile layout: compact bar = hamburger (onMenuClick) + centered logo +
  *   profile avatar.
  *
  *   <AppTopNav
@@ -31,18 +34,37 @@ import "./AppTopNav.css";
  *     onProfileClick={() => ...}
  *     onMenuClick={() => ...}
  *   />
+ *
+ * "marketing" variant renders the public-site nav: brand + horizontal links +
+ *   a right-aligned `actions` slot (e.g. Sign in / Open account buttons).
+ *   Supports a `dark` appearance for hero sections.
+ *
+ *   <AppTopNav
+ *     variant="marketing"
+ *     appearance="dark"
+ *     links={[{ label: "Products", href: "#products", children: true }]}
+ *     activeHref="#products"
+ *     actions={<><LinkButton onDark>Sign in</LinkButton><Button>Open account</Button></>}
+ *   />
  */
 export function AppTopNav({
+  variant = "app",
   account = "personal",
   platform = "desktop",
+  appearance = "light",
+  brand = "StraitsX",
   logo,
   links,
+  activeHref,
+  actions,
   user = {},
   notifications = 0,
   onMenuClick,
   onProfileClick,
+  className = "",
   children,
 }) {
+  const isMarketing = variant === "marketing";
   const isMobile = platform === "mobile";
   const isSandbox = account === "sandbox";
   const isBusiness = account === "business";
@@ -73,7 +95,54 @@ export function AppTopNav({
     </span>
   );
 
-  const brand = logo || <Logomark size={32} />;
+  const logoEl = logo || <Logomark size={32} />;
+
+  if (isMarketing) {
+    const cls = [
+      "app-topnav",
+      "app-topnav--marketing",
+      appearance === "dark" && "app-topnav--dark",
+      className,
+    ].filter(Boolean).join(" ");
+    return (
+      <header className={cls}>
+        <a href="/" className="app-topnav__brand">
+          <Logomark size={28} fill={appearance === "dark" ? "#00D37E" : undefined} />
+          <span>{brand}</span>
+        </a>
+        {Array.isArray(links) && links.length > 0 && (
+          <nav className="app-topnav__nav app-topnav__nav--marketing" aria-label="Primary">
+            {links.map((link) => {
+              const isActive = link.active ?? (activeHref != null && link.href === activeHref);
+              const cls =
+                "app-topnav__link" + (isActive ? " is-active" : "");
+              return link.href ? (
+                <a key={link.id || link.label} href={link.href} className={cls}>
+                  {link.label}
+                  {link.children && (
+                    <span className="material-symbols-rounded">expand_more</span>
+                  )}
+                </a>
+              ) : (
+                <button
+                  key={link.id || link.label}
+                  type="button"
+                  className={cls}
+                  onClick={link.onClick}
+                >
+                  {link.label}
+                  {link.children && (
+                    <span className="material-symbols-rounded">expand_more</span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        )}
+        {actions && <div className="app-topnav__actions">{actions}</div>}
+      </header>
+    );
+  }
 
   if (isMobile) {
     return (
@@ -85,7 +154,7 @@ export function AppTopNav({
           onClick={onMenuClick}
           className="app-topnav__menu"
         />
-        <span className="app-topnav__logo app-topnav__logo--center">{brand}</span>
+        <span className="app-topnav__logo app-topnav__logo--center">{logoEl}</span>
         <button
           type="button"
           className="app-topnav__profile app-topnav__profile--compact"
@@ -102,7 +171,7 @@ export function AppTopNav({
   return (
     <header className="app-topnav app-topnav--desktop" data-account={account}>
       <div className="app-topnav__left">
-        <span className="app-topnav__logo">{brand}</span>
+        <span className="app-topnav__logo">{logoEl}</span>
         {isSandbox && (
           <Tag tone="warning" size="small" className="app-topnav__sandbox">
             Sandbox

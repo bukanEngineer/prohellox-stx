@@ -1,5 +1,5 @@
 import React from "react";
-import { TopNavigation } from "../components/TopNavigation/TopNavigation.jsx";
+import { AppTopNav } from "../components/AppTopNav/AppTopNav.jsx";
 import { Button } from "../components/Button/Button.jsx";
 import { LinkButton } from "../components/LinkButton/LinkButton.jsx";
 import { Tag } from "../components/Tag/Tag.jsx";
@@ -16,7 +16,8 @@ export function MarketingHero() {
   ];
   return (
     <div className="ex-marketing" data-screen-label="06 Marketing hero">
-      <TopNavigation
+      <AppTopNav
+        variant="marketing"
         appearance="dark"
         links={links}
         activeHref="#xsgd"

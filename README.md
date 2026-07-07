@@ -48,20 +48,7 @@ Each component imports its own CSS (`import "./Button.css"` etc.) as part of the
 
 `npm run build` compiles `src/` with Babel into `dist/` (ESM, `.jsx` extensions preserved, cross-file imports rewritten to match), generates type declarations with `tsc`, and copies fonts/assets/CSS alongside — mirroring the `src/` layout so relative asset paths keep resolving. `npm run prepublishOnly` runs lint + test + build automatically before `npm publish`.
 
-## Repository setup
-
-This project ships ready to push to GitHub. From the project root:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit — StraitsX design system + Storybook + Chromatic"
-git branch -M main
-git remote add origin git@github.com:tewibowo/testing-design-system.git
-git push -u origin main
-```
-
-### Wiring up Chromatic
+## Wiring up Chromatic
 
 1. Sign in at [chromatic.com](https://www.chromatic.com) and link your GitHub repo. Chromatic gives you a **project token**.
 2. In your repo, go to **Settings → Secrets and variables → Actions → New repository secret** and add:
@@ -78,6 +65,8 @@ testing-design-system/
 ├── package.json
 ├── vite.config.js
 ├── chromatic.config.json
+├── SKILL.md                    ← agent-skill manifest
+├── brand_guidelines.txt        ← extracted PDF text for reference
 ├── .storybook/
 │   ├── main.js                 ← stories glob + framework config
 │   └── preview.js              ← global styles + backgrounds + story sort
@@ -245,32 +234,3 @@ Common glyphs observed in the Figma file: `home`, `account_circle`, `notificatio
 - **Partner logos** — Not included. If you need CIMB, Standard Chartered, Hana Bank, etc., request the official assets from the StraitsX marketing team.
 - **Iconography** — Material Symbols Rounded (CDN) is used as the icon system; the in-Figma icons appear to be the same family. If StraitsX has standardised on a specific subset or modified glyphs, please flag.
 - **Source Sans Pro / IBM Plex** — A few legacy components in the Figma still reference these. New work should use only Red Hat Display + Hanken Grotesk + Red Hat Mono.
-
----
-
-## Index
-
-```
-package.json                        ← npm package manifest
-vite.config.js                      ← Vite config (used by Storybook)
-chromatic.config.json               ← Chromatic CLI config
-README.md                           ← this file
-SKILL.md                            ← agent-skill manifest
-brand_guidelines.txt                ← extracted PDF text for reference
-
-.storybook/                         ← Storybook framework config
-.github/workflows/chromatic.yml     ← visual regression CI
-
-src/
-  index.js                          ← package exports
-  styles/{tokens,global}.css        ← --sx-* vars + resets
-  fonts/                            ← Hanken Grotesk + Red Hat Display ttfs
-  assets/                           ← logomark SVGs
-  components/<Name>/                ← one folder per component
-  stories/                          ← token + example stories
-
-examples/PersonalAccount.{jsx,css}  ← full dashboard composition
-
-preview/                            ← legacy HTML cards (Design System tab)
-ui_kits/personal-account/           ← legacy HTML demo
-```

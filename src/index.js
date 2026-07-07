@@ -49,7 +49,6 @@ export { Coachmark } from "./components/Coachmark/Coachmark.jsx";
 export { Sidebar, DEFAULT_NAV_ITEMS } from "./components/Sidebar/Sidebar.jsx";
 export { TopBar } from "./components/TopBar/TopBar.jsx";
 export { AppTopNav } from "./components/AppTopNav/AppTopNav.jsx";
-export { TopNavigation } from "./components/TopNavigation/TopNavigation.jsx";
 export { OnboardingSteps } from "./components/OnboardingSteps/OnboardingSteps.jsx";
 export { TransferPanel } from "./components/TransferPanel/TransferPanel.jsx";
 export { OtcBanner } from "./components/OtcBanner/OtcBanner.jsx";
