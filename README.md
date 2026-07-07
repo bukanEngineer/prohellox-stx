@@ -1,7 +1,3 @@
-# StraitsX Design System (`testing-design-system`)
-
-A React + plain-CSS design system rebuilt from the official StraitsX brand guidelines and the internal **FDS 3** Figma file. Ships as an npm-style package with **Storybook** for component documentation and **Chromatic** for visual regression on every PR.
-
 ## Quick start
 
 ```bash
