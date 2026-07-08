@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, DEFAULT_NAV_ITEMS } from "../components/Sidebar/Sidebar.jsx";
-import { TopBar } from "../components/TopBar/TopBar.jsx";
+import { TopNavigation } from "../components/TopNavigation/TopNavigation.jsx";
 import { PageTitle } from "../components/PageTitle/PageTitle.jsx";
 import { Breadcrumb } from "../components/Breadcrumb/Breadcrumb.jsx";
 import { Tabs } from "../components/Tabs/Tabs.jsx";
@@ -65,7 +65,11 @@ export function TransactionHistory() {
       <Sidebar items={DEFAULT_NAV_ITEMS} active="history" onSelect={() => {}} />
       <main className="ex-pa__main">
         <div className="ex-pa__head">
-          <TopBar unread={2} name="John Doe" company="ABC Pte. Ltd." />
+          <TopNavigation
+            account="business"
+            notifications={2}
+            user={{ name: "John Doe", company: "ABC Pte. Ltd." }}
+          />
         </div>
         <PageTitle
           breadcrumb={<Breadcrumb items={[{ label: "Home", href: "#" }, { label: "Transaction History" }]} />}

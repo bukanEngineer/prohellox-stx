@@ -4,6 +4,7 @@ import { Tag } from "../Tag/Tag.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
 import { Button } from "../Button/Button.jsx";
 import { IconButton } from "../IconButton/IconButton.jsx";
+import { ToastProvider, useToast } from "../Toast/Toast.jsx";
 
 export default {
   title: "Components/Table",
@@ -34,7 +35,37 @@ export const Zebra = { args: { columns, rows, zebra: true } };
 export const Empty = { args: { columns, rows: [] } };
 
 /* ── Cell variants: 2-line, inline button, copy-link, leading/trailing icon ── */
+function CopyReferenceCell({ value }) {
+  const [copied, setCopied] = useState(false);
+  const toast = useToast();
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      toast.show({ tone: "positive", message: "Copied to clipboard" });
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+      <code style={{ fontFamily: "var(--font-mono)" }}>{value}</code>
+      <IconButton
+        icon={copied ? "check" : "content_copy"}
+        variant="tertiary"
+        size="sm"
+        label={copied ? "Copied" : "Copy reference"}
+        onClick={copy}
+      />
+    </span>
+  );
+}
+
 export const CellVariants = {
+  decorators: [(S) => <ToastProvider><S /></ToastProvider>],
   render: () => {
     const cellRows = [
       { id: 1, name: "John Doe", email: "john@acme.co", ref: "TX-1029384", network: "Ethereum", chain: "Mainnet" },
@@ -55,12 +86,7 @@ export const CellVariants = {
       {
         key: "reference",
         header: "Reference",
-        render: (r) => (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <code style={{ fontFamily: "var(--font-mono)" }}>{r.ref}</code>
-            <IconButton icon="content_copy" variant="tertiary" size="sm" label="Copy reference" />
-          </span>
-        ),
+        render: (r) => <CopyReferenceCell value={r.ref} />,
       },
       {
         key: "network",

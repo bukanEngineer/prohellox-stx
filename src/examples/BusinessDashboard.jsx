@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar } from "../components/Sidebar/Sidebar.jsx";
-import { TopBar } from "../components/TopBar/TopBar.jsx";
+import { TopNavigation } from "../components/TopNavigation/TopNavigation.jsx";
 import { EstimatedBalance } from "../components/EstimatedBalance/EstimatedBalance.jsx";
 import { IconButton } from "../components/IconButton/IconButton.jsx";
 import { AssetMark } from "../components/AssetMark/AssetMark.jsx";
@@ -194,7 +194,11 @@ export function BusinessDashboard() {
         </header>
 
         <div className="ex-bd__head">
-          <TopBar unread={3} name="Sarah Chen" company="Acme Pte. Ltd." />
+          <TopNavigation
+            account="business"
+            notifications={3}
+            user={{ name: "Sarah Chen", company: "Acme Pte. Ltd." }}
+          />
         </div>
 
         <div className="ex-bd__hero">

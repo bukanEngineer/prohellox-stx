@@ -1,0 +1,143 @@
+/* TopNavigation — dashboard app-shell top bar (Figma "Top Navigation").
+   Semantic tokens only; no hardcoded hex. Mobile is handled entirely by the
+   media query at the bottom — there is no separate mobile markup. */
+
+.topnav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  color: var(--text-primary);
+  gap: var(--space-4);
+  height: 64px;
+  padding: 0 var(--space-6);
+}
+
+.topnav__hamburger {
+  display: none;
+}
+
+/* push right cluster to the end */
+.topnav__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+/* profile / account area */
+.topnav__profile {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font: var(--body-bold-medium);
+  transition: background var(--dur-1) var(--ease);
+}
+
+.topnav__profile:hover {
+  background: var(--surface-hovered);
+}
+
+.topnav__profile:active {
+  background: var(--surface-pressed);
+}
+
+.topnav__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.topnav__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topnav__avatar .material-symbols-rounded {
+  font-size: 20px;
+  color: var(--text-secondary);
+}
+
+.topnav__initials {
+  font: var(--label-small);
+  color: var(--text-primary);
+}
+
+.topnav__profile-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.topnav__profile-name {
+  font: var(--body-bold-medium);
+  color: var(--text-primary);
+}
+
+.topnav__profile-sub {
+  font: var(--body-small);
+  color: var(--text-secondary);
+}
+
+.topnav__chevron {
+  font-size: 20px;
+  color: var(--text-secondary);
+}
+
+/* profile dropdown anchor */
+.topnav__profile-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.topnav__profile-menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  z-index: 60;
+  animation: topnav-profile-menu-in 120ms var(--ease);
+}
+
+@keyframes topnav-profile-menu-in {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───── Mobile — pure responsive behavior, no platform prop ───── */
+@media (max-width: 768px) {
+  .topnav__hamburger {
+    display: inline-flex;
+  }
+
+  .topnav__profile-text,
+  .topnav__chevron {
+    display: none;
+  }
+
+  .topnav {
+    height: 56px;
+    padding: 0 var(--space-2);
+    gap: var(--space-2);
+    background: var(--surface);
+    border-bottom-color: var(--border);
+  }
+}

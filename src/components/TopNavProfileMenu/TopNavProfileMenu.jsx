@@ -2,90 +2,38 @@ import React from "react";
 import "./TopNavProfileMenu.css";
 
 /**
- * TopNavProfileMenu — Figma "Top Navigation / Dropdown" profile menu.
+ * TopNavProfileMenu — Figma "Top Navigation / Dropdown" (5070:45712).
  *
- * The profile dropdown anchored by AppTopNav's profile/avatar trigger
- * (wire via `onProfileClick`). Distinct from CompanyProfileMenu (which is
- * the Sidebar company switcher). Shares the Menu/CompanyProfileMenu visual
- * pattern: surface, Shadow/lv-2, rows with icon + label, dividers.
+ * The profile dropdown anchored by TopNavigation's profile/avatar trigger —
+ * TopNavigation renders this internally, so it's rarely used standalone.
+ * Distinct from CompanyProfileMenu (the Sidebar company switcher).
  *
- * `variant`:
- *   "personal"      — header (name/email) + timezone row + Account settings + Log out.
- *   "biz" | "sandbox" — header (account name/role) + Switch account + Settings + Log out.
+ * account: "personal" | "business" | "sandbox" — personal adds a
+ *   "Switch to Sandbox" row; business/sandbox omit it (account switching
+ *   there lives in CompanyProfileMenu instead).
  *
- *   <TopNavProfileMenu
- *     variant="personal"
- *     user={{ name: "John Doe", email: "john@acme.com", timezone: "GMT+8 Singapore" }}
- *     onAction={(id) => ...}
- *   />
+ *   <TopNavProfileMenu account="personal" onAction={(id) => ...} />
  */
-export function TopNavProfileMenu({
-  variant = "personal",
-  user = {},
-  onAction,
-  onSwitch,
-  className = "",
-}) {
-  const isPersonal = variant === "personal";
+export function TopNavProfileMenu({ account = "personal", onAction, className = "" }) {
   const fire = (id) => () => onAction && onAction(id);
 
-  const primary = isPersonal
-    ? (user.name || "")
-    : (user.company || user.name || "");
-  const secondary = isPersonal
-    ? (user.email || "")
-    : (user.role || user.name || "");
-
   return (
-    <div
-      className={"topnav-menu " + className}
-      data-variant={variant}
-      role="menu"
-    >
-      {(primary || secondary) && (
-        <div className="topnav-menu__header">
-          {primary && <span className="topnav-menu__name">{primary}</span>}
-          {secondary && <span className="topnav-menu__sub">{secondary}</span>}
-        </div>
+    <div className={"topnav-menu " + className} role="menu">
+      <button type="button" role="menuitem" className="topnav-menu__row" onClick={fire("my-account")}>
+        <span className="material-symbols-rounded" aria-hidden="true">settings</span>
+        <span className="topnav-menu__label">My Account</span>
+      </button>
+      {account === "personal" && (
+        <button type="button" role="menuitem" className="topnav-menu__row" onClick={fire("switch-to-sandbox")}>
+          <span className="material-symbols-rounded" aria-hidden="true">toggle_on</span>
+          <span className="topnav-menu__label">Switch to Sandbox</span>
+        </button>
       )}
-
-      {isPersonal ? (
-        <>
-          <div className="topnav-menu__divider" role="separator" />
-          {user.timezone && (
-            <div className="topnav-menu__row topnav-menu__row--static">
-              <span className="material-symbols-rounded" aria-hidden="true">schedule</span>
-              <span className="topnav-menu__label">{user.timezone}</span>
-            </div>
-          )}
-          <button type="button" role="menuitem" className="topnav-menu__row" onClick={fire("account-settings")}>
-            <span className="material-symbols-rounded" aria-hidden="true">settings</span>
-            <span className="topnav-menu__label">Account settings</span>
-          </button>
-          <div className="topnav-menu__divider" role="separator" />
-          <button type="button" role="menuitem" className="topnav-menu__row topnav-menu__row--critical" onClick={fire("logout")}>
-            <span className="material-symbols-rounded" aria-hidden="true">logout</span>
-            <span className="topnav-menu__label">Log out</span>
-          </button>
-        </>
-      ) : (
-        <>
-          <div className="topnav-menu__divider" role="separator" />
-          <button type="button" role="menuitem" className="topnav-menu__row" onClick={() => (onSwitch ? onSwitch() : onAction && onAction("switch-account"))}>
-            <span className="material-symbols-rounded" aria-hidden="true">swap_horiz</span>
-            <span className="topnav-menu__label">Switch account</span>
-          </button>
-          <button type="button" role="menuitem" className="topnav-menu__row" onClick={fire("settings")}>
-            <span className="material-symbols-rounded" aria-hidden="true">settings</span>
-            <span className="topnav-menu__label">Settings</span>
-          </button>
-          <div className="topnav-menu__divider" role="separator" />
-          <button type="button" role="menuitem" className="topnav-menu__row topnav-menu__row--critical" onClick={fire("logout")}>
-            <span className="material-symbols-rounded" aria-hidden="true">logout</span>
-            <span className="topnav-menu__label">Log out</span>
-          </button>
-        </>
-      )}
+      <div className="topnav-menu__divider" role="separator" />
+      <button type="button" role="menuitem" className="topnav-menu__row topnav-menu__row--critical" onClick={fire("logout")}>
+        <span className="material-symbols-rounded" aria-hidden="true">logout</span>
+        <span className="topnav-menu__label">Log Out</span>
+      </button>
     </div>
   );
 }

@@ -5,33 +5,29 @@ export default {
   title: "Components/Top Nav Profile Menu",
   component: TopNavProfileMenu,
   parameters: { layout: "padded" },
-  decorators: [(S) => <div style={{ minHeight: 360 }}><S /></div>],
+  decorators: [(S) => <div style={{ minHeight: 240 }}><S /></div>],
   argTypes: {
-    variant: { control: "inline-radio", options: ["personal", "biz", "sandbox"] },
+    account: { control: "inline-radio", options: ["personal", "business", "sandbox"] },
   },
 };
 
 export const Personal = {
   args: {
-    variant: "personal",
-    user: {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      timezone: "GMT+8 Singapore",
-    },
+    account: "personal",
     onAction: () => {},
   },
 };
 
-export const BizSandbox = {
+export const Business = {
   args: {
-    variant: "biz",
-    user: {
-      name: "John Doe",
-      company: "ABC Pte. Ltd.",
-      role: "Admin · Business Account",
-    },
+    account: "business",
     onAction: () => {},
-    onSwitch: () => {},
+  },
+};
+
+export const Sandbox = {
+  args: {
+    account: "sandbox",
+    onAction: () => {},
   },
 };

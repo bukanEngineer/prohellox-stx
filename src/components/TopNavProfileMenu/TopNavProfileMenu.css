@@ -1,27 +1,17 @@
-/* TopNavProfileMenu — Figma "Top Navigation / Dropdown" profile menu.
- * 240px, Shadow/lv-2, surface, header + icon/label rows + dividers.
+/* TopNavProfileMenu — Figma "Top Navigation / Dropdown" (5070:45712).
+ * 260px, Shadow/lv-1, surface, icon/label rows + a divider before Log Out.
  * Mirrors the Menu/CompanyProfileMenu visual pattern. Semantic tokens only. */
 .topnav-menu {
-  width: 240px;
+  width: 260px;
   padding: var(--space-2) 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   background: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-2);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
   overflow: clip;
 }
-
-.topnav-menu__header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-4);
-  min-width: 0;
-}
-.topnav-menu__name { font: var(--label-medium); color: var(--text-primary); }
-.topnav-menu__sub { font: var(--body-medium); color: var(--text-secondary); }
 
 .topnav-menu__divider {
   height: 1px;
@@ -32,24 +22,20 @@
 .topnav-menu__row {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  gap: var(--space-2);
+  padding: var(--space-3);
   border: 0;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: background var(--dur-1) var(--ease);
 }
 .topnav-menu__row:hover { background: var(--surface-secondary); }
-.topnav-menu__row .material-symbols-rounded { font-size: 22px; color: var(--text-secondary); flex: 0 0 auto; }
-.topnav-menu__label { font: var(--body-large); color: var(--text-secondary); }
+.topnav-menu__row .material-symbols-rounded { font-size: 22px; color: var(--text-primary); flex: 0 0 auto; }
+.topnav-menu__label { font: var(--body-large); color: var(--text-primary); }
 
-/* Static (non-interactive) info row, e.g. timezone */
-.topnav-menu__row--static { cursor: default; }
-.topnav-menu__row--static:hover { background: transparent; }
-
-/* Destructive row (Log out) */
+/* Destructive row (Log Out) */
 .topnav-menu__row--critical .material-symbols-rounded,
 .topnav-menu__row--critical .topnav-menu__label {
   color: var(--status-critical);
