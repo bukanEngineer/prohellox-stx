@@ -1,0 +1,112 @@
+/* Calendar — month-grid date picker. Semantic tokens only. */
+.calendar {
+  display: inline-block;
+  padding: var(--space-3);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  box-sizing: border-box;
+}
+
+.calendar__months {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.calendar--multi .calendar__month + .calendar__month {
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--border);
+}
+
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.calendar__nav-spacer {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+}
+
+.calendar__title {
+  font: var(--body-bold-medium);
+  color: var(--text-primary);
+}
+
+.calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  margin-bottom: var(--space-1);
+}
+
+.calendar__weekday {
+  text-align: center;
+  font: var(--label-small);
+  color: var(--text-secondary);
+  padding: var(--space-1) 0;
+}
+
+.calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+}
+
+.calendar__week + .calendar__week {
+  margin-top: 2px;
+}
+
+.calendar__day {
+  width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-primary);
+  font: var(--body-medium);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.calendar__day:hover:not(.is-selected) {
+  background: var(--surface-hovered);
+}
+
+.calendar__day.is-outside {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.calendar__day.is-today:not(.is-selected) {
+  border-color: var(--border);
+}
+
+.calendar__day.is-selected {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+/* Range mode — in-range fill is a flat band; endpoints keep the solid
+   selected fill but round only their outer edge so the band reads as one
+   continuous shape. */
+.calendar__day.is-in-range {
+  background: var(--surface-secondary);
+  border-radius: 0;
+}
+
+.calendar__day.is-range-start {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.calendar__day.is-range-end {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.calendar__day.is-range-start.is-range-end {
+  border-radius: var(--radius-md);
+}

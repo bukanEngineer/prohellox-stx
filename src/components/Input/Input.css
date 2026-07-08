@@ -70,12 +70,6 @@
   font-size: 20px;
 }
 
-/* Date-range separator (DateInput range mode) */
-.input--range .input__range-sep {
-  color: var(--text-secondary);
-  flex: 0 0 auto;
-}
-
 .input__icon-btn {
   background: transparent;
   border: 0;

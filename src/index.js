@@ -16,6 +16,7 @@ export { Textarea } from "./components/Textarea/Textarea.jsx";
 export { Select } from "./components/Select/Select.jsx";
 export { MultiSelect } from "./components/MultiSelect/MultiSelect.jsx";
 export { DateInput } from "./components/DateInput/DateInput.jsx";
+export { Calendar } from "./components/Calendar/Calendar.jsx";
 export { Copybox } from "./components/Copybox/Copybox.jsx";
 export { InputCurrency } from "./components/InputCurrency/InputCurrency.jsx";
 export { Checkbox } from "./components/Checkbox/Checkbox.jsx";

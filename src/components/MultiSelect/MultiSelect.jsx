@@ -1,4 +1,5 @@
-import React, { useId, useRef, useState, useEffect } from "react";
+import React, { useId, useRef, useState, useEffect, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
 import "./MultiSelect.css";
 
 /**
@@ -34,14 +35,39 @@ export function MultiSelect({
   const selected = isControlled ? value : internal;
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
+  const controlRef = useRef(null);
+  const menuRef = useRef(null);
+  const [menuRect, setMenuRect] = useState(null);
 
   useEffect(() => {
     if (!open) return;
     const onDoc = (e) => {
-      if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
+      if (
+        rootRef.current && !rootRef.current.contains(e.target) &&
+        menuRef.current && !menuRef.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
     };
     document.addEventListener("mousedown", onDoc);
     return () => document.removeEventListener("mousedown", onDoc);
+  }, [open]);
+
+  // Menu is portaled to <body> so it can escape clipping ancestors (e.g. a
+  // Modal's overflow:hidden wrapper); position it against the control's
+  // viewport rect instead of relying on CSS absolute positioning.
+  useLayoutEffect(() => {
+    if (!open) return undefined;
+    const el = controlRef.current;
+    if (!el) return undefined;
+    const measure = () => setMenuRect(el.getBoundingClientRect());
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("scroll", measure, true);
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", measure, true);
+    };
   }, [open]);
 
   const commit = (next) => {
@@ -66,6 +92,7 @@ export function MultiSelect({
       {label && <span className="field__label" id={`${id}-label`}>{label}</span>}
       <div className={wrapCls}>
         <button
+          ref={controlRef}
           type="button"
           className="multiselect__control"
           disabled={disabled}
@@ -98,8 +125,18 @@ export function MultiSelect({
           </span>
         </button>
 
-        {open && !disabled && (
-          <ul className="multiselect__menu" role="listbox" aria-multiselectable="true">
+        {open && !disabled && menuRect && createPortal(
+          <ul
+            ref={menuRef}
+            className="multiselect__menu"
+            role="listbox"
+            aria-multiselectable="true"
+            style={{
+              top: menuRect.bottom + 4,
+              left: menuRect.left,
+              width: menuRect.width,
+            }}
+          >
             {options.map((o) => {
               const on = selected.includes(o.value);
               return (
@@ -118,7 +155,8 @@ export function MultiSelect({
                 </li>
               );
             })}
-          </ul>
+          </ul>,
+          document.body
         )}
       </div>
       {(helper || error) && (

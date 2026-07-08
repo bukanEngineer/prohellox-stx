@@ -26,12 +26,12 @@
 .sidebar__brand { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
 .sidebar__brand-sub { font: var(--body-small); color: var(--interactive-active); text-align: center; }
 
-/* Company profile dropdown trigger + popover */
+/* Company profile dropdown trigger + popover. Popover is portaled to
+ * <body> (see Sidebar.jsx) and positioned inline via JS, since it must
+ * escape .sidebar__top's overflow clipping. */
 .sidebar__company-wrap { position: relative; width: 100%; }
 .sidebar__company-menu {
-  position: absolute;
-  top: 0;
-  left: calc(100% + var(--space-1));
+  position: fixed;
   z-index: 30;
   min-width: 208px;
 }

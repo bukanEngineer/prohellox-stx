@@ -1,0 +1,40 @@
+/* DateInput — popover trigger button + Calendar popover anchor. */
+.date-input__wrap {
+  position: relative;
+}
+
+.date-input__trigger {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.date-input__trigger[disabled] {
+  cursor: not-allowed;
+}
+
+.date-input__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date-input__value.is-placeholder {
+  color: var(--input-placeholder);
+}
+
+.date-input__popover {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 60;
+  animation: date-input-popover-in 120ms var(--ease);
+}
+
+@keyframes date-input-popover-in {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}

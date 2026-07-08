@@ -66,11 +66,8 @@
 .multiselect.is-open .multiselect__chevron { transform: rotate(180deg); }
 
 .multiselect__menu {
-  position: absolute;
-  z-index: 20;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
+  position: fixed;
+  z-index: 1200;
   margin: 0;
   padding: var(--space-1);
   list-style: none;

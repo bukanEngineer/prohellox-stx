@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
 import { Logo } from "../Logo/Logo.jsx";
 import { CompanyProfileMenu } from "../CompanyProfileMenu/CompanyProfileMenu.jsx";
 import "./Sidebar.css";
@@ -72,6 +73,25 @@ export function Sidebar({
   const isSandbox = account === "sandbox";
   const hasMenu = !!(companies || companyActions);
   const [menuOpen, setMenuOpen] = useState(defaultMenuOpen);
+  const companyTriggerRef = useRef(null);
+  const [companyMenuRect, setCompanyMenuRect] = useState(null);
+
+  // Popover is portaled to <body> so it can escape .sidebar__top's
+  // overflow-y: auto (which, per the CSS overflow spec, also forces
+  // overflow-x to compute as auto and clip this sideways-opening menu).
+  useLayoutEffect(() => {
+    if (!menuOpen) return undefined;
+    const el = companyTriggerRef.current;
+    if (!el) return undefined;
+    const measure = () => setCompanyMenuRect(el.getBoundingClientRect());
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("scroll", measure, true);
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", measure, true);
+    };
+  }, [menuOpen]);
   const [expanded, setExpanded] = useState(() => {
     const init = {};
     items.forEach((i) => {
@@ -93,6 +113,7 @@ export function Sidebar({
           {company && (
             <div className="sidebar__company-wrap">
               <button
+                ref={companyTriggerRef}
                 type="button"
                 className={"sidebar__company" + (menuOpen ? " is-open" : "")}
                 onClick={() => { if (hasMenu) setMenuOpen((o) => !o); else if (onCompanyClick) onCompanyClick(); }}
@@ -107,8 +128,14 @@ export function Sidebar({
                   <span className={"material-symbols-rounded sidebar__company-chevron" + (menuOpen ? " is-open" : "")} aria-hidden="true">expand_more</span>
                 )}
               </button>
-              {hasMenu && menuOpen && (
-                <div className="sidebar__company-menu">
+              {hasMenu && menuOpen && companyMenuRect && createPortal(
+                <div
+                  className="sidebar__company-menu"
+                  style={{
+                    top: companyMenuRect.top,
+                    left: companyMenuRect.right + 8,
+                  }}
+                >
                   <CompanyProfileMenu
                     switchCompany={!!companies}
                     companies={companies || []}
@@ -116,7 +143,8 @@ export function Sidebar({
                     onSwitch={(id) => { setMenuOpen(false); onSwitchCompany && onSwitchCompany(id); }}
                     onAction={(id) => { setMenuOpen(false); onCompanyAction && onCompanyAction(id); }}
                   />
-                </div>
+                </div>,
+                document.body
               )}
             </div>
           )}
