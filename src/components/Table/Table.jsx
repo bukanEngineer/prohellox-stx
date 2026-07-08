@@ -4,12 +4,20 @@ import "./Table.css";
 /**
  * Data table.
  *   columns: [{ key, header, align?: "left"|"right", render?: (row) => node, numeric?: bool,
- *               width?: number|string, fixed?: "left"|"right" }]
+ *               width?: number|string, fixed?: "left"|"right", sortable?: bool }]
  *   rows:    array of records (must include a stable `id` field or pass rowKey)
  *
  *   <Table columns={cols} rows={rows} zebra />
  *   <Table columns={cols} rows={rows} scrollY={360} />                 // fixed header
  *   <Table columns={cols} rows={rows} scrollX={900} />                 // fixed columns need a scroll container
+ *
+ * Sorting: mark a column `sortable: true` to get a clickable header that
+ * cycles ascending → descending → none. The Table only tracks and displays
+ * sort state — it never reorders `rows` itself, since sorting may need to
+ * happen server-side. Sort the rows you pass in based on `sort`/`onSortChange`
+ * (controlled) or `defaultSort` (uncontrolled, for demos):
+ *
+ *   <Table columns={cols} rows={sortedRows} sort={sort} onSortChange={setSort} />
  */
 export function Table({
   columns = [],
@@ -20,7 +28,23 @@ export function Table({
   className = "",
   scrollX,
   scrollY,
+  sort,
+  defaultSort = null,
+  onSortChange,
 }) {
+  const [internalSort, setInternalSort] = useState(defaultSort);
+  const activeSort = sort !== undefined ? sort : internalSort;
+
+  const toggleSort = (col) => {
+    if (!col.sortable) return;
+    let next;
+    if (!activeSort || activeSort.key !== col.key) next = { key: col.key, direction: "asc" };
+    else if (activeSort.direction === "asc") next = { key: col.key, direction: "desc" };
+    else next = null;
+
+    if (sort === undefined) setInternalSort(next);
+    onSortChange && onSortChange(next);
+  };
   const hasFixed = columns.some((c) => c.fixed === "left" || c.fixed === "right");
   const wrapRef = useRef(null);
   const headRowRef = useRef(null);
@@ -114,11 +138,29 @@ export function Table({
       >
         <thead>
           <tr ref={headRowRef}>
-            {columns.map((c) => (
-              <th key={c.key} className={cellClass(c)} style={cellStyle(c)}>
-                {c.header}
-              </th>
-            ))}
+            {columns.map((c) => {
+              const isSorted = c.sortable && activeSort?.key === c.key;
+              const direction = isSorted ? activeSort.direction : undefined;
+              return (
+                <th
+                  key={c.key}
+                  className={cellClass(c)}
+                  style={cellStyle(c)}
+                  aria-sort={c.sortable ? (direction === "asc" ? "ascending" : direction === "desc" ? "descending" : "none") : undefined}
+                >
+                  {c.sortable ? (
+                    <button type="button" className="table__sort-btn" onClick={() => toggleSort(c)}>
+                      <span>{c.header}</span>
+                      <span className={"material-symbols-rounded table__sort-icon" + (isSorted ? " is-active" : "")} aria-hidden="true">
+                        {direction === "asc" ? "arrow_upward" : direction === "desc" ? "arrow_downward" : "unfold_more"}
+                      </span>
+                    </button>
+                  ) : (
+                    c.header
+                  )}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>

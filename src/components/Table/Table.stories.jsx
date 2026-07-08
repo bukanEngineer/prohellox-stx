@@ -147,6 +147,26 @@ export const FixedColumns = {
   },
 };
 
+/* ── Sortable headers: Table only tracks/displays sort state; the consumer
+ * sorts the rows it passes in. ── */
+export const Sortable = {
+  render: () => {
+    const sortableColumns = columns.map((c) =>
+      ["date", "amount"].includes(c.key) ? { ...c, sortable: true } : c
+    );
+    const [sort, setSort] = useState({ key: "date", direction: "desc" });
+
+    const sortedRows = [...rows].sort((a, b) => {
+      if (!sort) return 0;
+      const { key, direction } = sort;
+      const mult = direction === "asc" ? 1 : -1;
+      return a[key] > b[key] ? mult : a[key] < b[key] ? -mult : 0;
+    });
+
+    return <Table columns={sortableColumns} rows={sortedRows} sort={sort} onSortChange={setSort} />;
+  },
+};
+
 export const WithPagination = {
   render: () => {
     const [p, setP] = useState(1);

@@ -45,6 +45,34 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Sortable column headers ── */
+.table__sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.table__sort-icon {
+  font-size: 16px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+.table__sort-btn:hover .table__sort-icon,
+.table__sort-icon.is-active {
+  opacity: 1;
+}
+.table__sort-icon.is-active {
+  color: var(--text-primary);
+}
+
 .table__cell-with-icon {
   display: inline-flex;
   align-items: center;

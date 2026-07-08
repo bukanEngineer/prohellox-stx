@@ -1,6 +1,6 @@
-/* Sidebar — Figma "Sidebar - Base". 240px, surface bg, justify-between with
- * MAS badge pinned at the bottom. Account variants, company dropdown,
- * expandable sub-items, semantic tokens. */
+/* Sidebar — Figma "Sidebar - Base". 240px, surface bg, MAS badge pinned at
+ * the bottom while the nav area scrolls internally. Account variants,
+ * company dropdown, expandable sub-items, semantic tokens. */
 .sidebar {
   background: var(--surface);
   border-right: 1px solid var(--border);
@@ -10,13 +10,18 @@
 .sidebar__scroll {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: var(--space-6);
   padding: var(--space-7) var(--space-4);
   height: 100%;
+}
+.sidebar__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
 }
-.sidebar__top { display: flex; flex-direction: column; gap: var(--space-6); }
 
 .sidebar__brand { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
 .sidebar__brand-sub { font: var(--body-small); color: var(--interactive-active); text-align: center; }
@@ -151,7 +156,8 @@
   .nav-item-skeleton__label { animation: none; opacity: 0.7; }
 }
 
-/* MAS regulatory badge */
+/* MAS regulatory badge — pinned to the bottom; doesn't shrink or scroll
+ * with the nav list above it. */
 .sidebar__mas {
   display: flex;
   align-items: center;
@@ -159,6 +165,7 @@
   padding: var(--space-2) 10px;
   border-radius: var(--radius-md);
   background: var(--surface-secondary);
+  flex: 0 0 auto;
 }
 .sidebar__mas .material-symbols-rounded { font-size: 22px; color: var(--text-secondary); flex: 0 0 auto; }
 .sidebar__mas-text { font: var(--body-small); color: var(--text-secondary); }
