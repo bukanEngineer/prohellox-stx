@@ -20,6 +20,14 @@ export default defineConfig({
       },
     }),
   ],
+  // aria-query is CommonJS with a chained-assignment export pattern that Vite's
+  // CJS→ESM lexer can't statically read, so `import { elementRoles }` (via
+  // @testing-library/dom, used by the Storybook a11y test setup) fails. Pre-
+  // bundling it (and its testing-library consumer) with esbuild produces a
+  // proper ESM interop wrapper with the named exports detected.
+  optimizeDeps: {
+    include: ["aria-query", "@testing-library/dom"],
+  },
   test: {
     projects: [
       {
