@@ -45,7 +45,10 @@ export function ToastProvider({ children, duration = 5000 }) {
   const show = useCallback((toast) => {
     const id = ++__id;
     const t = { id, ...toast };
-    setItems((prev) => [...prev, t]);
+    // Only one toast at a time — a new one replaces the current, clearing its timer.
+    Object.values(timers.current).forEach(clearTimeout);
+    timers.current = {};
+    setItems([t]);
     timers.current[id] = setTimeout(() => dismiss(id), clampDuration(toast.duration ?? duration));
     return id;
   }, [dismiss, duration]);
