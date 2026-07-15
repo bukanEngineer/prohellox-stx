@@ -44,10 +44,10 @@ export const Families = {
 export const Display = {
   render: () => (
     <div className="tk-row--baseline">
-      <Row label="Display L" meta="RHD Bold · 64 / 67" font="700 64px/1.05 'Red Hat Display', sans-serif" />
-      <Row label="Display M" meta="RHD Bold · 45 / 47" font="700 45px/1.05 'Red Hat Display', sans-serif" />
-      <Row label="Display S" meta="RHD Bold · 36 / 39" font="700 36px/1.08 'Red Hat Display', sans-serif" />
-      <p style={{ font: "var(--body-small)", color: "var(--text-secondary)" }}>Marketing &amp; hero use only. Avoid in dashboard.</p>
+      <Row label="Display L" meta="RHD Bold · 36→64 fluid" font="var(--display-large)" />
+      <Row label="Display M" meta="RHD Bold · 32→45 fluid" font="var(--display-medium)" />
+      <Row label="Display S" meta="RHD Bold · 28→36 fluid" font="var(--display-small)" />
+      <p style={{ font: "var(--body-small)", color: "var(--text-secondary)" }}>Marketing &amp; hero use only. Avoid in dashboard. Sizes scale fluidly with viewport (360→1240px) — resize the canvas to preview.</p>
     </div>
   ),
 };
@@ -55,9 +55,9 @@ export const Display = {
 export const Title = {
   render: () => (
     <div className="tk-row--baseline">
-      <Row label="Title Large" meta="RHD Bold · 28" font="700 28px/1.2 'Red Hat Display', sans-serif" />
-      <Row label="Title Medium" meta="RHD Bold · 24" font="700 24px/1.25 'Red Hat Display', sans-serif" />
-      <Row label="Title Small" meta="RHD Bold · 20" font="700 20px/1.3 'Red Hat Display', sans-serif" />
+      <Row label="Title Large" meta="RHD Bold · 24→28 fluid" font="var(--title-large)" />
+      <Row label="Title Medium" meta="RHD Bold · 20→24 fluid" font="var(--title-medium)" />
+      <Row label="Title Small" meta="RHD Bold · 18→20 fluid" font="var(--title-small)" />
     </div>
   ),
 };

@@ -2,13 +2,12 @@ import React, { useId } from "react";
 import "./SelectionBox.css";
 
 export function SelectionBox({
-  type = "radio",
+  type = "radio", // "radio" (single-select) | "check" (multi-select) — drives behavior
   selected = false,
   disabled = false,
   label,
   description,
-  icon,
-  indicator = "control",
+  icon, // custom icon for the selection-type slot (radio only)
   name,
   value,
   onChange,
@@ -19,10 +18,15 @@ export function SelectionBox({
   const autoId = useId();
   const id = idProp || autoId;
 
+  // A radio may render a custom icon in place of the radio circle; it still
+  // behaves as a radio (single-select) — behavior is driven by `type`, never
+  // by what's rendered in the icon slot.
+  const useIcon = type === "radio" && !!icon;
+
   const cls = [
     "selbox",
     `selbox--${type}`,
-    `selbox--indicator-${indicator}`,
+    useIcon && "selbox--icon",
     selected && "is-selected",
     disabled && "is-disabled",
     className,
@@ -38,18 +42,10 @@ export function SelectionBox({
   };
 
   const renderIndicator = () => {
-    if (indicator === "icon") {
+    if (useIcon) {
       return (
-        <span className="selbox__indicator selbox__indicator--icon" aria-hidden="true">
-          <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-            <path
-              d="M3 8.5 L6.5 12 L13 4.5"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <span className="selbox__indicator selbox__indicator--custom" aria-hidden="true">
+          {icon}
         </span>
       );
     }
@@ -84,7 +80,6 @@ export function SelectionBox({
         className="selbox__input"
       />
       {renderIndicator()}
-      {icon && <span className="selbox__icon" aria-hidden="true">{icon}</span>}
       <span className="selbox__content">
         {label && <span className="selbox__label">{label}</span>}
         {description && <span className="selbox__desc">{description}</span>}

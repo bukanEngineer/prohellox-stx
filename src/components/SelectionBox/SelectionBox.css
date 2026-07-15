@@ -4,12 +4,12 @@
 .selbox {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   width: 100%;
   box-sizing: border-box;
   padding: var(--space-3) var(--space-4);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   background: var(--surface);
   color: var(--text-primary);
   cursor: pointer;
@@ -27,20 +27,21 @@
   width: 0;
   height: 0;
 }
-.selbox:focus-within {
+/* Keyboard-only focus ring — clicking selects without the blue outline. */
+.selbox:has(.selbox__input:focus-visible) {
   outline: 2px solid var(--status-information);
   outline-offset: 2px;
 }
 
 /* ── Indicator: control (radio dot / checkbox) ── */
 .selbox__box {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--border);
+  border: 2px solid var(--border);
   background: var(--surface);
   transition: border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
 }
@@ -50,8 +51,8 @@
 /* radio dot */
 .selbox__box--radio::after {
   content: "";
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: var(--radius-full);
   background: var(--interactive-active);
   opacity: 0;
@@ -68,41 +69,30 @@
   transition: opacity var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
 
-/* ── Indicator: icon (check glyph that appears on select) ── */
-.selbox__indicator--icon {
-  width: 20px;
-  height: 20px;
+/* ── Indicator: custom icon (Figma .radioType = Icon) ──
+ * Replaces the radio circle visually; the row still behaves as a radio. */
+.selbox__indicator--custom {
+  width: 24px;
+  height: 24px;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-full);
-  color: var(--text-inverse);
-  background: transparent;
-  transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
-}
-.selbox__indicator--icon svg { opacity: 0; transition: opacity var(--dur-1) var(--ease); }
-
-/* ── Leading content icon ── */
-.selbox__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  transition: color var(--dur-1) var(--ease);
 }
 
 /* ── Text content ── */
 .selbox__content { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.selbox__label { font: var(--body-bold-medium); color: var(--text-primary); }
-.selbox__desc { font: var(--body-small); color: var(--text-secondary); }
+.selbox__label { font: var(--body-large); color: var(--text-primary); }
+.selbox__desc { font: var(--body-medium); color: var(--text-secondary); }
 
 /* ════════ Selected ════════ */
 .selbox.is-selected {
-  border-color: var(--primary);
-  background: var(--sidebar-active);
+  border: 2px solid var(--interactive-active);
+  background: var(--surface);
 }
-.selbox.is-selected:hover { background: var(--sidebar-active); }
+.selbox.is-selected:hover { background: var(--surface-hovered); }
 
 .selbox.is-selected .selbox__box--radio { border-color: var(--interactive-active); }
 .selbox.is-selected .selbox__box--radio::after { opacity: 1; transform: scale(1); }
@@ -113,28 +103,27 @@
 }
 .selbox.is-selected .selbox__box--check svg { opacity: 1; transform: scale(1); }
 
-.selbox.is-selected .selbox__indicator--icon { background: var(--interactive-active); }
-.selbox.is-selected .selbox__indicator--icon svg { opacity: 1; }
-.selbox.is-selected .selbox__icon { color: var(--interactive-active); }
+.selbox.is-selected .selbox__indicator--custom { color: var(--interactive-active); }
 
 /* ════════ Disabled ════════ */
+/* Figma: disabled surface + 1px line border (even when selected); text muted;
+ * the selected indicator keeps its colour but is dimmed to 50%. */
 .selbox.is-disabled {
   cursor: not-allowed;
   background: var(--surface-disabled);
-  border-color: var(--border);
+  border: 1px solid var(--border);
   color: var(--disabled-on-surface);
 }
 .selbox.is-disabled:hover { background: var(--surface-disabled); }
 .selbox.is-disabled .selbox__label,
-.selbox.is-disabled .selbox__desc,
-.selbox.is-disabled .selbox__icon { color: var(--disabled-on-surface); }
+.selbox.is-disabled .selbox__desc { color: var(--disabled-on-surface); }
+.selbox.is-disabled .selbox__indicator--custom { color: var(--disabled-on-surface); }
+
+/* unselected: plain grey indicator outline over the disabled surface */
 .selbox.is-disabled .selbox__box {
-  background: var(--surface-secondary);
+  background: transparent;
   border-color: var(--border);
 }
-.selbox.is-disabled .selbox__box--radio::after { background: var(--disabled-on-surface); }
-.selbox.is-disabled.is-selected .selbox__box--check {
-  background: var(--disabled-on-surface);
-  border-color: var(--disabled-on-surface);
-}
-.selbox.is-disabled .selbox__indicator--icon { background: var(--disabled-on-surface); }
+/* selected: retain the selected colour, dimmed (matches Figma opacity 50%) */
+.selbox.is-disabled.is-selected .selbox__box,
+.selbox.is-disabled.is-selected .selbox__indicator--custom { opacity: 0.5; }

@@ -41,6 +41,6 @@
 }
 .asset-sel__mark > * { width: 100%; height: 100%; }
 .asset-sel__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
-.asset-sel__symbol { font: var(--title-mobile-small); color: var(--text-primary); }
+.asset-sel__symbol { font: var(--title-small); color: var(--text-primary); }
 .asset-sel__subtitle { font: var(--body-medium); color: var(--text-secondary); }
 .asset-sel__chevron { flex: 0 0 auto; color: var(--text-secondary); font-size: 16px; }

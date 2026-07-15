@@ -319,10 +319,7 @@ export function BusinessDashboard() {
           XSGD, XUSD and XIDR are issued by StraitsX. &quot;STRAITSX&quot;, &quot;XSGD&quot;, &quot;XIDR&quot; and all other
           URLs, logos, and trademarks related to the StraitsX Services are either trademarks or
           registered trademarks of StraitsX or its licensors. StraitsX is the trading name of the
-          StraitsX Group of Companies and its affiliated entities.{" "}
-          <LinkButton as="a" href="https://www.straitsx.com" size="md">
-            Important Risk Warnings Regarding Digital Payment Tokens: Learn More
-          </LinkButton>
+          StraitsX Group of Companies and its affiliated entities.
         </p>
       </main>
     </div>

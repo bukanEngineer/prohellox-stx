@@ -2,6 +2,15 @@
   display: inline-flex;
   position: relative;
 }
+/* Portaled anchor: a zero-interaction box mirroring the trigger's rect. The
+ * bubble inside positions against it via the placement rules below. */
+.tooltip--portal {
+  z-index: 50;
+  pointer-events: none;
+}
+.tooltip--portal .tooltip__bubble {
+  pointer-events: auto;
+}
 .tooltip__bubble {
   position: absolute;
   z-index: 50;

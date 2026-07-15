@@ -34,7 +34,7 @@
 .table tbody tr:last-child td { border-bottom: 0; }
 .table tbody tr:hover td { background: var(--surface-hovered); }
 
-.table--zebra tbody tr:nth-child(odd) td { background: var(--surface-secondary); }
+.table--zebra tbody tr:nth-child(even) td { background: var(--surface-secondary); }
 
 .table th.table__num,
 .table td.table__num {
@@ -69,6 +69,33 @@
 }
 .table__sort-icon.is-active {
   color: var(--text-primary);
+}
+
+/* ── Header tooltip: info icon sits to the left of the label ── */
+.table__th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.table__th-info {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  cursor: help;
+}
+.table__th-info:hover,
+.table__th-info:focus-visible {
+  opacity: 1;
+  color: var(--text-primary);
+}
+.table__th-tz {
+  color: var(--text-inverse);
+  font: var(--label-small);
 }
 
 .table__cell-with-icon {
@@ -128,8 +155,8 @@
   z-index: 3;
   background: var(--surface-secondary);
 }
-.table--zebra tbody tr:nth-child(odd) td.table__cell--fixed-left,
-.table--zebra tbody tr:nth-child(odd) td.table__cell--fixed-right {
+.table--zebra tbody tr:nth-child(even) td.table__cell--fixed-left,
+.table--zebra tbody tr:nth-child(even) td.table__cell--fixed-right {
   background: var(--surface-secondary);
 }
 .table tbody tr:hover td.table__cell--fixed-left,

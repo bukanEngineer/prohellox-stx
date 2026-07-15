@@ -7,7 +7,6 @@ export default {
   parameters: { layout: "padded" },
   argTypes: {
     type: { control: "inline-radio", options: ["radio", "check"] },
-    indicator: { control: "inline-radio", options: ["control", "icon"] },
     selected: { control: "boolean" },
     disabled: { control: "boolean" },
     label: { control: "text" },
@@ -15,7 +14,6 @@ export default {
   },
   args: {
     type: "radio",
-    indicator: "control",
     selected: false,
     disabled: false,
     label: "Bank transfer",
@@ -83,23 +81,10 @@ export const CheckRows = {
   },
 };
 
-/* ── Icon indicator (Figma radioType = Icon) ── */
-export const IconIndicator = {
-  render: () => {
-    const [value, setValue] = useState("sgd");
-    return (
-      <Stack>
-        <SelectionBox type="radio" indicator="icon" name="cur" value="sgd" icon={WalletIcon}
-          label="XSGD" description="Singapore Dollar" selected={value === "sgd"} onChange={() => setValue("sgd")} />
-        <SelectionBox type="radio" indicator="icon" name="cur" value="usd" icon={WalletIcon}
-          label="XUSD" description="US Dollar" selected={value === "usd"} onChange={() => setValue("usd")} />
-      </Stack>
-    );
-  },
-};
-
-/* ── Leading icon + control indicator ── */
-export const WithLeadingIcon = {
+/* ── Radio with icon selection type (Figma radioType = Icon) ──
+ * The icon replaces the radio circle but the row still behaves as a
+ * single-select radio — interaction is driven by `type`, not the icon. */
+export const RadioWithIcon = {
   render: () => {
     const [value, setValue] = useState("a");
     return (
@@ -124,8 +109,8 @@ export const States = {
       <SelectionBox type="check" label="Check selected" selected />
       <SelectionBox type="check" label="Check disabled" disabled />
       <SelectionBox type="check" label="Check selected + disabled" description="Locked multi-select" selected disabled />
-      <SelectionBox type="radio" indicator="icon" icon={WalletIcon} label="Icon selected" selected />
-      <SelectionBox type="radio" indicator="icon" icon={WalletIcon} label="Icon disabled" description="Not interactive" disabled />
+      <SelectionBox type="radio" icon={WalletIcon} label="Icon selected" selected />
+      <SelectionBox type="radio" icon={WalletIcon} label="Icon disabled" description="Not interactive" disabled />
     </Stack>
   ),
 };

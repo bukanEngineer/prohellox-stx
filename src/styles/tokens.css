@@ -147,22 +147,18 @@
   --font-body:    "Hanken Grotesk", "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
   --font-mono:    "Red Hat Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Display — Red Hat Display Bold */
-  --display-large:  700 64px/1.05 var(--font-display);
-  --display-medium: 700 45px/1.05 var(--font-display);
-  --display-small:  700 36px/1.08 var(--font-display);
-  /* Title — Red Hat Display Bold */
-  --title-large:  700 28px/1.20 var(--font-display);
-  --title-medium: 700 24px/1.25 var(--font-display);
-  --title-small:  700 20px/1.30 var(--font-display);
-  /* Title — Mobile — Red Hat Display Bold */
-  --title-mobile-large:  700 24px/1.25 var(--font-display);
-  --title-mobile-medium: 700 20px/1.30 var(--font-display);
-  --title-mobile-small:  700 18px/1.33 var(--font-display);
-  /* Headline — Hanken Grotesk Regular */
-  --headline-large:  400 28px/1.25 var(--font-body);
-  --headline-medium: 400 24px/1.30 var(--font-body);
-  --headline-small:  400 20px/1.35 var(--font-body);
+  /* Display — Red Hat Display Bold — fluid, scales 360px→1240px viewport */
+  --display-large:  700 clamp(2.25rem, 1.5341rem + 3.182vw, 4rem)/1.05 var(--font-display);
+  --display-medium: 700 clamp(2rem, 1.6676rem + 1.477vw, 2.8125rem)/1.05 var(--font-display);
+  --display-small:  700 clamp(1.75rem, 1.5455rem + 0.909vw, 2.25rem)/1.08 var(--font-display);
+  /* Title — Red Hat Display Bold — fluid */
+  --title-large:  700 clamp(1.5rem, 1.3977rem + 0.455vw, 1.75rem)/1.20 var(--font-display);
+  --title-medium: 700 clamp(1.25rem, 1.1477rem + 0.455vw, 1.5rem)/1.25 var(--font-display);
+  --title-small:  700 clamp(1.125rem, 1.0739rem + 0.227vw, 1.25rem)/1.30 var(--font-display);
+  /* Headline — Hanken Grotesk Regular — fluid */
+  --headline-large:  400 clamp(1.5rem, 1.3977rem + 0.455vw, 1.75rem)/1.25 var(--font-body);
+  --headline-medium: 400 clamp(1.25rem, 1.1477rem + 0.455vw, 1.5rem)/1.30 var(--font-body);
+  --headline-small:  400 clamp(1.125rem, 1.0739rem + 0.227vw, 1.25rem)/1.35 var(--font-body);
   /* Label — Red Hat Display Bold */
   --label-large:  700 16px/1.35 var(--font-display);
   --label-medium: 700 14px/1.35 var(--font-display);

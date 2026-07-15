@@ -100,6 +100,6 @@
 }
 
 /* ── Mobile ── */
-.list-asset--mobile .list-asset__symbol { font: var(--title-mobile-small); }
+.list-asset--mobile .list-asset__symbol { font: var(--title-small); }
 .list-asset--mobile .list-asset__balance { align-items: flex-end; }
-.list-asset--mobile .list-asset__balance-value { font: var(--title-mobile-small); }
+.list-asset--mobile .list-asset__balance-value { font: var(--title-small); }

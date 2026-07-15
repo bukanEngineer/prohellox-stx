@@ -35,6 +35,34 @@ export const Default = { args: { columns, rows } };
 export const Zebra = { args: { columns, rows, zebra: true } };
 export const Empty = { args: { columns, rows: [] } };
 
+/* ── Header tooltips: an info icon sits to the left of the label. `date` columns
+ * additionally surface the active timezone when `showTimezone` is on. ── */
+const tooltipColumns = [
+  { key: "date", header: "Date", date: true },
+  { key: "ref", header: "Reference", tooltip: { title: "Reference", content: "Internal transaction identifier." }, render: (r) => <code style={{ fontFamily: "var(--font-mono)" }}>{r.ref}</code> },
+  { key: "to", header: "To / From" },
+  { key: "asset", header: "Asset" },
+  { key: "amount", header: "Amount", numeric: true, tooltip: "Amount in the asset's base units.", render: (r) => r.amount.toLocaleString(undefined, { minimumFractionDigits: 2 }) },
+  { key: "status", header: "Status", render: (r) => <Tag tone={tone[r.status] || "neutral"}>{r.status}</Tag> },
+];
+
+export const HeaderTooltips = { args: { columns: tooltipColumns, rows } };
+
+/* ── Timezone: `date` columns format automatically in the viewer's zone; with
+ * `showTimezone` the header tooltip shows "City, [abbrev,] offset". ── */
+const tzRows = [
+  { id: 1, date: "2026-05-22T18:30:00Z", ref: "TX-1029384", to: "John Doe",       asset: "XSGD", amount: 1250.0,  status: "Completed" },
+  { id: 2, date: "2026-05-20T02:15:00Z", ref: "TX-1029301", to: "Acme Pte. Ltd.", asset: "XSGD", amount: 8400.5,  status: "Completed" },
+  { id: 3, date: "2026-05-19T21:45:00Z", ref: "TX-1029220", to: "Mei Lin",         asset: "XIDR", amount: 2200000, status: "Pending"   },
+  { id: 4, date: "2026-05-18T09:05:00Z", ref: "TX-1029108", to: "0xa1B…f2",        asset: "XUSD", amount: 500.0,   status: "Failed"    },
+];
+
+/* Auto-detects the viewer's own timezone — no `timezone` prop needed. */
+export const Timezone = { args: { columns: tooltipColumns, rows: tzRows, showTimezone: true } };
+
+/* Pass an IANA name to pin a specific zone (DST-correct via Intl). */
+export const TimezoneOverride = { args: { columns: tooltipColumns, rows: tzRows, showTimezone: true, timezone: "Asia/Jakarta" } };
+
 /* ── Cell variants: 2-line, inline button, copy-link, leading/trailing icon ── */
 function CopyReferenceCell({ value }) {
   const [copied, setCopied] = useState(false);
