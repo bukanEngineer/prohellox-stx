@@ -4,6 +4,7 @@ import { Tabs } from "./Tabs.jsx";
 export default {
   title: "Components/Tabs",
   component: Tabs,
+  args: { fill: false },
   parameters: { layout: "padded" },
 };
 

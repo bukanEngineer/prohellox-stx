@@ -4,6 +4,7 @@ import { FieldBank } from "./FieldBank.jsx";
 export default {
   title: "Components/Field/Bank",
   component: FieldBank,
+  args: { disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 400, minHeight: 420 }}><S /></div>],
 };

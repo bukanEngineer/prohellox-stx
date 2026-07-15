@@ -4,6 +4,7 @@ import { CompanyProfileMenu } from "./CompanyProfileMenu.jsx";
 export default {
   title: "Components/Company Profile Menu",
   component: CompanyProfileMenu,
+  args: { switchCompany: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ minHeight: 320 }}><S /></div>],
 };

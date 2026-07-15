@@ -4,6 +4,7 @@ import { DateInput } from "./DateInput.jsx";
 export default {
   title: "Components/Date Input",
   component: DateInput,
+  args: { range: false, disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 320 }}><S /></div>],
 };

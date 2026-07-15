@@ -12,7 +12,7 @@ export default {
     trailingIcon: { control: "text" },
     children: { control: "text" },
   },
-  args: { children: "Learn more", trailingIcon: "arrow_forward" },
+  args: { children: "Learn more", trailingIcon: "arrow_forward", onDark: false },
 };
 
 export const Default = {};

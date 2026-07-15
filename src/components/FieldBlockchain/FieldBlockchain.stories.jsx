@@ -4,6 +4,7 @@ import { FieldBlockchain } from "./FieldBlockchain.jsx";
 export default {
   title: "Components/Field/Blockchain",
   component: FieldBlockchain,
+  args: { disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 400, minHeight: 420 }}><S /></div>],
 };

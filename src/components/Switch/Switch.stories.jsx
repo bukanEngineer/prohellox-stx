@@ -5,7 +5,7 @@ export default {
   title: "Atoms/Switch",
   component: Switch,
   parameters: { layout: "padded" },
-  args: { label: "Two-factor authentication" },
+  args: { label: "Two-factor authentication", disabled: false },
 };
 
 export const Off = {};

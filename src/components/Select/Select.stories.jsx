@@ -4,6 +4,7 @@ import { Select } from "./Select.jsx";
 export default {
   title: "Components/Select",
   component: Select,
+  args: { disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 360 }}><S /></div>],
 };

@@ -11,7 +11,7 @@ export default {
     filled: { control: "boolean" },
     color: { control: "color" },
   },
-  args: { name: "home", size: 24 },
+  args: { name: "home", size: 24, filled: false },
 };
 
 export const Default = {};

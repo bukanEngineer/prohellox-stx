@@ -4,6 +4,7 @@ import { Radio, RadioGroup } from "./Radio.jsx";
 export default {
   title: "Atoms/Radio",
   component: Radio,
+  args: { disabled: false, error: false },
   parameters: { layout: "padded" },
 };
 

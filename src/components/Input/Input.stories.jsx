@@ -5,6 +5,7 @@ export default {
   title: "Components/Input",
   component: Input,
   parameters: { layout: "padded" },
+  args: { disabled: false },
   argTypes: {
     label: { control: "text" },
     helper: { control: "text" },

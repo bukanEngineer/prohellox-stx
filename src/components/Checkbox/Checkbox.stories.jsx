@@ -5,7 +5,7 @@ export default {
   title: "Atoms/Checkbox",
   component: Checkbox,
   parameters: { layout: "padded" },
-  args: { label: "I agree to the terms" },
+  args: { label: "I agree to the terms", indeterminate: false, disabled: false, error: false },
 };
 
 export const Default = {};

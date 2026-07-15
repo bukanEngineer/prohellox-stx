@@ -9,6 +9,7 @@ import { ToastProvider, useToast } from "../Toast/Toast.jsx";
 export default {
   title: "Components/Table",
   component: Table,
+  args: { zebra: false },
   parameters: { layout: "padded" },
 };
 

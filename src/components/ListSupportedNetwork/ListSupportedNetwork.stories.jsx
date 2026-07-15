@@ -4,6 +4,7 @@ import { ListSupportedNetwork } from "./ListSupportedNetwork.jsx";
 export default {
   title: "Components/List/Supported Network",
   component: ListSupportedNetwork,
+  args: { isNew: false },
   parameters: { layout: "padded" },
 };
 

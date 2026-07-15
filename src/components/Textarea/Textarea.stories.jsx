@@ -4,6 +4,7 @@ import { Textarea } from "./Textarea.jsx";
 export default {
   title: "Components/Textarea",
   component: Textarea,
+  args: { showCount: false, disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 480 }}><S /></div>],
 };

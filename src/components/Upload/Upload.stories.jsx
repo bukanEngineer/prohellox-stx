@@ -4,6 +4,7 @@ import { Upload } from "./Upload.jsx";
 export default {
   title: "Components/Upload",
   component: Upload,
+  args: { multiple: false, disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 480 }}><S /></div>],
 };

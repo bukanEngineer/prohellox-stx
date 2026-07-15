@@ -5,6 +5,7 @@ import { ToastProvider } from "../Toast/Toast.jsx";
 export default {
   title: "Components/Copybox",
   component: Copybox,
+  args: { multiline: false, action: true, truncate: false },
   parameters: { layout: "padded" },
   argTypes: {
     value: { control: "text" },

@@ -12,7 +12,7 @@ export default {
     size: { control: "inline-radio", options: ["lg", "sm"] },
     disabled: { control: "boolean" },
   },
-  args: { icon: "notifications", label: "Notifications" },
+  args: { icon: "notifications", label: "Notifications", disabled: false },
 };
 
 export const Primary = { args: { variant: "primary" } };

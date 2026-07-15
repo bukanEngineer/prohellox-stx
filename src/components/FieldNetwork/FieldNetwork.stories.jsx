@@ -4,6 +4,7 @@ import { FieldNetwork } from "./FieldNetwork.jsx";
 export default {
   title: "Components/Field/Network",
   component: FieldNetwork,
+  args: { disabled: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 400, minHeight: 360 }}><S /></div>],
 };
