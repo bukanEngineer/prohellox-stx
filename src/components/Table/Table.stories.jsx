@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Table } from "./Table.jsx";
 import { Tag } from "../Tag/Tag.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
@@ -165,6 +165,55 @@ export const Sortable = {
     });
 
     return <Table columns={sortableColumns} rows={sortedRows} sort={sort} onSortChange={setSort} />;
+  },
+};
+
+/* ── Infinite scroll: onLoadMore fires as a sentinel row nears the bottom of the
+ * scrolling body. The consumer owns the rows and appends the next page. ── */
+const PAGE_SIZE = 15;
+const TOTAL = 60;
+const makeRow = (i) => ({
+  id: i + 1,
+  date: `2026-05-${String(22 - (i % 22)).padStart(2, "0")}`,
+  ref: `TX-10293${String(84 - i).padStart(2, "0")}`,
+  to: ["John Doe", "Acme Pte. Ltd.", "Mei Lin", "0xa1B…f2"][i % 4],
+  asset: ["XSGD", "XIDR", "XUSD"][i % 3],
+  amount: 1250 + i * 37.5,
+  status: ["Completed", "Pending", "Failed"][i % 3],
+});
+
+export const InfiniteScroll = {
+  render: () => {
+    const [data, setData] = useState(() => Array.from({ length: PAGE_SIZE }, (_, i) => makeRow(i)));
+    const [loading, setLoading] = useState(false);
+    const hasMore = data.length < TOTAL;
+
+    const loadMore = useCallback(() => {
+      setLoading(true);
+      // Simulate a paged network request.
+      setTimeout(() => {
+        setData((prev) => {
+          const next = Array.from(
+            { length: Math.min(PAGE_SIZE, TOTAL - prev.length) },
+            (_, i) => makeRow(prev.length + i)
+          );
+          return [...prev, ...next];
+        });
+        setLoading(false);
+      }, 800);
+    }, []);
+
+    return (
+      <Table
+        columns={columns}
+        rows={data}
+        scrollY={360}
+        onLoadMore={loadMore}
+        hasMore={hasMore}
+        loading={loading}
+        endLabel={`All ${TOTAL} transactions loaded`}
+      />
+    );
   },
 };
 

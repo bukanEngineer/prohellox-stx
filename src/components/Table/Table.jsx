@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./Table.css";
 
 export function Table({
@@ -13,6 +13,11 @@ export function Table({
   sort,
   defaultSort = null,
   onSortChange,
+  onLoadMore,
+  hasMore = false,
+  loading = false,
+  loadingLabel = "Loading more…",
+  endLabel,
 }) {
   const [internalSort, setInternalSort] = useState(defaultSort);
   const activeSort = sort !== undefined ? sort : internalSort;
@@ -71,6 +76,28 @@ export function Table({
     if (wrapRef.current) ro.observe(wrapRef.current);
     return () => ro.disconnect();
   }, [columns, rows, hasFixed]);
+
+  /* ── Infinite scroll: fire onLoadMore when a sentinel row nears the viewport.
+   * Consumers should memoize onLoadMore (e.g. useCallback) to avoid re-observing. ── */
+  const infinite = typeof onLoadMore === "function";
+  const sentinelRef = useRef(null);
+
+  useEffect(() => {
+    if (!infinite || !hasMore || loading) return;
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) onLoadMore();
+      },
+      // When the body scrolls internally (scrollY), observe within the wrap;
+      // otherwise fall back to the document viewport.
+      { root: scrollY ? wrapRef.current : null, rootMargin: "120px" }
+    );
+    io.observe(sentinel);
+    return () => io.disconnect();
+  }, [infinite, hasMore, loading, scrollY, rows.length, onLoadMore]);
 
   const lastLeftKey = columns.filter((c) => c.fixed === "left").pop()?.key;
   const firstRightKey = columns.find((c) => c.fixed === "right")?.key;
@@ -160,6 +187,20 @@ export function Table({
               ))}
             </tr>
           ))}
+          {infinite && rows.length > 0 && (
+            <tr ref={sentinelRef} aria-hidden={!loading}>
+              <td className="table__status" colSpan={columns.length}>
+                {loading ? (
+                  <span className="table__loading">
+                    <span className="table__spinner" aria-hidden="true" />
+                    {loadingLabel}
+                  </span>
+                ) : !hasMore && endLabel ? (
+                  endLabel
+                ) : null}
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
