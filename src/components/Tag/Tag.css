@@ -1,6 +1,6 @@
-/* Tag — migrated to STX semantic tokens (Figma: Status/* + Base Color/*).
- * Axes: tone × size (large|small) × appearance (outlined|filled),
- * plus removable + clickable affordances. */
+/* Tag — STX semantic tokens (Figma: Status/* + Base Color/*).
+ * Two variants: "outlined" (status, colored by tone) and "new" (solid brand).
+ * Axes: variant × tone × size (large|small), plus removable + clickable. */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -28,46 +28,39 @@
 .tag--large { padding: var(--space-1) var(--space-3); font: var(--body-bold-small); }
 .tag--small { padding: 2px var(--space-2); font: var(--label-small); }
 
-/* ════════ Outlined (default) — surface bg + colored border/text ════════ */
-.tag--outlined.tag--positive {
+/* ── Outlined variant — colored per tone (surface bg + border/text) ── */
+.tag--positive {
   background: var(--status-surface-positive);
   border-color: var(--status-positive);
   color: var(--status-positive);
 }
-.tag--outlined.tag--critical {
+.tag--critical {
   background: var(--status-surface-critical);
   border-color: var(--status-critical);
   color: var(--status-critical);
 }
-.tag--outlined.tag--warning {
+.tag--warning {
   background: var(--status-surface-warning);
   border-color: var(--status-warning);
   color: var(--status-warning);
 }
-.tag--outlined.tag--info {
+.tag--info {
   background: var(--status-surface-information);
   border-color: var(--status-information);
   color: var(--status-information);
 }
-.tag--outlined.tag--neutral {
+.tag--neutral {
   background: var(--surface-secondary);
   border-color: var(--border);
   color: var(--text-primary);
 }
-.tag--outlined.tag--brand {
-  background: var(--surface);
-  border-color: var(--primary);
+
+/* ── New variant — solid brand emphasis ── */
+.tag--new {
+  border-color: transparent;
+  background: var(--primary);
   color: var(--text-primary);
 }
-
-/* ════════ Filled — solid status bg + on-container text ════════ */
-.tag--filled { border-color: transparent; color: var(--text-inverse); }
-.tag--filled.tag--positive { background: var(--status-positive); }
-.tag--filled.tag--critical { background: var(--status-critical); }
-.tag--filled.tag--warning  { background: var(--status-warning); }
-.tag--filled.tag--info     { background: var(--status-information); }
-.tag--filled.tag--neutral  { background: var(--text-secondary); }
-.tag--filled.tag--brand    { background: var(--primary); color: var(--text-primary); }
 
 /* ── Removable close affordance ── */
 .tag__remove {
@@ -87,11 +80,16 @@
 .tag__remove:hover { opacity: 1; background: var(--surface-hovered); }
 .tag__remove:disabled { cursor: not-allowed; opacity: 0.4; }
 
-/* ── Clickable ── */
-.tag--clickable { cursor: pointer; transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease); }
+/* ── Clickable / selectable chip ── */
+.tag--clickable { cursor: pointer; transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease); }
 .tag--clickable:hover { background: var(--surface-hovered); }
-.tag--clickable.is-selected { font: var(--body-bold-small); }
 .tag--clickable:focus-visible { outline: 2px solid var(--status-information); outline-offset: 2px; }
+/* selected chips take the brand highlight regardless of tone */
+.tag--clickable.is-selected {
+  border-color: transparent;
+  background: var(--primary);
+  color: var(--text-primary);
+}
 
 /* ── Disabled ── */
 .tag.is-disabled {

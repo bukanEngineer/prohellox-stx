@@ -1,10 +1,20 @@
 import React from "react";
 import "./Tag.css";
 
+/**
+ * Tag / chip. Two variants:
+ *   • "outlined" (default) — status tag; `tone` (neutral, positive, critical,
+ *     warning, info) sets the color.
+ *   • "new" — solid brand emphasis (for "New", "Beta", etc.); `tone` is ignored.
+ *
+ * `clickable` turns the tag into a selectable filter chip (rendered as a
+ * <button>); when `selected` it takes the brand highlight. `removable` adds a
+ * trailing close affordance.
+ */
 export function Tag({
+  variant = "outlined",
   tone = "neutral",
   size = "large",
-  appearance = "outlined",
   icon,
   removable = false,
   onRemove,
@@ -16,27 +26,18 @@ export function Tag({
   children,
   ...rest
 }) {
-  // selected clickable tags render as filled highlight regardless of appearance
-  const effectiveAppearance = clickable && selected ? "filled" : appearance;
-
   const cls = [
     "tag",
-    `tag--${tone}`,
+    `tag--${variant}`,
+    variant === "outlined" && `tag--${tone}`,
     `tag--${size}`,
-    `tag--${effectiveAppearance}`,
     clickable && "tag--clickable",
-    selected && "is-selected",
+    clickable && selected && "is-selected",
     disabled && "is-disabled",
     className,
   ]
     .filter(Boolean)
     .join(" ");
-
-  const handleRemove = (e) => {
-    e.stopPropagation();
-    if (disabled) return;
-    onRemove && onRemove(e);
-  };
 
   // Leading icon: a string is treated as a Material Symbol name, any other
   // ReactNode is rendered as-is.
@@ -46,6 +47,12 @@ export function Tag({
     ) : (
       <span className="tag__icon" aria-hidden="true">{icon}</span>
     );
+
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    if (disabled) return;
+    onRemove && onRemove(e);
+  };
 
   const closeBtn = removable ? (
     <button
@@ -62,6 +69,14 @@ export function Tag({
     </button>
   ) : null;
 
+  const inner = (
+    <>
+      {leadingIcon}
+      <span className="tag__label">{children}</span>
+      {closeBtn}
+    </>
+  );
+
   // Clickable tags render as a button for proper semantics.
   if (clickable) {
     return (
@@ -73,18 +88,14 @@ export function Tag({
         onClick={disabled ? undefined : onClick}
         {...rest}
       >
-        {leadingIcon}
-        <span className="tag__label">{children}</span>
-        {closeBtn}
+        {inner}
       </button>
     );
   }
 
   return (
     <span className={cls} {...rest}>
-      {leadingIcon}
-      <span className="tag__label">{children}</span>
-      {closeBtn}
+      {inner}
     </span>
   );
 }

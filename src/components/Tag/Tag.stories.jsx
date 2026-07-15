@@ -6,17 +6,28 @@ export default {
   component: Tag,
   parameters: { layout: "centered" },
   argTypes: {
-    tone: { control: "inline-radio", options: ["positive", "critical", "warning", "info", "neutral", "brand"] },
-    size: { control: "inline-radio", options: ["large", "small"] },
-    appearance: { control: "inline-radio", options: ["outlined", "filled"] },
+    variant: { control: "inline-radio", options: ["outlined", "new"], table: { defaultValue: { summary: "outlined" } } },
+    tone: { control: "inline-radio", options: ["neutral", "positive", "critical", "warning", "info"], table: { defaultValue: { summary: "neutral" } } },
+    size: { control: "inline-radio", options: ["large", "small"], table: { defaultValue: { summary: "large" } } },
     icon: { control: "text" },
-    removable: { control: "boolean" },
-    clickable: { control: "boolean" },
-    selected: { control: "boolean" },
-    disabled: { control: "boolean" },
+    removable: { control: "boolean", table: { defaultValue: { summary: "false" } } },
+    onRemove: { action: "removed", table: { category: "Events" } },
+    clickable: { control: "boolean", table: { defaultValue: { summary: "false" } } },
+    selected: { control: "boolean", table: { defaultValue: { summary: "false" } } },
+    disabled: { control: "boolean", table: { defaultValue: { summary: "false" } } },
+    onClick: { action: "clicked", table: { category: "Events" } },
     children: { control: "text" },
   },
-  args: { tone: "positive", size: "large", appearance: "outlined", children: "Verified" },
+  args: {
+    variant: "outlined",
+    tone: "positive",
+    size: "large",
+    removable: false,
+    clickable: false,
+    selected: false,
+    disabled: false,
+    children: "Verified",
+  },
 };
 
 export const Positive = { args: { tone: "positive", children: "Verified" } };
@@ -24,7 +35,7 @@ export const Critical = { args: { tone: "critical", children: "Failed" } };
 export const Warning = { args: { tone: "warning", children: "Pending" } };
 export const Info = { args: { tone: "info", children: "Information" } };
 export const Neutral = { args: { tone: "neutral", children: "Not Verified" } };
-export const Brand = { args: { tone: "brand", children: "New" } };
+export const New = { args: { variant: "new", children: "New" } };
 
 export const AllTones = {
   parameters: { layout: "padded" },
@@ -35,37 +46,7 @@ export const AllTones = {
       <Tag tone="warning">Pending</Tag>
       <Tag tone="info">Information</Tag>
       <Tag tone="neutral">Not Verified</Tag>
-      <Tag tone="brand">New</Tag>
-    </div>
-  ),
-};
-
-/* ── New Figma variants ── */
-
-export const Outlined = {
-  parameters: { layout: "padded" },
-  render: () => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-      <Tag appearance="outlined" tone="positive">Verified</Tag>
-      <Tag appearance="outlined" tone="critical">Failed</Tag>
-      <Tag appearance="outlined" tone="warning">Pending</Tag>
-      <Tag appearance="outlined" tone="info">Information</Tag>
-      <Tag appearance="outlined" tone="neutral">Draft</Tag>
-      <Tag appearance="outlined" tone="brand">New</Tag>
-    </div>
-  ),
-};
-
-export const Filled = {
-  parameters: { layout: "padded" },
-  render: () => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-      <Tag appearance="filled" tone="positive">Verified</Tag>
-      <Tag appearance="filled" tone="critical">Failed</Tag>
-      <Tag appearance="filled" tone="warning">Pending</Tag>
-      <Tag appearance="filled" tone="info">Information</Tag>
-      <Tag appearance="filled" tone="neutral">Draft</Tag>
-      <Tag appearance="filled" tone="brand">New</Tag>
+      <Tag variant="new">New</Tag>
     </div>
   ),
 };
@@ -77,8 +58,8 @@ export const WithIcon = {
       <Tag tone="positive" icon="check_circle">Verified</Tag>
       <Tag tone="critical" icon="error">Failed</Tag>
       <Tag tone="warning" icon="schedule">Pending</Tag>
-      <Tag tone="info" appearance="filled" icon="info">Information</Tag>
-      <Tag tone="brand" size="small" icon="star">New</Tag>
+      <Tag tone="info" icon="info">Information</Tag>
+      <Tag variant="new" size="small" icon="star">New</Tag>
     </div>
   ),
 };
@@ -89,8 +70,8 @@ export const Sizes = {
     <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
       <Tag size="large" tone="info">Large</Tag>
       <Tag size="small" tone="info">Small</Tag>
-      <Tag size="large" appearance="filled" tone="positive">Large filled</Tag>
-      <Tag size="small" appearance="filled" tone="positive">Small filled</Tag>
+      <Tag size="large" variant="new">Large new</Tag>
+      <Tag size="small" variant="new">Small new</Tag>
     </div>
   ),
 };
@@ -123,7 +104,7 @@ export const Clickable = {
         {opts.map((o) => (
           <Tag
             key={o}
-            tone="brand"
+            tone="neutral"
             clickable
             selected={active === o}
             onClick={() => setActive(o)}
@@ -131,7 +112,7 @@ export const Clickable = {
             {o}
           </Tag>
         ))}
-        <Tag tone="brand" clickable disabled>Disabled</Tag>
+        <Tag tone="neutral" clickable disabled>Disabled</Tag>
       </div>
     );
   },
@@ -141,9 +122,9 @@ export const ClickableSelectedStates = {
   parameters: { layout: "padded" },
   render: () => (
     <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-      <Tag tone="info" clickable>Enabled</Tag>
-      <Tag tone="info" clickable selected>Selected</Tag>
-      <Tag tone="info" clickable disabled>Disabled</Tag>
+      <Tag tone="neutral" clickable>Enabled</Tag>
+      <Tag tone="neutral" clickable selected>Selected</Tag>
+      <Tag tone="neutral" clickable disabled>Disabled</Tag>
     </div>
   ),
 };

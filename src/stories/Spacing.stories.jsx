@@ -25,7 +25,7 @@ export const SpacingScale = {
   ),
 };
 
-export const Radii = {
+export const Radius = {
   render: () => (
     <div style={{ display: "flex", gap: 20, alignItems: "flex-end" }}>
       {[
