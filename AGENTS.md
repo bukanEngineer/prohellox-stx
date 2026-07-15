@@ -21,7 +21,13 @@ force-prepends to `PATH` on every command. The correct Node 24 is installed via 
 
 ### Services / commands
 
-- Storybook dev workbench: `npm run storybook` → http://localhost:6006 (only network port).
+- Storybook dev workbench: `npm run storybook -- --host 0.0.0.0` → http://localhost:6006
+  (only network port). **Always pass `--host 0.0.0.0`.** By default Storybook/Vite binds to
+  IPv6 only (`:::6006`), which appears solely in `/proc/net/tcp6`. Cursor's port
+  auto-forwarder scans the IPv4 listen table (`/proc/net/tcp`), so an IPv6-only listener is
+  never forwarded and the browser gets `ERR_CONNECTION_REFUSED` at `localhost:6006` even
+  though `curl` works inside the VM. Binding to `0.0.0.0` puts it in the IPv4 table and lets
+  the forward work.
 - Tests: `npm run test` (Vitest; `unit` project on jsdom + `storybook` project in real
   Chromium via Playwright). The Chromium browser binary must be present
   (`npx playwright install chromium`); it is included in the update script and persists in the
