@@ -1,18 +1,6 @@
 import React from "react";
 import "./DropdownAsset.css";
 
-/**
- * Dropdown / Asset (Figma 5072:46251) — the open menu body listing selectable
- * asset rows. Each row: leading mark (logo ReactNode or initials placeholder),
- * asset name, and optional secondary text / balance. Designed to be dropped in
- * as the popover body of a select-style field, or used standalone.
- *
- *   <DropdownAsset
- *     options={[{ value: "xsgd", name: "XSGD", balance: "1,250.00", logo: <img .../> }]}
- *     value="xsgd"
- *     onSelect={(value) => ...}
- *   />
- */
 export function DropdownAsset({
   options = [],
   value,

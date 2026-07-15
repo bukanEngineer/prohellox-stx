@@ -2,15 +2,6 @@ import React, { useId, useState } from "react";
 import { Menu } from "../Menu/Menu.jsx";
 import "./Select.css";
 
-/**
- * Select field built on the `Menu` popover — matches menu styling rather
- * than relying on the browser's native `<select>` chrome.
- *
- *   <Select label="Currency" options={[{value, label}]} />
- *
- * size: "large" (48px, default) | "small" (36px) — matches Input.
- * Controlled via `value`/`onChange(value, option)`, or uncontrolled via `defaultValue`.
- */
 export function Select({
   label,
   helper,

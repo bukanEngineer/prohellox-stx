@@ -1,14 +1,6 @@
 import React from "react";
 import "./Breadcrumb.css";
 
-/**
- * Trail navigation.
- *   <Breadcrumb items={[{label, href}, ...]} />
- * The last item is always shown as the current page.
- *
- * separator: defaults to a slash "/" (per Figma). Pass a Material Symbol
- * name (e.g. "chevron_right") to override with an icon glyph.
- */
 export function Breadcrumb({ items = [], separator = "/", className = "" }) {
   // Material Symbols are referenced by alphabetic names (e.g. "chevron_right").
   // Anything else (like "/") renders as a plain text separator.

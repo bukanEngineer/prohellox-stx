@@ -1,17 +1,6 @@
 import React, { useId, useState } from "react";
 import "./Input.css";
 
-/**
- * Text input with optional label, helper, error, prefix/suffix slots,
- * password visibility toggle (when type="password"), search adornment
- * (when type="search"), and an inline trailing button.
- *
- *   <Input label="Email" placeholder="hello@straitsx.com" />
- *   <Input label="Amount" suffix="SGD" defaultValue="1,250.00" />
- *   <Input type="password" label="Password" />
- *   <Input type="search" placeholder="Search transactions" />
- *   <Input label="Promo code" trailingButton={{ label: "Apply", onClick: ... }} />
- */
 export function Input({
   label,
   helper,

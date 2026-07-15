@@ -7,9 +7,6 @@ function range(from, to) {
   return out;
 }
 
-/**
- * Builds the page list with ellipses, like: 1 … 4 5 [6] 7 8 … 24
- */
 function buildPages(current, total, siblings = 1) {
   const totalShown = siblings * 2 + 5; // first + last + current + 2*siblings + 2 ellipses
   if (total <= totalShown) return range(1, total);
@@ -25,13 +22,6 @@ function buildPages(current, total, siblings = 1) {
   return pages;
 }
 
-/**
- * Pagination control.
- *   <Pagination page={p} totalPages={42} onChange={setP} />
- *
- * `disabledPages`: array of page numbers to render disabled/non-interactive.
- * `showGoTo`: renders a small "go to page" number input + Go that calls onChange.
- */
 export function Pagination({
   page = 1,
   totalPages = 1,

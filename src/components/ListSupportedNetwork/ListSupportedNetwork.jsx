@@ -1,14 +1,6 @@
 import React from "react";
 import "./ListSupportedNetwork.css";
 
-/**
- * Overlapping stack of supported-network logos with an optional "+N" overflow
- * count and a "NEW" badge. Figma: List - Supported Network (5551:8211).
- *
- * `networks` is an array of ReactNodes (round 20px icons). Pass `overflow` to
- * show a trailing "+N". Set `isNew` to surface the NEW badge.
- * Do NOT pass remote Figma asset URLs — supply rendered icon nodes.
- */
 export function ListSupportedNetwork({
   networks = [],
   overflow = 0,

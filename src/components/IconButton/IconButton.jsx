@@ -1,13 +1,6 @@
 import React from "react";
 import "./IconButton.css";
 
-/**
- * Icon-only button.
- *   variant: "primary" | "secondary" | "tertiary"
- *   shape:   "circle" | "square"
- *   size:    "lg" | "sm"
- *   icon: Material Symbol name (e.g. "close", "arrow_forward")
- */
 export function IconButton({
   icon,
   variant = "tertiary",

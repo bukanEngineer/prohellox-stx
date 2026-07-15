@@ -1,27 +1,6 @@
 import React, { useId } from "react";
 import "./SelectionBox.css";
 
-/**
- * SelectionBox — Figma "Selection - Radio" / "Selection - Check".
- *
- * A bordered, tappable ROW with a left indicator, a primary label, an optional
- * sub/description line, and an optional leading icon. The whole row is the hit
- * target; selecting it highlights the border + background.
- *
- * Props:
- *   type        "radio" | "check"        — single- vs multi-select semantics
- *   selected    bool                     — controlled selected state
- *   disabled    bool
- *   label       node                     — primary label (required for a11y)
- *   description node                     — optional secondary line
- *   icon        ReactNode                — optional leading content icon
- *   indicator   "control" | "icon"       — Figma `.radioType` Radio vs Icon
- *                                          "control" renders radio dot / checkbox,
- *                                          "icon" renders a check glyph on select
- *   name        string                   — radio group name (type="radio")
- *   value       string
- *   onChange    (next: bool, e) => void
- */
 export function SelectionBox({
   type = "radio",
   selected = false,

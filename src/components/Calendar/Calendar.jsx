@@ -43,23 +43,6 @@ function buildWeeks(viewMonth) {
   return weeks;
 }
 
-/**
- * Calendar — month-grid date picker (shadcn-style), StraitsX tokens only.
- * Used standalone or inside DateInput's popover.
- *
- * mode: "single" (default) — `value` is a Date, `onSelect(date)`.
- * mode: "range" — `value` is `{ from, to }` (either may be undefined),
- *   `onSelect({ from, to })`. Clicking picks `from`, then `to`; clicking
- *   before `from` restarts the range there; clicking again after a
- *   complete range starts a new one.
- *
- * numberOfMonths: how many consecutive months to show side by side
- *   (default 1). Only the leftmost/rightmost month get prev/next nav —
- *   matches shadcn's range-picker layout.
- *
- *   <Calendar value={selectedDate} onSelect={(date) => ...} />
- *   <Calendar mode="range" numberOfMonths={2} value={{ from, to }} onSelect={({ from, to }) => ...} />
- */
 export function Calendar({ mode = "single", value, defaultMonth, onSelect, numberOfMonths = 1, className = "" }) {
   const isRange = mode === "range";
   const from = isRange ? value?.from : undefined;

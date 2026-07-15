@@ -1,28 +1,6 @@
 import React, { useId, useRef, useState, useEffect } from "react";
 import "./FieldBank.css";
 
-/**
- * Field / Bank (Figma 5324:4923) — a labelled, card-style bank-account picker.
- * Header row shows the label ("Bank Account") plus an optional trailing
- * "Add Account" link. The control card opens a popover listing bank accounts
- * (logo + holder name + masked account number + optional SWIFT / status).
- * Single-select. Controlled (value) or uncontrolled (defaultValue).
- *
- *   <FieldBank
- *     label="Bank Account"
- *     options={[
- *       { value: "dbs", name: "John Doe", account: "DBS - 0053105977213",
- *         swift: "UOVBSGSG", logo: <DbsLogo /> },
- *       { value: "uob", name: "John Doe", account: "DBS - 0053105977203",
- *         status: { label: "Rejected", variant: "critical" },
- *         action: { label: "Resubmit", onClick }, disabled: true },
- *     ]}
- *     addAction={{ label: "Add Account", onClick }}
- *     onChange={(value) => ...}
- *   />
- *
- * States: enabled, opened, filled/unfilled, error, disabled.
- */
 export function FieldBank({
   label = "Bank Account",
   placeholder = "Select Account",

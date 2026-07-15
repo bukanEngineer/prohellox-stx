@@ -2,21 +2,6 @@ import React from "react";
 import { BottomSheet } from "../BottomSheet/BottomSheet.jsx";
 import "./BottomSheetBlockchain.css";
 
-/**
- * Blockchain / wallet selection bottom sheet — composes the shared BottomSheet
- * shell with a single-select list of blockchains or wallets. Mirrors
- * BottomSheetNetwork but for picking a chain / connected wallet. Each row:
- * leading chain mark (ReactNode or initial), name, and an optional description
- * (address / status).
- *
- *   <BottomSheetBlockchain
- *     open={open} onClose={…}
- *     title="Select Blockchain"
- *     chains={[{ id, name, description, mark }]}
- *     selectedId="ethereum"
- *     onSelect={(chain) => …}
- *   />
- */
 export function BottomSheetBlockchain({
   open,
   onClose,

@@ -3,25 +3,6 @@ import { Icon } from "../Icon/Icon.jsx";
 import { IconButton } from "../IconButton/IconButton.jsx";
 import "./CardAsset.css";
 
-/**
- * Card / Asset — a wallet panel listing held assets (stablecoins / coins).
- * Figma: Card / Asset (5515:9785).
- *
- * Each row shows: coin logo + symbol/subtitle, balance + fiat approximation,
- * the networks the asset is available on, and add / send action buttons.
- *
- * Coin logos are passed as ReactNode via each asset's `logo` prop. When absent
- * a placeholder circle with the symbol's initials is rendered. Network marks
- * are likewise `logo` ReactNodes (or initials).
- *
- *   <CardAsset
- *     title="My Assets"
- *     assets={[
- *       { symbol: "XSGD", subtitle: "1:1 to SGD", balance: "1,123,456.00",
- *         fiat: "~2,032 SGD", networks: [{ name: "Ethereum" }, { name: "Polygon" }] },
- *     ]}
- *   />
- */
 export function CardAsset({
   title = "My Assets",
   assets = [],

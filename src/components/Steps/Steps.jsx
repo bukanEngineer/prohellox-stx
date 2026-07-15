@@ -1,15 +1,6 @@
 import React from "react";
 import "./Steps.css";
 
-/**
- * Generic stepper.
- *   <Steps items={[{label, sub?, failed?}]} current={1} />            // horizontal
- *   <Steps items={…} current={1} orientation="vertical" />
- *
- * `current` is 0-indexed. Anything before is "done", that index is "active",
- * after is "todo". An item with `failed: true` renders the "failed" state
- * (critical icon/color). Pass `onSelect` to allow clicking a step.
- */
 export function Steps({
   items = [],
   current = 0,
@@ -61,12 +52,6 @@ export function Steps({
   );
 }
 
-/**
- * BadgeSteps — compact counter "x/y" + label (Figma "Badge Steps").
- *   <BadgeSteps current={2} total={4} label="Identity verification" />
- *
- * `tone`: "default" | "failed" (critical).
- */
 export function BadgeSteps({
   current = 0,
   total = 0,

@@ -1,10 +1,6 @@
 import React from "react";
 import "./Card.css";
 
-/**
- * Basic surface primitive.
- * shadow: false | 1 | 2 | 3
- */
 export function Card({ shadow = false, className = "", title, body, children, ...rest }) {
   const cls = [
     "card",

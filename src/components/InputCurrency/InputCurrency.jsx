@@ -5,39 +5,6 @@ import { IconButton } from "../IconButton/IconButton.jsx";
 import { Menu } from "../Menu/Menu.jsx";
 import "./InputCurrency.css";
 
-/**
- * Input / Currency (Figma "Input with Prefix" 2325:7486, "Input with Suffix"
- * 1735:14517) — a free-text amount field paired with an asset mark + symbol
- * dropdown, attached on either side. `position` controls which side the
- * dropdown sits on. The dropdown opens a `Menu` when `asset.options` is
- * given; otherwise the mark/symbol render as a static, non-interactive display.
- *
- *   <InputCurrency
- *     label="Amount"
- *     position="suffix"
- *     placeholder="0.00"
- *     linkButton={{ label: "Max", onClick: () => setAmount("1,300") }}
- *     asset={{
- *       defaultValue: "xsgd",
- *       options: [
- *         { value: "xsgd", symbol: "XSGD", logo: <AssetMark asset="XSGD" size={24} />, group: "stablecoin" },
- *         { value: "usdc", symbol: "USDC", logo: <AssetMark asset="USDC" size={24} />, group: "stablecoin" },
- *         { value: "sgd", symbol: "SGD", logo: <AssetMark asset="SGD" size={24} />, group: "cash" },
- *       ],
- *       onChange: (value) => ...,
- *     }}
- *   />
- *
- *   <InputCurrency label="Annual revenue" position="prefix" asset={{ symbol: "S$" }} />
- *
- * Each option may carry a `group` of "stablecoin" or "cash" — when present,
- * the dropdown splits into "Stablecoin" / "Cash" sections (Menu.Label
- * headers) in that order. Options without a `group` render ungrouped.
- *
- * `asset.value` makes the selected asset fully controlled (pair with
- * `asset.onChange`); use `asset.defaultValue` for an uncontrolled dropdown
- * that updates its own display when an item is picked.
- */
 const ASSET_GROUP_LABELS = { stablecoin: "Stablecoin", cash: "Cash" };
 const ASSET_GROUP_ORDER = ["stablecoin", "cash"];
 

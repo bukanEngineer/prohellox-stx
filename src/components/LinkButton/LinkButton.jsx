@@ -1,12 +1,6 @@
 import React from "react";
 import "./LinkButton.css";
 
-/**
- * Inline text link styled as a button. Optional trailing icon.
- *
- *   <LinkButton trailingIcon="arrow_forward" onClick={...}>Learn more</LinkButton>
- *   <LinkButton as="a" href="/docs">Read the docs</LinkButton>
- */
 export function LinkButton({
   as: Tag = "button",
   size = "md",

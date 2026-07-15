@@ -2,21 +2,6 @@ import React, { useContext, useState } from "react";
 import { ToastContext } from "../Toast/Toast.jsx";
 import "./Copybox.css";
 
-/**
- * Read-only field with an inline "Copy" button. Used for wallet addresses,
- * API keys, transaction references.
- *
- * Props:
- *   value, multiline          — original behaviour (copied state preserved)
- *   size        "large"|"sm"  — 48px (default) or 36px
- *   action      (default true)  — false = display-only (no copy button)
- *   error                       — critical border + helper message
- *   buttonVariant "icon"|"text" — icon-only vs icon+label copy button
- *   logo / icon  (ReactNode)    — leading mark (e.g. blockchain/bank)
- *   label, helper               — field label / helper slots
- *   info                        — tooltip text shown via an (i) affordance
- *   truncate     (default false)— middle-truncate long single-line value (start…end)
- */
 export function Copybox({
   value = "",
   multiline = false,

@@ -20,23 +20,6 @@ function toISO(date) {
   return `${y}-${m}-${d}`;
 }
 
-/**
- * Date input — click to open a Calendar popover (shadcn-style date picker),
- * styled to match StraitsX inputs. Values are "yyyy-mm-dd" strings, same as
- * the native date input this replaces.
- *
- * Size axis: "large" (48px, default) | "small" (36px) — matches Input.
- *
- * Single mode: `value`/`defaultValue` + `onChange` (receives a
- *   `{ target: { value } }` shape for drop-in compatibility).
- *
- * Date-range mode (`range`): pick a start then end day in one calendar
- *   popover. Control via `startValue`/`endValue`/`onRangeChange`.
- *
- *   <DateInput label="Date of birth" onChange={(e) => ...} />
- *   <DateInput label="Period" range startValue="2026-01-01" endValue="2026-03-31"
- *     onRangeChange={({ start, end }) => …} />
- */
 export function DateInput({
   label,
   helper,

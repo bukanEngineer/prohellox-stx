@@ -1,24 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import "./Table.css";
 
-/**
- * Data table.
- *   columns: [{ key, header, align?: "left"|"right", render?: (row) => node, numeric?: bool,
- *               width?: number|string, fixed?: "left"|"right", sortable?: bool }]
- *   rows:    array of records (must include a stable `id` field or pass rowKey)
- *
- *   <Table columns={cols} rows={rows} zebra />
- *   <Table columns={cols} rows={rows} scrollY={360} />                 // fixed header
- *   <Table columns={cols} rows={rows} scrollX={900} />                 // fixed columns need a scroll container
- *
- * Sorting: mark a column `sortable: true` to get a clickable header that
- * cycles ascending → descending → none. The Table only tracks and displays
- * sort state — it never reorders `rows` itself, since sorting may need to
- * happen server-side. Sort the rows you pass in based on `sort`/`onSortChange`
- * (controlled) or `defaultSort` (uncontrolled, for demos):
- *
- *   <Table columns={cols} rows={sortedRows} sort={sort} onSortChange={setSort} />
- */
 export function Table({
   columns = [],
   rows = [],

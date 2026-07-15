@@ -1,19 +1,6 @@
 import React from "react";
 import "./CardSteps.css";
 
-/**
- * Card / Steps — a single numbered step inside a card: a counter badge, the
- * step title, and a content region (indented under the title).
- * Figma: Card / Steps (5864:7460).
- *
- *   <CardSteps step={1} title="Select Transfer Method">
- *     <CardSteps.Options
- *       options={[{ id: "blockchain", label: "Blockchain Transfer" }]}
- *       selected="blockchain"
- *       onSelect={...}
- *     />
- *   </CardSteps>
- */
 export function CardSteps({ step = 1, title, helperText, children, className = "", ...rest }) {
   const cls = ["card-steps", className].filter(Boolean).join(" ");
   return (
@@ -32,10 +19,6 @@ export function CardSteps({ step = 1, title, helperText, children, className = "
   );
 }
 
-/**
- * Selection-box options row used inside a CardSteps content slot.
- * `options` is `[{ id, label, icon? }]`.
- */
 CardSteps.Options = function CardStepsOptions({ options = [], selected, onSelect }) {
   return (
     <div className="card-steps__options" role="radiogroup">

@@ -25,12 +25,6 @@ function StepConnector({ states }) {
   );
 }
 
-/**
- * Welcome / onboarding card with a 3-step indicator and 3 step cards beneath.
- * stepStates: array of "done" | "active" | "todo", one per step.
- * Pass children to fully customize step cards; otherwise the default 3-step
- * StraitsX onboarding (identity / assessment / phone) renders.
- */
 export function OnboardingSteps({
   stepStates = ["active", "todo", "todo"],
   onTakeAssessment,

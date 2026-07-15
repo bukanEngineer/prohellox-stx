@@ -2,12 +2,6 @@ import React from "react";
 import { Icon } from "../Icon/Icon.jsx";
 import "./EstimatedBalance.css";
 
-/**
- * Estimated Balance — a label + tooltip-info icon over a large numeric amount
- * with a smaller currency suffix.
- *
- *   <EstimatedBalance amount="2,081.23" currency="SGD" />
- */
 export function EstimatedBalance({
   label = "Estimated Balance",
   amount = "2,081.23",

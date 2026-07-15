@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import "./Tabs.css";
 
-/**
- * Tabs — variant: "default" (underline) or "secondary" (Figma Secondary Tab).
- * `fill` stretches tabs to fill width.
- *
- *   <Tabs items={[{id, label, content}]} defaultTab="in" />
- *   <Tabs items={…} variant="secondary" />
- */
 export function Tabs({
   items = [],
   defaultTab,

@@ -1,10 +1,6 @@
 import React, { useId, useRef, useEffect } from "react";
 import "./Checkbox.css";
 
-/**
- * Checkbox with label and optional sub-label.
- * Supports indeterminate state via the `indeterminate` prop.
- */
 export function Checkbox({
   label,
   sub,
@@ -25,6 +21,7 @@ export function Checkbox({
   }, [indeterminate]);
   const cls = [
     "control",
+    sub && "has-sub",
     disabled && "is-disabled",
     error && "is-error",
     className,

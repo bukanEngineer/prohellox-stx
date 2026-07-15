@@ -1,13 +1,6 @@
 import React from "react";
 import "./QR.css";
 
-/**
- * QR code display.
- * Uses Google's chart server by default to keep the package dependency-free —
- * swap `urlBuilder` to point at any QR service or pre-generated image.
- *
- *   <QR value="0xa1B…" label="Deposit address" />
- */
 const defaultUrlBuilder = (value, size) =>
   `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(value)}`;
 

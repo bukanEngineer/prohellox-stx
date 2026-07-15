@@ -8,21 +8,6 @@ const DEFAULT_ACTIONS = [
   { id: "statements", icon: "description", label: "Statements" },
 ];
 
-/**
- * Company-profile dropdown menu (Figma "Dropdown Menu - Company Profile").
- * Pairs with Sidebar's company-profile trigger. Optional switch-company
- * section (with selected highlight + check) followed by action items.
- *
- *   <CompanyProfileMenu
- *     switchCompany
- *     companies={[
- *       { id: "abc", name: "ABC Pte. Ltd", type: "Business Account", selected: true },
- *       { id: "xyz", name: "XYZ Pte. Ltd", type: "Business Account" },
- *     ]}
- *     onSwitch={(id) => ...}
- *     onAction={(id) => ...}
- *   />
- */
 export function CompanyProfileMenu({
   switchCompany = false,
   companies = [],

@@ -1,23 +1,6 @@
 import React from "react";
 import "./DropdownBlockchain.css";
 
-/**
- * Dropdown / Blockchain — the open menu body listing selectable blockchain or
- * wallet rows. Mirrors DropdownNetwork but for blockchain/wallet selection.
- * Each row: leading chain mark (logo ReactNode or initials placeholder), chain
- * name, optional address / secondary line, and an optional status tag (e.g.
- * "New", "Connected"). Reusable as the popover body of a blockchain field, or
- * standalone.
- *
- *   <DropdownBlockchain
- *     options={[
- *       { value: "ethereum", name: "Ethereum", address: "0x12…ab", logo: <img .../> },
- *       { value: "solana", name: "Solana", tag: { label: "New", variant: "positive" } },
- *     ]}
- *     value="ethereum"
- *     onSelect={(value) => ...}
- *   />
- */
 export function DropdownBlockchain({
   options = [],
   value,

@@ -3,22 +3,6 @@ import { Icon } from "../Icon/Icon.jsx";
 import { LinkButton } from "../LinkButton/LinkButton.jsx";
 import "./CardChecklist.css";
 
-/**
- * Card / Checklist — an onboarding progress card with a tab switch, a progress
- * bar, and a list of actionable steps.
- * Figma: Card / Checklist (5856:8667).
- *
- * `tabs` is `[{ value, label }]`; `active` selects one (calls `onTabChange`).
- * `items` is `[{ title, description?, status, linkText?, onLink? }]` where
- * status ∈ "done" | "active" | "locked".
- *
- *   <CardChecklist
- *     title="Start your journey with StraitsX"
- *     tabs={[{ value: "buy", label: "Buy Stablecoin" }, { value: "sell", label: "Sell Stablecoin" }]}
- *     active="buy" progress={40}
- *     items={[{ title: "Whitelist your blockchain address.", status: "active", linkText: "Learn how" }]}
- *   />
- */
 export function CardChecklist({
   title = "Start your journey with StraitsX",
   tabs = [],

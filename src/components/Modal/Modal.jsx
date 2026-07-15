@@ -2,20 +2,6 @@ import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import "./Modal.css";
 
-/**
- * Centered modal dialog.
- *   <Modal open={open} onClose={() => setOpen(false)} title="Confirm" footer={<Button…/>}>
- *     Body content.
- *   </Modal>
- *
- * `variant`:
- *   "default"      — standard header + body + footer.
- *   "illustration" — centered illustration slot (`illustration`) + centered title/body.
- *   "new-feature"  — top media/screenshot block (`media`) + centered title/body.
- * `size`: "small" (400) | "large" (600) — matches the two Figma widths.
- *
- * Closes on Escape or scrim click (`dismissable` to disable).
- */
 export function Modal({
   open,
   onClose,

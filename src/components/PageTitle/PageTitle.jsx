@@ -1,11 +1,6 @@
 import React from "react";
 import "./PageTitle.css";
 
-/**
- * Page heading row — optional breadcrumb above, title + subtitle, and right-aligned actions.
- *
- *   <PageTitle title="Transaction History" subtitle="…" breadcrumb={<Breadcrumb …/>} actions={<Button…/>} />
- */
 export function PageTitle({ title, subtitle, breadcrumb, actions, className = "" }) {
   return (
     <div className={"page-title " + className}>

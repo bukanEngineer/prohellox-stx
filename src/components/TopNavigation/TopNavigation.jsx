@@ -5,31 +5,6 @@ import { IconButton } from "../IconButton/IconButton.jsx";
 import { TopNavProfileMenu } from "../TopNavProfileMenu/TopNavProfileMenu.jsx";
 import "./TopNavigation.css";
 
-/**
- * TopNavigation — dashboard app-shell top bar (Figma "Top Navigation", 1998:71939).
- *
- * account: "personal" | "business" | "sandbox"
- *
- * Mobile is responsive behavior, not a prop — below the breakpoint, CSS
- * collapses the profile text and shows a hamburger automatically.
- *
- * Right cluster = notifications bell (optional count Badge) + account/profile
- *   area (avatar/initials + name + chevron). Clicking the profile area opens
- *   a TopNavProfileMenu (Figma "Top Navigation / Dropdown") anchored below
- *   it — closes on an outside click, Escape, or picking a row. Selecting a
- *   row calls `onMenuAction(id)` with "my-account" | "switch-to-sandbox" |
- *   "logout". Sandbox shows a "Sandbox" Tag indicator; Business shows the
- *   company name, Personal shows the user's name. On narrow screens, the
- *   profile text collapses and a hamburger (onMenuClick) appears.
- *
- *   <TopNavigation
- *     account="business"
- *     user={{ name: "John Doe", company: "ABC Pte. Ltd.", initials: "JD" }}
- *     notifications={3}
- *     onMenuAction={(id) => ...}
- *     onMenuClick={() => ...}
- *   />
- */
 export function TopNavigation({
   account = "personal",
   user = {},

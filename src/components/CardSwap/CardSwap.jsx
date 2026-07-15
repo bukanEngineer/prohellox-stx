@@ -5,30 +5,6 @@ import { IconButton } from "../IconButton/IconButton.jsx";
 import { InputCurrency } from "../InputCurrency/InputCurrency.jsx";
 import "./CardSwap.css";
 
-/**
- * Card / Swap — a from/to currency swap panel.
- * Figma: Card / Swap (5431:6671).
- *
- * Each leg (`from` / `to`) is
- * `{ amount, currency, balance, logo?, onMax?, onAmountChange?, options?, onCurrencyChange? }`.
- * `logo` is an optional ReactNode coin mark, used when `currency` has no
- * matching entry in `options`. `onAmountChange(value)` makes the amount field
- * an editable input. `options` (same shape as InputCurrency's `asset.options`)
- * + `onCurrencyChange(value, option)` makes the currency suffix an opening
- * picker; without `options` it stays static text. Renders each leg with
- * `InputCurrency`.
- *
- *   <CardSwap
- *     from={{
- *       amount, currency: "XUSD", balance: "1,300 XUSD",
- *       onAmountChange: setAmount,
- *       options: [{ value: "XUSD", symbol: "XUSD" }, { value: "XSGD", symbol: "XSGD" }],
- *       onCurrencyChange: setCurrency,
- *     }}
- *     to={{ amount: "25.46", currency: "XSGD", balance: "1,000 XSGD" }}
- *     rate="1 XSGD ≈ 0.7233 USDT"
- *   />
- */
 export function CardSwap({
   title = "Swap",
   from = {},

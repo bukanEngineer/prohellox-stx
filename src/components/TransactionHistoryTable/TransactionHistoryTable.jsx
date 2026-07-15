@@ -3,19 +3,6 @@ import { Table } from "../Table/Table.jsx";
 import { Tag } from "../Tag/Tag.jsx";
 import "./TransactionHistoryTable.css";
 
-/**
- * Transaction History table — builds on the shared Table with column sets that
- * vary by `type`:
- *   - "funding": Transaction ID, Date, Amount, Network, Wallet Address, Status
- *   - "otc":     Transaction ID, Date, Amount to buy, Amount to sell, Pair, Rate, Status
- *   - "swap":    Transaction ID, Created Date, Details, Pair, Sell, Buy, Price, Fee, Status
- *
- * Each row carries the fields referenced by its column set plus a `status`
- * ({ label, tone }) used to render a Tag. Numeric/amount cells use the mono font.
- *
- *   <TransactionHistoryTable type="funding" rows={rows} />
- */
-
 const STATUS_TONE = {
   completed: "positive",
   pending: "warning",

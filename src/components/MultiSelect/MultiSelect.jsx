@@ -2,18 +2,6 @@ import React, { useId, useRef, useState, useEffect, useLayoutEffect } from "reac
 import { createPortal } from "react-dom";
 import "./MultiSelect.css";
 
-/**
- * Multi-select dropdown (Figma: "Dropdown - Multiple Select").
- * Selected options render as removable chips; a popover lists options with
- * a check indicator. Controlled (value) or uncontrolled (defaultValue).
- *
- *   <MultiSelect
- *     label="Networks"
- *     options={[{ value: "eth", label: "Ethereum" }, ...]}
- *     defaultValue={["eth"]}
- *     onChange={(vals) => ...}
- *   />
- */
 export function MultiSelect({
   label,
   helper,

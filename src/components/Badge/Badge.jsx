@@ -1,13 +1,6 @@
 import React from "react";
 import "./Badge.css";
 
-/**
- * Numeric / dot badge. Wrap any child to overlay a badge on the top-right corner.
- *
- *   <Badge>3</Badge>                  // standalone
- *   <Badge tone="critical" dot />     // dot variant
- *   <Badge.Wrap badge={<Badge>3</Badge>}><IconButton ... /></Badge.Wrap>
- */
 export function Badge({ tone = "brand", size = "md", dot = false, max = 99, children, className = "", ...rest }) {
   const cls = [
     "badge",

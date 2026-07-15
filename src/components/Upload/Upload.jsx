@@ -17,8 +17,6 @@ function isImageFile(file) {
   return /\.(png|jpe?g|gif|webp|svg|avif|bmp)$/i.test(name);
 }
 
-/** Resolve a preview image URL for an image file. Accepts a pre-supplied
- *  `preview`/`url` (e.g. for prefilled stories) or creates an object URL. */
 function FilePreview({ file }) {
   const providedUrl = file.preview || file.url || null;
   const [objectUrl, setObjectUrl] = useState(null);
@@ -45,12 +43,6 @@ function FilePreview({ file }) {
   );
 }
 
-/**
- * File upload with drag-and-drop and a file-list preview.
- * Uncontrolled by default; pass `files` + `onChange` to control.
- *
- *   <Upload accept="image/*,.pdf" multiple onChange={files => …} />
- */
 export function Upload({
   label,
   hint = "PNG, JPG or PDF up to 10 MB",

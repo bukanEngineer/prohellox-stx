@@ -36,22 +36,6 @@ const ASSETS = {
   WALLETCONNECT: { glyph: "W", color: "#3B99FC", logo: "walletconnect" },
 };
 
-/**
- * Circular brand mark for a coin / fiat / network.
- * Pass a known `asset` code for an automatic branded mark — if a PartnerLogo
- * is registered for it (see ASSETS' `logo` field), the real brand mark is
- * shown; otherwise it falls back to a glyph + brand color. Override with
- * `label` + `color`, or pass a vendor SVG directly as `children`.
- *
- *   <AssetMark asset="XSGD" />
- *   <AssetMark asset="USDC" size={24} />
- *   <AssetMark label="DBS" color="var(--brand-secure-teal)" />
- *   <AssetMark asset="ETH" tone="white" />   // mono mark for on-dark surfaces
- *   <AssetMark><img src={dbsLogo} alt="" /></AssetMark>
- *
- * `tone="white"` renders a transparent-background, currentColor mark — ideal on
- * dark surfaces; inherits the parent text color so brand colors are dropped.
- */
 export function AssetMark({ asset, label, color, size = 40, tone = "brand", className = "", children }) {
   const def = asset ? ASSETS[asset.toUpperCase()] : undefined;
   const glyph = label ?? def?.glyph ?? (asset ? asset.slice(0, 2).toUpperCase() : "?");

@@ -1,23 +1,6 @@
 import React, { useId, useRef, useState, useEffect } from "react";
 import "./FieldNetwork.css";
 
-/**
- * Field / Network (Figma 5072:46588) — a labelled select-style field. The
- * control opens a popover listing networks (leading mark + name + optional
- * status tag). Single-select. Controlled (value) or uncontrolled (defaultValue).
- *
- *   <FieldNetwork
- *     label="Network"
- *     placeholder="Select Network"
- *     options={[
- *       { value: "eth", name: "Ethereum", logo: <EthIcon /> },
- *       { value: "sol", name: "Solana", tag: { label: "New" } },
- *     ]}
- *     onChange={(value) => ...}
- *   />
- *
- * States: enabled, opened, filled/unfilled, error, disabled.
- */
 export function FieldNetwork({
   label = "Network",
   placeholder = "Select Network",

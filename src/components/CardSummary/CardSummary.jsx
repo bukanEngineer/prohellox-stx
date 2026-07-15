@@ -3,22 +3,6 @@ import { Icon } from "../Icon/Icon.jsx";
 import { Button } from "../Button/Button.jsx";
 import "./CardSummary.css";
 
-/**
- * Card / Summary — a transfer details / summary card.
- * Figma: Card / Summary (5744:7591).
- *
- * `conversion` renders the from→to currency box: `{ from, to, note }`, where
- * each side is `{ label, logo? }`. `items` is `[{ label, value, info? }]`.
- *
- *   <CardSummary
- *     title="Transfer Details"
- *     conversion={{ from: { label: "SGD" }, to: { label: "XSGD" }, note: "Your SGD will be converted 1:1 to XSGD" }}
- *     items={[{ label: "Processing Time", value: "Instant" }]}
- *     netAmount={{ label: "Net Amount", value: "495 SGD" }}
- *     note={{ title: "Important Notes:", body: "We currently support only selected Singapore banks." }}
- *     button={{ label: "I've Transferred", onClick }}
- *   />
- */
 export function CardSummary({
   title = "Transfer Details",
   conversion,

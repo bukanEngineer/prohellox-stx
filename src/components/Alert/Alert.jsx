@@ -9,13 +9,6 @@ const ICONS = {
   neutral: "info",
 };
 
-/**
- * Inline alert banner — positive / critical / warning / info / neutral.
- * Optional title, body, action slot, and dismiss button.
- *
- * @param {"bottom"|"right"} [actionPlacement="bottom"] Where the `actions`
- *   slot renders: "bottom" (below body) or "right" (right-aligned inline).
- */
 export function Alert({
   tone = "info",
   title,

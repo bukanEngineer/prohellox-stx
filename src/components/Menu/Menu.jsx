@@ -1,16 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Menu.css";
 
-/**
- * Popover menu. Pass the trigger as `trigger` (rendered with `{ onClick, ref }`)
- * and the items as children of `<Menu>`.
- *
- *   <Menu trigger={({ onClick }) => <IconButton icon="more_vert" onClick={onClick} />}>
- *     <Menu.Item icon="download" onSelect={…}>Download</Menu.Item>
- *     <Menu.Divider />
- *     <Menu.Item icon="delete" tone="critical">Delete</Menu.Item>
- *   </Menu>
- */
 export function Menu({ trigger, align = "left", placement = "bottom", defaultOpen = false, children, className = "" }) {
   const [open, setOpen] = useState(defaultOpen);
   const ref = useRef(null);

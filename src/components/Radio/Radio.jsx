@@ -19,6 +19,7 @@ export function Radio({
   const id = useId();
   const cls = [
     "control",
+    sub && "has-sub",
     disabled && "is-disabled",
     error && "is-error",
     className,
@@ -47,7 +48,6 @@ export function Radio({
   );
 }
 
-/** Convenience wrapper that renders a vertical RadioGroup with shared `name`. */
 export function RadioGroup({ name, value, onChange, options = [], legend, className = "" }) {
   return (
     <fieldset style={{ border: 0, padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }} className={className}>

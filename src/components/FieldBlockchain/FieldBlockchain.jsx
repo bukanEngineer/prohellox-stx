@@ -1,28 +1,6 @@
 import React, { useId, useRef, useState, useEffect } from "react";
 import "./FieldBlockchain.css";
 
-/**
- * Field / Blockchain (Figma 5228:3280) — a labelled, card-style blockchain
- * wallet picker. Header shows the label ("Blockchain Wallet") plus an optional
- * trailing "Add Wallet" link. The control card opens a popover listing wallets
- * (logo + wallet name + masked address + optional status / verify action).
- * Single-select. Controlled (value) or uncontrolled (defaultValue).
- *
- *   <FieldBlockchain
- *     label="Blockchain Wallet"
- *     options={[
- *       { value: "mm", name: "Metamask", address: "0x934d…f2gyb1", logo: <Mm /> },
- *       { value: "w2", name: "Wallet 2", address: "0x…",
- *         status: { label: "Pending", variant: "warning" } },
- *       { value: "w3", name: "Wallet 3", address: "0x…",
- *         action: { label: "Verify", onClick } },
- *     ]}
- *     addAction={{ label: "Add Wallet", onClick }}
- *     onChange={(value) => ...}
- *   />
- *
- * States: enabled, opened, filled/unfilled, error, disabled.
- */
 export function FieldBlockchain({
   label = "Blockchain Wallet",
   placeholder = "Select Wallet",

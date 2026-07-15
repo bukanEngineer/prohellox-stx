@@ -1,22 +1,6 @@
 import React from "react";
 import "./DropdownBank.css";
 
-/**
- * Dropdown / Bank — the open menu body listing selectable bank rows. Mirrors
- * DropdownAsset but for bank selection. Each row: leading bank logo/mark (logo
- * ReactNode or initials placeholder), bank name, optional account number /
- * secondary line, and an optional status tag (e.g. "Verified"). Reusable as the
- * popover body of a bank field, or standalone.
- *
- *   <DropdownBank
- *     options={[
- *       { value: "dbs", name: "DBS Bank", account: "•••• 1234", logo: <img .../> },
- *       { value: "uob", name: "UOB", tag: { label: "Verified", variant: "positive" } },
- *     ]}
- *     value="dbs"
- *     onSelect={(value) => ...}
- *   />
- */
 export function DropdownBank({
   options = [],
   value,

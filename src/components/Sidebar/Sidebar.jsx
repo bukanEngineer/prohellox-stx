@@ -27,32 +27,6 @@ const ACCOUNT_LABEL = {
   sandbox: "Sandbox",
 };
 
-/**
- * Left navigation (Figma "Sidebar - Base"). Account-type variants, optional
- * company-profile dropdown, expandable nav items with sub-items, "New" tags,
- * and the MAS regulatory badge.
- *
- * Items with `subItems` toggle open/closed on click. Set
- * `autoSelectFirstSubItem: true` on an item to also call `onSelect` with its
- * first sub-item's id the moment it's opened — useful when a group has no
- * route of its own and should land on its first child. Omit it (default
- * false) to keep plain expand/collapse with no selection. Both behaviors can
- * be mixed across items in the same `items` array.
- *
- * Pass `loading` to replace the nav items with animated skeleton
- * placeholders (e.g. while nav config is being fetched). `loadingCount`
- * controls how many placeholder rows render (default 8).
- *
- *   <Sidebar
- *     account="business"
- *     company={{ name: "ABC Pte. Ltd", type: "Company" }}
- *     onCompanyClick={() => ...}
- *     items={DEFAULT_NAV_ITEMS}
- *     active="home"
- *     activeSubItem="mint-buy"
- *     onSelect={(id) => ...}
- *   />
- */
 export function Sidebar({
   account = "personal",
   company,

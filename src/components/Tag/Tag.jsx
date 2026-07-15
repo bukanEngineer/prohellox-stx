@@ -1,23 +1,6 @@
 import React from "react";
 import "./Tag.css";
 
-/**
- * Status / category tag.
- *
- * tone:       positive | critical | warning | info | neutral | brand
- * size:       "large" (default) | "small"            — Figma large/small
- * appearance: "outlined" (default) | "filled"        — Figma Filled/Outlined
- *               outlined = surface bg + colored border/text (current look)
- *               filled   = solid status bg + on-container text
- * icon:       ReactNode | material-symbol name — leading icon before the label
- *                (Figma "Small Tag - Small/XS Icon")
- * removable:  bool + onRemove → trailing close (×) affordance (Figma "Removable Tag")
- * clickable:  bool + onClick + selected → Figma "Clickable Tag"
- *               (selected = filled highlight)
- * disabled:   bool — applies to removable / clickable affordances
- *
- * Backwards compatible: a plain <Tag tone> still renders a static span.
- */
 export function Tag({
   tone = "neutral",
   size = "large",

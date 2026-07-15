@@ -1,13 +1,6 @@
 import React from "react";
 import "./InlineCrossAsset.css";
 
-/**
- * Inline conversion box showing a "from → to" asset pair with a caption.
- * Figma: Inline Box / Cross Asset (5700:9286).
- *
- * Pass `fromIcon` / `toIcon` as ReactNodes (round 20px coin/flag icons) —
- * use initials placeholders as fallback. Do NOT pass remote Figma asset URLs.
- */
 export function InlineCrossAsset({
   from = "XUSD",
   to = "USD",

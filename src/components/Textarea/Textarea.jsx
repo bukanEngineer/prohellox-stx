@@ -2,9 +2,6 @@ import React, { useId, useState } from "react";
 import "../Input/Input.css";
 import "./Textarea.css";
 
-/**
- * Multi-line text input with optional character counter.
- */
 export function Textarea({
   label,
   helper,

@@ -9,10 +9,6 @@ const DEFAULT_TABS = [
   { id: "swap", label: "Swap" },
 ];
 
-/**
- * Tabbed transfer panel — Transfer In / Out / Swap. Pass `children` to render
- * a tab body; otherwise a verification-gated EmptyState renders.
- */
 export function TransferPanel({
   tabs = DEFAULT_TABS,
   defaultTab,

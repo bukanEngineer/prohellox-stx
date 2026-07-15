@@ -1,11 +1,6 @@
 import React from "react";
 import "./Button.css";
 
-/**
- * StraitsX Button — pill-shaped, three variants × three sizes.
- *
- * Usage: <Button variant="primary" size="lg">Take Assessment</Button>
- */
 export function Button({
   variant = "primary",
   size = "lg",

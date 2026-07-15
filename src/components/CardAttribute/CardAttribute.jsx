@@ -4,22 +4,6 @@ import { Tag } from "../Tag/Tag.jsx";
 import { Button } from "../Button/Button.jsx";
 import "./CardAttribute.css";
 
-/**
- * Card / Attribute — a transaction detail card laying out label/value
- * attributes in a responsive two-column grid, with an optional status tag and
- * action footer.
- * Figma: Card / Attribute (5830:7089).
- *
- * `attributes` is `[{ label, value, info?, copyable?, link?, columns? }]`.
- * Set `columns: 2` (or `full`) for an attribute that spans the full width.
- *
- *   <CardAttribute
- *     title="Transaction Details"
- *     status={{ label: "Completed", tone: "positive" }}
- *     attributes={[{ label: "Transaction ID", value: "a3502840…", copyable: true, columns: 2 }]}
- *     actions={{ onReject, onApprove }}
- *   />
- */
 export function CardAttribute({
   title = "Transaction Details",
   status,

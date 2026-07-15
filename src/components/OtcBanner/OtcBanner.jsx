@@ -1,10 +1,6 @@
 import React from "react";
 import "./OtcBanner.css";
 
-/**
- * Dark Secure-Teal promo card with diagonal stripe decoration.
- * Used on the Personal Account dashboard to surface the OTC Desk.
- */
 export function OtcBanner({
   title = "StraitsX OTC Desk",
   amount = "50,000 USD",

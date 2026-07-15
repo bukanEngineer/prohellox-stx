@@ -2,18 +2,6 @@ import React from "react";
 import "./ListBank.css";
 import { Tag } from "../Tag/Tag.jsx";
 
-/**
- * Bank account list row. Figma: List / Bank (5323:3843).
- *
- * Renders a leading bank logo, a primary name + secondary account line, an
- * optional SWIFT line, and a trailing action/status depending on `variant`:
- *   - "unverified" → "Verify" link
- *   - "rejected"   → "Rejected" tag + "Resubmit" link
- *   - "verified"   → SWIFT code shown (when `swift` provided)
- *
- * `logo` is any ReactNode (svg/img) — pass initials as a fallback. Do NOT
- * pass remote Figma asset URLs.
- */
 export function ListBank({
   name = "John Doe",
   account,

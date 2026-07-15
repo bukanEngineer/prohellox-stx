@@ -14,7 +14,7 @@ export function Switch({
   ...inputProps
 }) {
   const id = useId();
-  const cls = ["control", disabled && "is-disabled", className].filter(Boolean).join(" ");
+  const cls = ["control", sub && "has-sub", disabled && "is-disabled", className].filter(Boolean).join(" ");
   return (
     <label htmlFor={idProp || id} className={cls}>
       <input

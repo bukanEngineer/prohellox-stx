@@ -1,19 +1,6 @@
 import React from "react";
 import "./TopNavProfileMenu.css";
 
-/**
- * TopNavProfileMenu — Figma "Top Navigation / Dropdown" (5070:45712).
- *
- * The profile dropdown anchored by TopNavigation's profile/avatar trigger —
- * TopNavigation renders this internally, so it's rarely used standalone.
- * Distinct from CompanyProfileMenu (the Sidebar company switcher).
- *
- * account: "personal" | "business" | "sandbox" — personal adds a
- *   "Switch to Sandbox" row; business/sandbox omit it (account switching
- *   there lives in CompanyProfileMenu instead).
- *
- *   <TopNavProfileMenu account="personal" onAction={(id) => ...} />
- */
 export function TopNavProfileMenu({ account = "personal", onAction, className = "" }) {
   const fire = (id) => () => onAction && onAction(id);
 

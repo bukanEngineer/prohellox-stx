@@ -3,21 +3,6 @@ import { createPortal } from "react-dom";
 import { Button } from "../Button/Button.jsx";
 import "./Coachmark.css";
 
-/**
- * Onboarding coachmark. Highlights a target element with a cut-out scrim
- * and shows a popover with title + body + step navigation.
- *
- *   const [open, setOpen] = useState(true);
- *   const ref = useRef();
- *   <button ref={ref}>Help</button>
- *   <Coachmark
- *     target={ref}
- *     open={open}
- *     onDismiss={() => setOpen(false)}
- *     title="Try the Earn feature"
- *     body="…"
- *   />
- */
 export function Coachmark({
   target,
   open = true,

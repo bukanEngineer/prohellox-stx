@@ -2,19 +2,6 @@ import React from "react";
 import { BottomSheet } from "../BottomSheet/BottomSheet.jsx";
 import "./BottomSheetNetwork.css";
 
-/**
- * Network selection bottom sheet — composes the shared BottomSheet shell with a
- * single-select list of blockchain networks. Used to pick the network for a
- * given asset (XSGD / XUSD / USDC / USDT).
- *
- *   <BottomSheetNetwork
- *     open={open} onClose={…}
- *     title="Select Network"
- *     networks={[{ id, name, description, mark }]}
- *     selectedId="ethereum"
- *     onSelect={(network) => …}
- *   />
- */
 export function BottomSheetNetwork({
   open,
   onClose,

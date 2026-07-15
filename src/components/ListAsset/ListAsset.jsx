@@ -2,18 +2,6 @@ import React from "react";
 import "./ListAsset.css";
 import { ListSupportedNetwork } from "../ListSupportedNetwork/ListSupportedNetwork.jsx";
 
-/**
- * Asset list row for fiat & stablecoin balances. Figma: List / Asset (5554:8405).
- *
- * Layout: leading coin/flag icon, symbol + subtitle, a trailing balance block,
- * optional supported-network avatars (stablecoin) and trailing action buttons.
- *
- * `icon` is any ReactNode (round 40px coin/flag) — pass initials as fallback.
- * Do NOT pass remote Figma asset URLs — supply rendered icon nodes.
- *
- *   platform: "desktop" | "mobile"
- *   variant:  "stablecoin" | "fiat"
- */
 export function ListAsset({
   symbol = "XSGD",
   subtitle = "1:1 to SGD",

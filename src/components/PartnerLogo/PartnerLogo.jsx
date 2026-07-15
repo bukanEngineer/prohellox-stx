@@ -1,21 +1,5 @@
 import React from "react";
 
-/**
- * Partner logo registry, sourced from the StraitsX design system Figma file
- * (Logo section). Bank marks use a 64x40 viewBox; chain/exchange marks use a
- * square 24x24 viewBox — `bankLogo`/`squareLogo` size them accordingly.
- *
- *   <PartnerLogo name="standard-chartered" />
- *   <PartnerLogo name="ethereum" size={48} />
- *
- * These are licensed brand assets exported in full color, so the
- * `monochrome` prop has no effect on real logos — it only affects the
- * fallback wordmark pill shown for unknown names.
- *
- * To add a new logo: drop the SVG in `src/assets/partners/<slug>.svg` and
- * add an entry to LOGOS using `bankLogo` (wide marks) or `squareLogo` (icon
- * marks).
- */
 function bankLogo(slug) {
   const src = new URL(`../../assets/partners/${slug}.svg`, import.meta.url);
   function BankLogo({ size }) {

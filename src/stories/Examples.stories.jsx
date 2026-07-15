@@ -1,6 +1,5 @@
 import React from "react";
 import { BusinessDashboard } from "../examples/BusinessDashboard.jsx";
-import { TransactionHistory } from "../examples/TransactionHistory.jsx";
 import { SignIn } from "../examples/SignIn.jsx";
 
 export default {
@@ -9,5 +8,4 @@ export default {
 };
 
 export const BusinessDashboardScreen = { render: () => <BusinessDashboard /> };
-export const TransactionHistoryScreen = { render: () => <TransactionHistory /> };
 export const SignInScreen = { render: () => <SignIn /> };

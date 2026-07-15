@@ -46,7 +46,6 @@ export const Radii = {
 };
 
 export const Shadows = {
-  parameters: { backgrounds: { default: "muted" } },
   render: () => (
     <div style={{ background: "#F6F7F9", padding: 32, borderRadius: 12 }}>
       <div style={{ display: "flex", gap: 24 }}>
@@ -64,4 +63,9 @@ export const Shadows = {
       </div>
     </div>
   ),
+  globals: {
+    backgrounds: {
+      value: "muted"
+    }
+  },
 };

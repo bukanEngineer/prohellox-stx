@@ -1,21 +1,6 @@
 import React from "react";
 import "./DropdownNetwork.css";
 
-/**
- * Dropdown / Network (Figma 5072:46599) — the open menu body listing selectable
- * network rows. Each row: leading mark (logo ReactNode or initials placeholder),
- * network name, optional secondary line, and an optional status tag (e.g. "New").
- * Reusable as the popover body of a network field, or standalone.
- *
- *   <DropdownNetwork
- *     options={[
- *       { value: "eth", name: "Ethereum", logo: <img .../> },
- *       { value: "sol", name: "Solana", tag: { label: "New", variant: "positive" } },
- *     ]}
- *     value="eth"
- *     onSelect={(value) => ...}
- *   />
- */
 export function DropdownNetwork({
   options = [],
   value,

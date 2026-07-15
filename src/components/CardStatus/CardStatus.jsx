@@ -4,22 +4,6 @@ import { Icon } from "../Icon/Icon.jsx";
 import { LinkButton } from "../LinkButton/LinkButton.jsx";
 import "./CardStatus.css";
 
-/**
- * Card / Status — a transaction status summary card.
- * Figma: Card / Status (5744:7257).
- *
- * Renders a status icon + title, a description, optional detail sections, and
- * a totals row. Each `sections` entry is `{ title, items: [{ label, value, info? }] }`.
- *
- *   <CardStatus
- *     status="needApproval"
- *     title="Bank Transfer Awaiting Approval"
- *     description="Your transfer is submitted and awaiting approval."
- *     sections={[{ title: "Recipient Details", items: [{ label: "Recipient Name", value: "Hendra Kwik" }] }]}
- *     total={{ label: "Net Amount", value: "40 XSGD" }}
- *     footerLink={{ text: "View Transaction Details" }}
- *   />
- */
 export function CardStatus({
   status = "success",
   statusIcon,

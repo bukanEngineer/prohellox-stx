@@ -2,20 +2,6 @@ import React from "react";
 import { Modal } from "../Modal/Modal.jsx";
 import "./ModalAssetSelection.css";
 
-/**
- * Asset selection modal — Transfer In / Transfer Out asset picker. Renders a
- * title + description header and a tappable list of assets (mark, symbol,
- * optional subtitle). Composes the shared Modal shell.
- *
- *   <ModalAssetSelection
- *     open={open} onClose={…}
- *     title="Transfer In"
- *     description="Deposit funds from your blockchain wallet or bank account"
- *     label="Select Asset:"
- *     assets={[{ id, symbol, subtitle, mark }]}
- *     onSelect={(asset) => …}
- *   />
- */
 export function ModalAssetSelection({
   open,
   onClose,

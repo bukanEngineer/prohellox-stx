@@ -1,7 +1,7 @@
 /* shared base for checkbox + radio + switch */
 .control {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   cursor: pointer;
   font: var(--body-medium);
@@ -14,7 +14,9 @@
   width: 0;
   height: 0;
 }
-.control__label { padding-top: 1px; }
+.control__label { padding-top: 0; }
+.control.has-sub { align-items: flex-start; }
+.control.has-sub .control__label { padding-top: 0; line-height: 1.15; }
 .control__sub { display: block; font: var(--body-small); color: var(--text-secondary); margin-top: 2px; }
 .control.is-disabled { color: var(--disabled-on-surface); cursor: not-allowed; }
 .control:focus-within .control__box {

@@ -3,20 +3,6 @@ import { Modal } from "../Modal/Modal.jsx";
 import { Button } from "../Button/Button.jsx";
 import "./Modal2FA.css";
 
-/**
- * 2-Factor Authentication modal — illustration, instruction text, a segmented
- * code input, a "having trouble" link, and Cancel / Verify actions. Composes
- * the shared Modal shell. The code input is a controlled string; pass `value`
- * and `onChange(nextCode)`.
- *
- *   <Modal2FA
- *     open={open} onClose={…}
- *     value={code} onChange={setCode}
- *     onVerify={() => …}
- *     length={6}
- *     illustration={<MyArt/>}
- *   />
- */
 export function Modal2FA({
   open,
   onClose,

@@ -2,21 +2,6 @@ import React from "react";
 import { Modal } from "../Modal/Modal.jsx";
 import "./ModalAssetOverview.css";
 
-/**
- * Asset overview modal — shows an asset header (coin/fiat mark + name + subtitle),
- * the available transfer methods (Transfer In / Transfer Out), and a supported
- * network / bank summary footer.
- *
- * Renders inside the shared Modal shell.
- *
- *   <ModalAssetOverview
- *     open={open} onClose={…}
- *     mark={<CoinMark/>} symbol="XSGD" subtitle="1:1 to SGD"
- *     methods={[{ id, title, description, icon }]}
- *     networks={[{ label, mark }]}
- *     banks="FAST, MEPS, SWIFT"
- *   />
- */
 export function ModalAssetOverview({
   open,
   onClose,

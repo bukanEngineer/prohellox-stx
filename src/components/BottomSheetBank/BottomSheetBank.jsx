@@ -2,20 +2,6 @@ import React from "react";
 import { BottomSheet } from "../BottomSheet/BottomSheet.jsx";
 import "./BottomSheetBank.css";
 
-/**
- * Bank selection bottom sheet — composes the shared BottomSheet shell with a
- * single-select list of banks. Mirrors BottomSheetNetwork but for picking a
- * bank / linked account. Each row: leading bank mark (ReactNode or initial),
- * bank name, and an optional description (account number / status).
- *
- *   <BottomSheetBank
- *     open={open} onClose={…}
- *     title="Select Bank"
- *     banks={[{ id, name, description, mark }]}
- *     selectedId="dbs"
- *     onSelect={(bank) => …}
- *   />
- */
 export function BottomSheetBank({
   open,
   onClose,

@@ -3,6 +3,7 @@ import "../src/styles/global.css";
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   tags: ["autodocs"],
+
   parameters: {
     controls: {
       matchers: {
@@ -12,15 +13,14 @@ const preview = {
     },
 
     backgrounds: {
-      default: "surface",
-      values: [
-        { name: "surface", value: "#FFFFFF" },
-        { name: "subtle", value: "#F7F7F7" },
-        { name: "muted", value: "#F6F7F9" },
-        { name: "dashboard", value: "#F1F2F4" },
-        { name: "ivy", value: "#002B2A" },
-        { name: "teal", value: "#054948" },
-      ],
+      options: {
+        surface: { name: "surface", value: "#FFFFFF" },
+        subtle: { name: "subtle", value: "#F7F7F7" },
+        muted: { name: "muted", value: "#F6F7F9" },
+        dashboard: { name: "dashboard", value: "#F1F2F4" },
+        ivy: { name: "ivy", value: "#002B2A" },
+        teal: { name: "teal", value: "#054948" }
+      }
     },
 
     options: {
@@ -46,6 +46,12 @@ const preview = {
       test: "todo"
     }
   },
+
+  initialGlobals: {
+    backgrounds: {
+      value: "surface"
+    }
+  }
 };
 
 export default preview;
