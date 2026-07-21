@@ -1,11 +1,17 @@
 import React from "react";
 import "./OtcBanner.css";
 
+const patternA = new URL("./assets/pattern-141.svg", import.meta.url);
+const patternB = new URL("./assets/pattern-143.svg", import.meta.url);
+const patternC = new URL("./assets/pattern-142.svg", import.meta.url);
+const patternD = new URL("./assets/pattern-145.svg", import.meta.url);
+const arrow = new URL("./assets/arrow.svg", import.meta.url);
+
 export function OtcBanner({
   title = "StraitsX OTC Desk",
-  amount = "50,000 USD",
+  amount = "100,000 USD",
   body,
-  ctaLabel = "Request Quote",
+  ctaLabel = "Request for a Quote",
   onCtaClick,
   href,
 }) {
@@ -17,27 +23,27 @@ export function OtcBanner({
   );
   return (
     <section className="otc">
+      <div className="otc__deco" aria-hidden="true">
+        <div className="otc__pattern otc__pattern--a"><img src={patternA} alt="" /></div>
+        <div className="otc__pattern otc__pattern--b"><img src={patternB} alt="" /></div>
+        <div className="otc__pattern otc__pattern--c"><img src={patternC} alt="" /></div>
+        <div className="otc__pattern otc__pattern--d"><img src={patternD} alt="" /></div>
+      </div>
       <div className="otc__text">
         <div className="otc__title">{title}</div>
         <p className="otc__body">{body || defaultBody}</p>
-        {href ? (
-          <a className="otc__cta" href={href}>
-            {ctaLabel}
-            <span className="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
-          </a>
-        ) : (
-          <button type="button" className="otc__cta" onClick={onCtaClick}>
-            {ctaLabel}
-            <span className="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
-          </button>
-        )}
       </div>
-      <svg viewBox="0 0 200 160" className="otc__deco" fill="none" aria-hidden="true">
-        <path d="M-20 130 Q60 60 220 80 L220 200 L-20 200 Z" fill="#00D37E" opacity="0.18" />
-        <path d="M0 120 Q80 50 240 70" stroke="#00D37E" strokeWidth="8" strokeLinecap="round" />
-        <path d="M40 160 Q140 90 250 110" stroke="#00D37E" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
-        <path d="M80 200 Q170 140 260 160" stroke="#00D37E" strokeWidth="8" strokeLinecap="round" opacity="0.5" />
-      </svg>
+      {href ? (
+        <a className="otc__cta" href={href}>
+          {ctaLabel}
+          <img className="otc__cta-arrow" src={arrow} alt="" aria-hidden="true" />
+        </a>
+      ) : (
+        <button type="button" className="otc__cta" onClick={onCtaClick}>
+          {ctaLabel}
+          <img className="otc__cta-arrow" src={arrow} alt="" aria-hidden="true" />
+        </button>
+      )}
     </section>
   );
 }

@@ -1,106 +1,125 @@
-.steps {
+/* Horizontal Steps — segmented progress bar + counter text */
+.h-steps {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-1);
   width: 100%;
 }
-.steps__step {
+.h-steps__track {
+  display: flex;
+  gap: var(--space-1);
+  width: 100%;
+}
+.h-steps__segment {
   flex: 1;
+  height: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--border);
+}
+.h-steps__segment.is-filled {
+  background: var(--primary);
+}
+.h-steps__count {
+  font: var(--body-small);
+  color: var(--text-secondary);
+}
+
+/* Vertical Steps — read-only status timeline */
+.v-steps {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.v-steps__item {
+  display: flex;
+  gap: var(--space-3);
+}
+.v-steps__line {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  position: relative;
-  min-width: 0;
-  cursor: default;
+  width: 10px;
+  flex-shrink: 0;
 }
-.steps__step.is-clickable { cursor: pointer; }
-.steps__dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
+.v-steps__connector {
+  width: 1.5px;
+  flex: 1 0 var(--space-1);
+  background: var(--border);
+}
+.v-steps__connector.is-done {
+  background: var(--status-positive);
+}
+.v-steps__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border);
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+}
+.v-steps__item.is-completed .v-steps__dot,
+.v-steps__item.is-active .v-steps__dot {
+  border-color: var(--status-positive);
+}
+.v-steps__item.is-failed .v-steps__dot {
+  border-color: var(--status-critical);
+}
+.v-steps__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-5);
+}
+.v-steps__item:last-child .v-steps__content {
+  padding-bottom: 0;
+}
+.v-steps__title {
+  font: var(--body-medium);
   color: var(--text-primary);
-  font: 700 14px/1 var(--font-display);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
-.steps__dot .material-symbols-rounded { font-size: 18px; }
-.steps__step.is-done .steps__dot { background: var(--interactive-active); border-color: var(--interactive-active); color: var(--text-inverse); }
-.steps__step.is-active .steps__dot { border-color: var(--text-primary); border-width: 2px; }
-.steps__step.is-failed .steps__dot { background: var(--status-critical); border-color: var(--status-critical); color: var(--text-inverse); }
-.steps__step.is-failed .steps__label { color: var(--status-critical); }
-.steps__label {
-  font: 700 13px/1.3 var(--font-display);
-  color: var(--text-secondary);
-  text-align: center;
-  max-width: 14ch;
+.v-steps__item.is-active .v-steps__title {
+  font: var(--body-bold-medium);
 }
-.steps__step.is-active .steps__label { color: var(--text-primary); }
-.steps__step.is-done .steps__label { color: var(--text-primary); }
-.steps__sub {
+.v-steps__item.is-failed .v-steps__title {
+  color: var(--status-critical);
+}
+.v-steps__timestamp,
+.v-steps__note {
   font: var(--body-small);
   color: var(--text-secondary);
-  text-align: center;
-  max-width: 18ch;
-}
-.steps__connector {
-  flex: 1;
-  height: 1.5px;
-  background: var(--border);
-  margin-top: 16px;
-  align-self: flex-start;
-}
-.steps__connector.is-done { background: var(--interactive-active); }
-
-/* Vertical orientation */
-.steps--vertical { flex-direction: column; align-items: stretch; gap: 0; }
-.steps--vertical .steps__step {
-  flex: 0 0 auto;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 12px;
-  text-align: left;
-  padding: 4px 0;
-}
-.steps--vertical .steps__label,
-.steps--vertical .steps__sub { text-align: left; max-width: none; }
-.steps--vertical .steps__connector {
-  width: 1.5px;
-  height: 24px;
-  margin: 0 0 0 16px;
-  flex: 0 0 auto;
-  align-self: flex-start;
 }
 
-/* Badge Steps — compact "x/y" counter + label */
+/* Badge Steps — numbered step header for card content */
 .badge-steps {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
 }
-.badge-steps__count {
+.badge-steps__counter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 36px;
+  flex-shrink: 0;
+  width: 24px;
   height: 24px;
-  padding: 0 8px;
   border-radius: var(--radius-full);
-  background: var(--surface-secondary);
+  background: var(--text-primary);
+  color: var(--on-container);
+  font: var(--label-large);
+}
+.badge-steps__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.badge-steps__title {
+  font: var(--label-large);
   color: var(--text-primary);
-  font: var(--label-small);
-  font-variant-numeric: tabular-nums;
 }
-.badge-steps__label {
-  font: var(--label-medium);
+.badge-steps__description {
+  font: var(--body-medium);
   color: var(--text-secondary);
-}
-.badge-steps--failed .badge-steps__count {
-  background: var(--status-surface-critical);
-  color: var(--status-critical);
-}
-.badge-steps--failed .badge-steps__label {
-  color: var(--status-critical);
 }

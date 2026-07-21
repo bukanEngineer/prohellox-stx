@@ -19,9 +19,7 @@
   height: 48px;
   background: var(--surface-secondary);
   color: var(--text-secondary);
-  font: var(--label-small);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font: var(--body-bold-medium); /* Label · Hanken Grotesk / Medium — see Typography stories */
   text-align: left;
   padding: 0 var(--space-4);
 }

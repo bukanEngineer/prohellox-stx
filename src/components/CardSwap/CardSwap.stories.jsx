@@ -8,22 +8,22 @@ export default {
   parameters: { layout: "centered" },
 };
 
-export const Default = {
-  args: {
-    from: { amount: "20", currency: "XUSD", balance: "1,300 XUSD", onMax: () => {} },
-    to: { amount: "25.46", currency: "XSGD", balance: "1,000 XSGD" },
-    rate: "1 XSGD ≈ 0.7233 USDT",
-    onSwap: () => {},
-    onReverse: () => {},
-  },
-};
-
 const CURRENCY_OPTIONS = [
   { value: "XSGD", symbol: "XSGD", logo: <AssetMark asset="XSGD" size={24} /> },
   { value: "XUSD", symbol: "XUSD", logo: <AssetMark asset="XUSD" size={24} /> },
   { value: "USDC", symbol: "USDC", logo: <AssetMark asset="USDC" size={24} /> },
   { value: "USDT", symbol: "USDT", logo: <AssetMark asset="USDT" size={24} /> },
 ];
+
+export const Default = {
+  args: {
+    from: { amount: "20", currency: "XUSD", balance: "1,300 XUSD", onMax: () => {}, options: CURRENCY_OPTIONS },
+    to: { amount: "25.46", currency: "XSGD", balance: "1,000 XSGD", options: CURRENCY_OPTIONS },
+    rate: "1 XSGD ≈ 0.7233 USDT",
+    onSwap: () => {},
+    onReverse: () => {},
+  },
+};
 
 export const Interactive = {
   render: () => {
@@ -62,8 +62,8 @@ export const Interactive = {
 
 export const BestRateSecured = {
   args: {
-    from: { amount: "100", currency: "XUSD", balance: "1,300 XUSD", onMax: () => {} },
-    to: { amount: "127.30", currency: "XSGD", balance: "1,000 XSGD" },
+    from: { amount: "100", currency: "XUSD", balance: "1,300 XUSD", onMax: () => {}, options: CURRENCY_OPTIONS },
+    to: { amount: "127.30", currency: "XSGD", balance: "1,000 XSGD", options: CURRENCY_OPTIONS },
     rate: "1 XSGD ≈ 0.7233 USDT",
     highlight: "Best rates secured",
     onSwap: () => {},

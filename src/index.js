@@ -31,7 +31,7 @@ export { Table } from "./components/Table/Table.jsx";
 export { Pagination } from "./components/Pagination/Pagination.jsx";
 export { Breadcrumb } from "./components/Breadcrumb/Breadcrumb.jsx";
 export { PageTitle } from "./components/PageTitle/PageTitle.jsx";
-export { Steps, BadgeSteps } from "./components/Steps/Steps.jsx";
+export { HorizontalSteps, VerticalSteps, BadgeSteps } from "./components/Steps/Steps.jsx";
 export { EmptyState } from "./components/EmptyState/EmptyState.jsx";
 export { ErrorResponse } from "./components/ErrorResponse/ErrorResponse.jsx";
 export { QR } from "./components/QR/QR.jsx";
@@ -50,7 +50,6 @@ export { Coachmark } from "./components/Coachmark/Coachmark.jsx";
 export { Sidebar, DEFAULT_NAV_ITEMS } from "./components/Sidebar/Sidebar.jsx";
 export { TopNavigation } from "./components/TopNavigation/TopNavigation.jsx";
 export { OnboardingSteps } from "./components/OnboardingSteps/OnboardingSteps.jsx";
-export { TransferPanel } from "./components/TransferPanel/TransferPanel.jsx";
 export { OtcBanner } from "./components/OtcBanner/OtcBanner.jsx";
 
 // Brand
