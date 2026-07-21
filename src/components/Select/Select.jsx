@@ -30,6 +30,12 @@ export function Select({
     onChange && onChange(option.value, option);
   };
 
+  const clear = (e) => {
+    e.stopPropagation();
+    if (!isControlled) setInternal("");
+    onChange && onChange("", null);
+  };
+
   return (
     <div className={"field " + className}>
       {label && (
@@ -61,6 +67,16 @@ export function Select({
                 <span className="select__placeholder">{placeholder}</span>
               )}
             </span>
+            {selectedOption && !disabled && (
+              <span
+                className="material-symbols-rounded select__clear"
+                role="button"
+                aria-label="Clear selection"
+                onClick={clear}
+              >
+                close
+              </span>
+            )}
             <span className="material-symbols-rounded select__chevron" aria-hidden="true">expand_more</span>
           </button>
         )}

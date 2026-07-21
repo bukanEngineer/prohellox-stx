@@ -5,6 +5,10 @@ export default {
   title: "Components/Select",
   component: Select,
   args: { disabled: false },
+  argTypes: {
+    disabled: { control: "boolean" },
+    size: { control: "inline-radio", options: ["large", "small"] },
+  },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 360 }}><S /></div>],
 };

@@ -65,6 +65,10 @@ export function MultiSelect({
   const toggle = (val) =>
     commit(selected.includes(val) ? selected.filter((v) => v !== val) : [...selected, val]);
   const remove = (val) => commit(selected.filter((v) => v !== val));
+  const clearAll = (e) => {
+    e.stopPropagation();
+    commit([]);
+  };
 
   const labelFor = (val) => options.find((o) => o.value === val)?.label ?? val;
 
@@ -108,6 +112,16 @@ export function MultiSelect({
               ))
             )}
           </span>
+          {selected.length > 0 && !disabled && (
+            <span
+              className="material-symbols-rounded multiselect__clear"
+              role="button"
+              aria-label="Clear all"
+              onClick={clearAll}
+            >
+              close
+            </span>
+          )}
           <span className="material-symbols-rounded multiselect__chevron" aria-hidden="true">
             expand_more
           </span>

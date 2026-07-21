@@ -52,6 +52,8 @@ export function Input({
     }
   };
 
+  const showClear = !!currentValue && !disabled;
+
   return (
     <div className="field">
       {label && <label htmlFor={id} className="field__label">{label}</label>}
@@ -68,7 +70,7 @@ export function Input({
           onChange={handleChange}
           {...inputProps}
         />
-        {isSearch && currentValue && !disabled && (
+        {showClear && (
           <button
             type="button"
             className="input__icon-btn"
