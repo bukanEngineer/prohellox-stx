@@ -40,3 +40,8 @@ chromatic-build-*.xml
 # Generated / scratch
 *.tsbuildinfo
 .cache/
+.smoke-test-tmp/
+
+# Generated from src/assets/partners/*.svg by scripts/generate-partner-logos.mjs
+# (regenerated automatically via the "pre*" npm scripts — see package.json)
+src/components/PartnerLogo/logos/

@@ -64,6 +64,14 @@
   font-style: italic;
   font-display: swap;
 }
+/* Material Symbols Rounded is loaded from fonts.googleapis.com (see
+ * global.css @import) rather than self-hosted: Icon.jsx / StatusIcon.jsx
+ * expose an open `name`/`icon` string prop that passes through to *any*
+ * Material Symbol ligature, so self-hosting would mean shipping the full,
+ * unsubsetted variable font (~5MB, vs. ~600KB for the rest of the package)
+ * to guarantee every glyph name still resolves for consumers. Revisit if
+ * Icon/StatusIcon's icon set is ever restricted to a fixed, documented
+ * enum — subsetting to just those glyphs would make self-hosting cheap. */
 
 :root {
   /* ════════════════════════════════════════════════════════════════

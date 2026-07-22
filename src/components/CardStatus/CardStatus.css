@@ -14,7 +14,6 @@
   width: 100%;
   background: var(--surface);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
   box-shadow: var(--shadow-2);
   padding: var(--space-6);
   color: var(--text-primary);

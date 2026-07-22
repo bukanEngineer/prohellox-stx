@@ -1,8 +1,17 @@
+/* Circle matches Selection Box indicator; gap/layout from shared .control */
+/* Label line-box = radio height so icon + text share one center line */
+.control:has(> .radio__box) .control__label {
+  line-height: 20px;
+}
+.control.has-sub:has(> .radio__box) .control__sub {
+  line-height: 1.5; /* keep sub readable; parent lh is for first-line alignment */
+}
+
 .radio__box {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  border: 1.5px solid var(--border);
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border);
   background: var(--surface);
   display: inline-flex;
   align-items: center;
@@ -12,9 +21,9 @@
 }
 .radio__box::after {
   content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
   background: var(--interactive-active);
   opacity: 0;
   transform: scale(0.6);
@@ -26,6 +35,11 @@
 .control input:checked + .radio__box::after {
   opacity: 1;
   transform: scale(1);
+}
+/* Shared .control focus targets .control__box (unused); radio needs its own ring */
+.control:has(input:focus-visible) .radio__box {
+  outline: 2px solid var(--status-information);
+  outline-offset: 2px;
 }
 .control.is-error .radio__box { border-color: var(--status-critical); }
 .control.is-disabled .radio__box { background: var(--surface-secondary); border-color: var(--border); }

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx eslint *)",
+      "Bash(npx storybook *)",
+      "Bash(rm -rf /tmp/sb-build-check)",
+      "Bash(curl -s http://localhost:6006/index.json)",
+      "Bash(node -e ' *)",
+      "Bash(rm -rf /tmp/sb-test && git diff --stat -- src/components/CardSwap/ src/examples/DashboardImprovement.jsx)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/sb-build-check",
+      "/private/tmp/sb-test"
+    ]
+  }
+}

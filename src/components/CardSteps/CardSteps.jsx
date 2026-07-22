@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useId } from "react";
+import { SelectionBox } from "../SelectionBox/SelectionBox.jsx";
 import "./CardSteps.css";
 
 export function CardSteps({ step = 1, title, helperText, children, className = "", ...rest }) {
@@ -19,21 +20,40 @@ export function CardSteps({ step = 1, title, helperText, children, className = "
   );
 }
 
-CardSteps.Options = function CardStepsOptions({ options = [], selected, onSelect }) {
+function resolveIcon(icon) {
+  if (!icon) return undefined;
+  if (typeof icon === "string") {
+    return <span className="material-symbols-rounded">{icon}</span>;
+  }
+  return icon;
+}
+
+CardSteps.Options = function CardStepsOptions({
+  options = [],
+  selected,
+  onSelect,
+  name: nameProp,
+  className = "",
+}) {
+  const autoName = useId();
+  const name = nameProp || autoName;
+  const cls = ["card-steps__options", className].filter(Boolean).join(" ");
+
   return (
-    <div className="card-steps__options" role="radiogroup">
+    <div className={cls} role="radiogroup">
       {options.map((opt) => (
-        <button
+        <SelectionBox
           key={opt.id}
-          type="button"
-          role="radio"
-          aria-checked={opt.id === selected}
-          className={"card-steps__option" + (opt.id === selected ? " is-selected" : "")}
-          onClick={onSelect ? () => onSelect(opt.id) : undefined}
-        >
-          {opt.icon && <span className="material-symbols-rounded card-steps__option-icon">{opt.icon}</span>}
-          <span className="card-steps__option-label">{opt.label}</span>
-        </button>
+          type="radio"
+          name={name}
+          value={opt.id}
+          label={opt.label}
+          description={opt.description}
+          icon={resolveIcon(opt.icon)}
+          selected={opt.id === selected}
+          disabled={opt.disabled}
+          onChange={() => onSelect?.(opt.id)}
+        />
       ))}
     </div>
   );
