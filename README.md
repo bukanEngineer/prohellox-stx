@@ -54,6 +54,24 @@ Each component imports its own CSS (`import "./Button.css"` etc.) as part of the
 
 The workflow uses `onlyChanged: true` (TurboSnap) so only stories whose dependencies changed get re-snapshotted — keeps your monthly snapshot budget low.
 
+## Stable Storybook URL (Vercel)
+
+Chromatic build URLs change per run. For a **fixed** Storybook link that updates on every push to `main`, deploy the static Storybook to Vercel (`vercel.json` already points the build at `npm run build-storybook` → `storybook-static/`).
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import this GitHub repo (`bukanEngineer/prohellox-stx` or whichever remote you use).
+2. Leave Framework Preset as **Other**. Vercel will pick up `vercel.json` (build command + output directory).
+3. Confirm Node is **24.x** (matches `.nvmrc` / `package.json` `engines`) under Project Settings → General if needed.
+4. Deploy. Production URL stays stable (e.g. `https://your-project.vercel.app`); every push to `main` rebuilds and replaces it. PRs get preview URLs automatically.
+
+Optional local deploy (one-time login):
+
+```bash
+npx vercel          # preview
+npx vercel --prod   # production
+```
+
+Keep Chromatic for visual regression; use Vercel as the shareable Storybook home.
+
 ## Project layout
 
 ```
@@ -61,6 +79,7 @@ testing-design-system/
 ├── package.json
 ├── vite.config.js
 ├── chromatic.config.json
+├── vercel.json                 ← Storybook static deploy to Vercel
 ├── .storybook/
 │   ├── main.js                 ← stories glob + framework config
 │   └── preview.js              ← global styles + backgrounds + story sort
