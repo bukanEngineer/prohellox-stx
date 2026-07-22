@@ -2,10 +2,18 @@ import React from "react";
 import { FieldNetwork } from "./FieldNetwork.jsx";
 
 export default {
-  title: "Components/Field/Network",
+  title: "Patterns/Field/Network",
   component: FieldNetwork,
   args: { disabled: false },
   parameters: { layout: "padded" },
+  argTypes: {
+    label: { control: "text" },
+    placeholder: { control: "text" },
+    helper: { control: "text" },
+    error: { control: "text" },
+    disabled: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
   decorators: [(S) => <div style={{ maxWidth: 400, minHeight: 360 }}><S /></div>],
 };
 

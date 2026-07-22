@@ -5,6 +5,14 @@ export default {
   title: "Components/Upload",
   component: Upload,
   args: { multiple: false, disabled: false },
+  argTypes: {
+    label: { control: "text" },
+    hint: { control: "text" },
+    multiple: { control: "boolean" },
+    disabled: { control: "boolean" },
+    error: { control: "text" },
+    onChange: { action: "onChange" },
+  },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 480 }}><S /></div>],
 };

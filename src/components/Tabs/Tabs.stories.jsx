@@ -5,6 +5,11 @@ export default {
   title: "Components/Tabs",
   component: Tabs,
   args: { fill: false },
+  argTypes: {
+    variant: { control: "select", options: ["default", "secondary"] },
+    fill: { control: "boolean" },
+    onTabChange: { action: "onTabChange" },
+  },
   parameters: { layout: "padded" },
 };
 

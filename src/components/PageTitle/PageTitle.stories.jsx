@@ -8,6 +8,15 @@ export default {
   component: PageTitle,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 960 }}><S /></div>],
+  argTypes: {
+    title: { control: "text" },
+    subtitle: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    title: "Transaction History",
+    subtitle: "All transactions across XSGD, XIDR, and XUSD.",
+  },
 };
 
 export const Default = {

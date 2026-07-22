@@ -2,9 +2,17 @@ import React from "react";
 import { TransactionHistoryTable } from "./TransactionHistoryTable.jsx";
 
 export default {
-  title: "Compositions/Transaction History Table",
+  title: "Patterns/Transaction History Table",
   component: TransactionHistoryTable,
   parameters: { layout: "padded" },
+  argTypes: {
+    type: { control: "select", options: ["funding", "otc", "swap"] },
+    empty: { control: "text" },
+  },
+  args: {
+    type: "funding",
+    empty: "No transactions yet.",
+  },
 };
 
 const fundingRows = [

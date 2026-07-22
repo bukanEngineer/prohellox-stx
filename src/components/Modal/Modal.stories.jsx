@@ -6,6 +6,19 @@ export default {
   title: "Components/Modal",
   component: Modal,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    size: { control: "select", options: ["small", "large"] },
+    title: { control: "text" },
+    dismissable: { control: "boolean" },
+    onClose: { action: "onClose" },
+  },
+  args: {
+    open: false,
+    size: "small",
+    title: "Confirm transfer",
+    dismissable: true,
+  },
 };
 
 function Demo({ size = "small", title = "Confirm transfer" }) {

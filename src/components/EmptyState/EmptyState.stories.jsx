@@ -8,6 +8,13 @@ export default {
   args: {
     title: "No Transaction Found",
     sub: "You don't have any transactions yet.",
+    compact: false,
+  },
+  argTypes: {
+    title: { control: "text" },
+    sub: { control: "text" },
+    compact: { control: "boolean" },
+    className: { control: "text" },
   },
 };
 

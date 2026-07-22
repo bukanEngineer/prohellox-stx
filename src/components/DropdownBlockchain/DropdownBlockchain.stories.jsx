@@ -3,10 +3,18 @@ import { DropdownBlockchain } from "./DropdownBlockchain.jsx";
 import { AssetMark } from "../AssetMark/AssetMark.jsx";
 
 export default {
-  title: "Components/Dropdown/Blockchain",
+  title: "Patterns/Dropdown/Blockchain",
   component: DropdownBlockchain,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 328 }}><S /></div>],
+  argTypes: {
+    value: { control: "text" },
+    className: { control: "text" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    value: "ethereum",
+  },
 };
 
 const chains = [

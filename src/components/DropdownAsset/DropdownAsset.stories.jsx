@@ -2,10 +2,18 @@ import React from "react";
 import { DropdownAsset } from "./DropdownAsset.jsx";
 
 export default {
-  title: "Components/Dropdown/Asset",
+  title: "Patterns/Dropdown/Asset",
   component: DropdownAsset,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 260 }}><S /></div>],
+  argTypes: {
+    value: { control: "text" },
+    className: { control: "text" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    value: "xsgd",
+  },
 };
 
 const mark = (label, bg) => (

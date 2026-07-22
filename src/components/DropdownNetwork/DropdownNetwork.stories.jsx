@@ -2,10 +2,18 @@ import React from "react";
 import { DropdownNetwork } from "./DropdownNetwork.jsx";
 
 export default {
-  title: "Components/Dropdown/Network",
+  title: "Patterns/Dropdown/Network",
   component: DropdownNetwork,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 328 }}><S /></div>],
+  argTypes: {
+    value: { control: "text" },
+    className: { control: "text" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    value: "eth",
+  },
 };
 
 const mark = (label, bg) => (

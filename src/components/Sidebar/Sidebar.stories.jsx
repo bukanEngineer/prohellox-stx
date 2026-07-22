@@ -3,7 +3,7 @@ import { userEvent, within } from "storybook/test";
 import { Sidebar, DEFAULT_NAV_ITEMS } from "./Sidebar.jsx";
 
 export default {
-  title: "Compositions/Sidebar",
+  title: "Components/Sidebar",
   component: Sidebar,
   parameters: { layout: "fullscreen" },
   args: {

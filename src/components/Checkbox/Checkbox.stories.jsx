@@ -6,6 +6,15 @@ export default {
   component: Checkbox,
   parameters: { layout: "padded" },
   args: { label: "I agree to the terms", indeterminate: false, disabled: false, error: false },
+  argTypes: {
+    label: { control: "text" },
+    sub: { control: "text" },
+    indeterminate: { control: "boolean" },
+    disabled: { control: "boolean" },
+    error: { control: "boolean" },
+    checked: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
 };
 
 export const Default = {};

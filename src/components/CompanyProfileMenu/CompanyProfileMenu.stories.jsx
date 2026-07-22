@@ -7,6 +7,12 @@ export default {
   args: { switchCompany: false },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ minHeight: 320 }}><S /></div>],
+  argTypes: {
+    switchCompany: { control: "boolean" },
+    onSwitch: { action: "onSwitch" },
+    onAction: { action: "onAction" },
+    className: { control: "text" },
+  },
 };
 
 const companies = [

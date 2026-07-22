@@ -27,7 +27,7 @@ const networks = [
 ];
 
 export default {
-  title: "Components/List/Asset",
+  title: "Patterns/List/Asset",
   component: ListAsset,
   parameters: { layout: "padded" },
   argTypes: {

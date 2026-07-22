@@ -8,6 +8,18 @@ export default {
   title: "Components/Tooltip",
   component: Tooltip,
   parameters: { layout: "centered" },
+  argTypes: {
+    label: { control: "text" },
+    title: { control: "text" },
+    content: { control: "text" },
+    side: { control: "select", options: ["top", "bottom", "left", "right"] },
+    defaultOpen: { control: "boolean" },
+  },
+  args: {
+    label: "Tooltip text",
+    side: "top",
+    defaultOpen: false,
+  },
 };
 
 export const Default = {

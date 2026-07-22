@@ -2,10 +2,18 @@ import React from "react";
 import { FieldBank } from "./FieldBank.jsx";
 
 export default {
-  title: "Components/Field/Bank",
+  title: "Patterns/Field/Bank",
   component: FieldBank,
   args: { disabled: false },
   parameters: { layout: "padded" },
+  argTypes: {
+    label: { control: "text" },
+    placeholder: { control: "text" },
+    helper: { control: "text" },
+    error: { control: "text" },
+    disabled: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
   decorators: [(S) => <div style={{ maxWidth: 400, minHeight: 420 }}><S /></div>],
 };
 

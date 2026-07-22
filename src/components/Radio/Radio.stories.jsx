@@ -4,7 +4,17 @@ import { Radio, RadioGroup } from "./Radio.jsx";
 export default {
   title: "Atoms/Radio",
   component: Radio,
-  args: { disabled: false, error: false },
+  args: { label: "XSGD", disabled: false, error: false },
+  argTypes: {
+    label: { control: "text" },
+    sub: { control: "text" },
+    checked: { control: "boolean" },
+    disabled: { control: "boolean" },
+    error: { control: "boolean" },
+    name: { control: "text" },
+    value: { control: "text" },
+    onChange: { action: "onChange" },
+  },
   parameters: { layout: "padded" },
 };
 

@@ -4,9 +4,20 @@ import { AssetMark } from "../AssetMark/AssetMark.jsx";
 import { Button } from "../Button/Button.jsx";
 
 export default {
-  title: "Components/Bottom Sheet/Bank",
+  title: "Patterns/Bottom Sheet/Bank",
   component: BottomSheetBank,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    title: { control: "text" },
+    selectedId: { control: "text" },
+    onClose: { action: "onClose" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    open: false,
+    title: "Select Bank",
+  },
 };
 
 const banks = [

@@ -6,6 +6,17 @@ export default {
   title: "Components/Error Response",
   component: ErrorResponse,
   parameters: { layout: "fullscreen" },
+  argTypes: {
+    code: { control: "text" },
+    title: { control: "text" },
+    body: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    code: "404",
+    title: "Page not found",
+    body: "The page you're looking for doesn't exist or has been moved.",
+  },
 };
 
 export const NotFound = {

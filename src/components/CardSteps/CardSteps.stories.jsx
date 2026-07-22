@@ -5,6 +5,16 @@ export default {
   title: "Components/Card/Steps",
   component: CardSteps,
   parameters: { layout: "padded" },
+  argTypes: {
+    step: { control: { type: "number", min: 1, max: 10, step: 1 } },
+    title: { control: "text" },
+    helperText: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    step: 1,
+    title: "Select Transfer Method",
+  },
 };
 
 export const SelectionBox = {

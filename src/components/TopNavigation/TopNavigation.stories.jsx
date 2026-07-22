@@ -1,7 +1,7 @@
 import { TopNavigation } from "./TopNavigation.jsx";
 
 export default {
-  title: "Compositions/Top Navigation",
+  title: "Components/Top Navigation",
   component: TopNavigation,
   parameters: { layout: "fullscreen" },
   argTypes: {

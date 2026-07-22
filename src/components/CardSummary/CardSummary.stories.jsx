@@ -5,6 +5,13 @@ export default {
   title: "Components/Card/Summary",
   component: CardSummary,
   parameters: { layout: "centered" },
+  argTypes: {
+    title: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    title: "Transfer Details",
+  },
 };
 
 export const TransferDetails = {

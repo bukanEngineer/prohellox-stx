@@ -2,7 +2,7 @@ import React from "react";
 import { PartnerLogo } from "./PartnerLogo.jsx";
 
 export default {
-  title: "Atoms/Partner Logo",
+  title: "Patterns/Partner Logo",
   component: PartnerLogo,
   parameters: { layout: "padded" },
   argTypes: {

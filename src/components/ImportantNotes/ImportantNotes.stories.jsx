@@ -6,6 +6,15 @@ export default {
   component: ImportantNotes,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 720 }}><S /></div>],
+  argTypes: {
+    tone: { control: "select", options: ["neutral", "warning", "critical", "positive"] },
+    title: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    tone: "neutral",
+    title: "Important",
+  },
 };
 
 export const Regulatory = {

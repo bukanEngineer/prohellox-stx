@@ -4,9 +4,20 @@ import { AssetMark } from "../AssetMark/AssetMark.jsx";
 import { Button } from "../Button/Button.jsx";
 
 export default {
-  title: "Components/Bottom Sheet/Blockchain",
+  title: "Patterns/Bottom Sheet/Blockchain",
   component: BottomSheetBlockchain,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    title: { control: "text" },
+    selectedId: { control: "text" },
+    onClose: { action: "onClose" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    open: false,
+    title: "Select Blockchain",
+  },
 };
 
 const chains = [

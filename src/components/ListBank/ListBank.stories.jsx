@@ -20,7 +20,7 @@ const Logo = () => (
 );
 
 export default {
-  title: "Components/List/Bank",
+  title: "Patterns/List/Bank",
   component: ListBank,
   parameters: { layout: "padded" },
   argTypes: {

@@ -6,6 +6,15 @@ export default {
   title: "Components/Toast",
   component: Toast,
   parameters: { layout: "centered" },
+  argTypes: {
+    tone: { control: "select", options: ["positive", "critical", "warning", "info"] },
+    title: { control: "text" },
+    onDismiss: { action: "onDismiss" },
+  },
+  args: {
+    tone: "positive",
+    title: "Success",
+  },
 };
 
 export const Default = {

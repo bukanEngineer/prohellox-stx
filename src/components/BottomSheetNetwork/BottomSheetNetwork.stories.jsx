@@ -3,9 +3,20 @@ import { BottomSheetNetwork } from "./BottomSheetNetwork.jsx";
 import { Button } from "../Button/Button.jsx";
 
 export default {
-  title: "Components/Bottom Sheet/Network",
+  title: "Patterns/Bottom Sheet/Network",
   component: BottomSheetNetwork,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    title: { control: "text" },
+    selectedId: { control: "text" },
+    onClose: { action: "onClose" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    open: false,
+    title: "Select Network",
+  },
 };
 
 const networks = [

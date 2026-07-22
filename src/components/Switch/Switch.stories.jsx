@@ -6,6 +6,13 @@ export default {
   component: Switch,
   parameters: { layout: "padded" },
   args: { label: "Two-factor authentication", disabled: false },
+  argTypes: {
+    label: { control: "text" },
+    sub: { control: "text" },
+    disabled: { control: "boolean" },
+    checked: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
 };
 
 export const Off = {};

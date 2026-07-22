@@ -5,6 +5,17 @@ export default {
   title: "Components/Card/Checklist",
   component: CardChecklist,
   parameters: { layout: "padded" },
+  argTypes: {
+    title: { control: "text" },
+    active: { control: "text" },
+    progress: { control: { type: "range", min: 0, max: 100, step: 1 } },
+    className: { control: "text" },
+    onTabChange: { action: "onTabChange" },
+  },
+  args: {
+    title: "Start your journey with StraitsX",
+    progress: 0,
+  },
 };
 
 const tabs = [

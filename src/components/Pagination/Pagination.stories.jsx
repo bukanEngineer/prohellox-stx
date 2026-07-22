@@ -5,6 +5,19 @@ export default {
   title: "Components/Pagination",
   component: Pagination,
   parameters: { layout: "padded" },
+  argTypes: {
+    page: { control: { type: "number", min: 1 } },
+    totalPages: { control: { type: "number", min: 1 } },
+    showSummary: { control: "boolean" },
+    showGoTo: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
+  args: {
+    page: 1,
+    totalPages: 10,
+    showSummary: false,
+    showGoTo: false,
+  },
 };
 
 export const Default = {

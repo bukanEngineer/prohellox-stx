@@ -3,9 +3,24 @@ import { CardSwap } from "./CardSwap.jsx";
 import { AssetMark } from "../AssetMark/AssetMark.jsx";
 
 export default {
-  title: "Components/Card/Swap",
+  title: "Patterns/Card/Swap",
   component: CardSwap,
   parameters: { layout: "centered" },
+  argTypes: {
+    title: { control: "text" },
+    rate: { control: "text" },
+    highlight: { control: "text" },
+    footnote: { control: "text" },
+    buttonLabel: { control: "text" },
+    onSwap: { action: "onSwap" },
+    onReverse: { action: "onReverse" },
+  },
+  args: {
+    title: "Swap",
+    rate: "1 XSGD ≈ 0.7233 USDT",
+    footnote: "No fees · Rate refreshes every minute.",
+    buttonLabel: "Swap",
+  },
 };
 
 const CURRENCY_OPTIONS = [

@@ -7,6 +7,17 @@ export default {
   title: "Components/Menu",
   component: Menu,
   parameters: { layout: "centered" },
+  argTypes: {
+    align: { control: "select", options: ["left", "right"] },
+    placement: { control: "select", options: ["top", "bottom"] },
+    defaultOpen: { control: "boolean" },
+    className: { control: "text" },
+  },
+  args: {
+    align: "left",
+    placement: "bottom",
+    defaultOpen: false,
+  },
 };
 
 export const FromIconButton = {

@@ -2,9 +2,21 @@ import React from "react";
 import { OtcBanner } from "./OtcBanner.jsx";
 
 export default {
-  title: "Compositions/OTC Banner",
+  title: "Patterns/OTC Banner",
   component: OtcBanner,
   parameters: { layout: "padded" },
+  argTypes: {
+    title: { control: "text" },
+    amount: { control: "text" },
+    ctaLabel: { control: "text" },
+    href: { control: "text" },
+    onCtaClick: { action: "onCtaClick" },
+  },
+  args: {
+    title: "StraitsX OTC Desk",
+    amount: "100,000 USD",
+    ctaLabel: "Request for a Quote",
+  },
   decorators: [(S) => <div style={{ maxWidth: 420 }}><S /></div>],
 };
 

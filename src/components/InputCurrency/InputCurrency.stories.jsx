@@ -5,9 +5,19 @@ import { AssetMark } from "../AssetMark/AssetMark.jsx";
 export default {
   title: "Components/InputCurrency",
   component: InputCurrency,
-  args: { disabled: false },
+  args: { disabled: false, placeholder: "0.00" },
   parameters: { layout: "padded" },
   decorators: [(Story) => <div style={{ maxWidth: 400 }}><Story /></div>],
+  argTypes: {
+    label: { control: "text" },
+    labelHint: { control: "text" },
+    helper: { control: "text" },
+    error: { control: "text" },
+    position: { control: "select", options: ["prefix", "suffix"] },
+    placeholder: { control: "text" },
+    disabled: { control: "boolean" },
+    onChange: { action: "onChange" },
+  },
 };
 
 const assetOptions = [

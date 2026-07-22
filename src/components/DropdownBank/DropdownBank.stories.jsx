@@ -3,10 +3,18 @@ import { DropdownBank } from "./DropdownBank.jsx";
 import { AssetMark } from "../AssetMark/AssetMark.jsx";
 
 export default {
-  title: "Components/Dropdown/Bank",
+  title: "Patterns/Dropdown/Bank",
   component: DropdownBank,
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 328 }}><S /></div>],
+  argTypes: {
+    value: { control: "text" },
+    className: { control: "text" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    value: "dbs",
+  },
 };
 
 const banks = [

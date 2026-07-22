@@ -5,6 +5,15 @@ export default {
   title: "Components/Calendar",
   component: Calendar,
   parameters: { layout: "padded" },
+  argTypes: {
+    mode: { control: "select", options: ["single", "range"] },
+    numberOfMonths: { control: { type: "number", min: 1, max: 3 } },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    mode: "single",
+    numberOfMonths: 1,
+  },
 };
 
 export const Default = {

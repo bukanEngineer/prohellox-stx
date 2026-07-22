@@ -5,6 +5,16 @@ export default {
   title: "Components/Card/Status",
   component: CardStatus,
   parameters: { layout: "padded" },
+  argTypes: {
+    status: { control: "select", options: ["success", "needApproval", "warning", "error"] },
+    title: { control: "text" },
+    description: { control: "text" },
+    className: { control: "text" },
+  },
+  args: {
+    status: "success",
+    title: "Transfer Completed",
+  },
 };
 
 export const AwaitingApproval = {

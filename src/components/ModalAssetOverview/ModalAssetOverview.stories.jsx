@@ -4,9 +4,23 @@ import { Button } from "../Button/Button.jsx";
 import { PartnerLogo } from "../PartnerLogo/PartnerLogo.jsx";
 
 export default {
-  title: "Components/Modal/Asset Overview",
+  title: "Patterns/Modal/Asset Overview",
   component: ModalAssetOverview,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    symbol: { control: "text" },
+    subtitle: { control: "text" },
+    networkLabel: { control: "text" },
+    onClose: { action: "onClose" },
+    onSelectMethod: { action: "onSelectMethod" },
+  },
+  args: {
+    open: false,
+    symbol: "XSGD",
+    subtitle: "1:1 to SGD",
+    networkLabel: "Supported Network",
+  },
 };
 
 const methods = [

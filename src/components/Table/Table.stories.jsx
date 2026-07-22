@@ -10,6 +10,15 @@ export default {
   title: "Components/Table",
   component: Table,
   args: { zebra: false },
+  argTypes: {
+    zebra: { control: "boolean" },
+    empty: { control: "text" },
+    loading: { control: "boolean" },
+    hasMore: { control: "boolean" },
+    showTimezone: { control: "boolean" },
+    onSortChange: { action: "onSortChange" },
+    onLoadMore: { action: "onLoadMore" },
+  },
   parameters: { layout: "padded" },
 };
 

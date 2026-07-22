@@ -2,9 +2,21 @@ import React from "react";
 import { CardAsset } from "./CardAsset.jsx";
 
 export default {
-  title: "Components/Card/Asset",
+  title: "Patterns/Card/Asset",
   component: CardAsset,
   parameters: { layout: "padded" },
+  argTypes: {
+    title: { control: "text" },
+    banner: { control: "text" },
+    className: { control: "text" },
+    onRefresh: { action: "onRefresh" },
+    onAdd: { action: "onAdd" },
+    onSend: { action: "onSend" },
+  },
+  args: {
+    title: "My Assets",
+    banner: "",
+  },
 };
 
 const assets = [

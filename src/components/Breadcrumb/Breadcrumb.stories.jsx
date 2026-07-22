@@ -5,6 +5,12 @@ export default {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
   parameters: { layout: "padded" },
+  argTypes: {
+    separator: { control: "text" },
+  },
+  args: {
+    separator: "/",
+  },
 };
 
 export const Default = {

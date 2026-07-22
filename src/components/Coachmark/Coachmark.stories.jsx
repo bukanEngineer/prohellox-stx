@@ -6,6 +6,18 @@ export default {
   title: "Components/Coachmark",
   component: Coachmark,
   parameters: { layout: "fullscreen" },
+  argTypes: {
+    title: { control: "text" },
+    body: { control: "text" },
+    open: { control: "boolean" },
+    onDismiss: { action: "onDismiss" },
+    onNext: { action: "onNext" },
+  },
+  args: {
+    title: "Mint new stablecoins",
+    body: "Convert SGD from your bank account into XSGD.",
+    open: true,
+  },
 };
 
 export const Default = {

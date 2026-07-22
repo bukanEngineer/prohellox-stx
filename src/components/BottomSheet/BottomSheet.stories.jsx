@@ -6,6 +6,19 @@ export default {
   title: "Components/Bottom Sheet",
   component: BottomSheet,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    title: { control: "text" },
+    dismissable: { control: "boolean" },
+    hideClose: { control: "boolean" },
+    onClose: { action: "onClose" },
+  },
+  args: {
+    open: false,
+    title: "Send to",
+    dismissable: true,
+    hideClose: false,
+  },
 };
 
 function Demo({ title = "Send to" }) {

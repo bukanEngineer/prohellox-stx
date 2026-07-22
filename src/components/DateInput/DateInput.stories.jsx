@@ -4,9 +4,19 @@ import { DateInput } from "./DateInput.jsx";
 export default {
   title: "Components/Date Input",
   component: DateInput,
-  args: { range: false, disabled: false },
+  args: { range: false, disabled: false, label: "Date of birth" },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 320 }}><S /></div>],
+  argTypes: {
+    label: { control: "text" },
+    helper: { control: "text" },
+    error: { control: "text" },
+    size: { control: "select", options: ["large", "small"] },
+    range: { control: "boolean" },
+    disabled: { control: "boolean" },
+    placeholder: { control: "text" },
+    onChange: { action: "onChange" },
+  },
 };
 
 export const Default = { args: { label: "Date of birth" } };

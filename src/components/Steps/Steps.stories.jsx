@@ -5,6 +5,18 @@ export default {
   title: "Components/Steps",
   component: HorizontalSteps,
   parameters: { layout: "padded" },
+  argTypes: {
+    total: { control: { type: "number", min: 2, max: 7 } },
+    current: { control: { type: "number", min: 1 } },
+    showCount: { control: "boolean" },
+    label: { control: "text" },
+  },
+  args: {
+    total: 3,
+    current: 1,
+    showCount: true,
+    label: "Text",
+  },
 };
 
 export const Horizontal = {

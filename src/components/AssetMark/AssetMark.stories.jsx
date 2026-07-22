@@ -2,9 +2,21 @@ import React from "react";
 import { AssetMark } from "./AssetMark.jsx";
 
 export default {
-  title: "Atoms/Asset Mark",
+  title: "Patterns/Asset Mark",
   component: AssetMark,
   parameters: { layout: "padded" },
+  argTypes: {
+    asset: { control: "select", options: ["XSGD", "XIDR", "XUSD", "USDC", "USDT", "ETH", "POLYGON", "ARBITRUM", "BASE", "SOLANA", "TRON", "BNB", "XRP", "HBAR", "AVAX"] },
+    size: { control: "select", options: [16, 24, 32, 40, 56] },
+    tone: { control: "select", options: ["brand", "white"] },
+    label: { control: "text" },
+    color: { control: "text" },
+  },
+  args: {
+    asset: "XSGD",
+    size: 40,
+    tone: "brand",
+  },
 };
 
 const row = { display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" };

@@ -5,6 +5,15 @@ export default {
   title: "Components/Textarea",
   component: Textarea,
   args: { showCount: false, disabled: false },
+  argTypes: {
+    label: { control: "text" },
+    helper: { control: "text" },
+    error: { control: "text" },
+    disabled: { control: "boolean" },
+    showCount: { control: "boolean" },
+    maxLength: { control: { type: "number", min: 0 } },
+    onChange: { action: "onChange" },
+  },
   parameters: { layout: "padded" },
   decorators: [(S) => <div style={{ maxWidth: 480 }}><S /></div>],
 };

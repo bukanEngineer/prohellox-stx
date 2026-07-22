@@ -4,9 +4,22 @@ import { Button } from "../Button/Button.jsx";
 import { PartnerLogo } from "../PartnerLogo/PartnerLogo.jsx";
 
 export default {
-  title: "Components/Modal/Asset Selection",
+  title: "Patterns/Modal/Asset Selection",
   component: ModalAssetSelection,
   parameters: { layout: "centered" },
+  argTypes: {
+    open: { control: "boolean" },
+    title: { control: "text" },
+    description: { control: "text" },
+    label: { control: "text" },
+    onClose: { action: "onClose" },
+    onSelect: { action: "onSelect" },
+  },
+  args: {
+    open: false,
+    title: "Transfer In",
+    label: "Select Asset:",
+  },
 };
 
 const stablecoins = [

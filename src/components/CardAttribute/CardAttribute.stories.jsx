@@ -5,6 +5,14 @@ export default {
   title: "Components/Card/Attribute",
   component: CardAttribute,
   parameters: { layout: "padded" },
+  argTypes: {
+    title: { control: "text" },
+    onCopy: { action: "onCopy" },
+    className: { control: "text" },
+  },
+  args: {
+    title: "Transaction Details",
+  },
 };
 
 const attributes = [

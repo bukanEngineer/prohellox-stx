@@ -2,10 +2,14 @@ import React from "react";
 import { ListSupportedNetwork } from "./ListSupportedNetwork.jsx";
 
 export default {
-  title: "Components/List/Supported Network",
+  title: "Patterns/List/Supported Network",
   component: ListSupportedNetwork,
   args: { isNew: false },
   parameters: { layout: "padded" },
+  argTypes: {
+    overflow: { control: "text" },
+    isNew: { control: "boolean" },
+  },
 };
 
 const dot = (c) => (

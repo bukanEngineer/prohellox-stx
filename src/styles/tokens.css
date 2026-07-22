@@ -73,7 +73,8 @@
  * Icon/StatusIcon's icon set is ever restricted to a fixed, documented
  * enum — subsetting to just those glyphs would make self-hosting cheap. */
 
-:root {
+:root,
+[data-theme="light"] {
   /* ════════════════════════════════════════════════════════════════
    * 1. PRIMITIVES  —  Figma `Brand Color/*`
    * Do NOT use directly in components. Reference the semantic layer.
