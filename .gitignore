@@ -45,3 +45,8 @@ chromatic-build-*.xml
 # Generated from src/assets/partners/*.svg by scripts/generate-partner-logos.mjs
 # (regenerated automatically via the "pre*" npm scripts — see package.json)
 src/components/PartnerLogo/logos/
+
+# Vercel CLI local link / auth scratch
+.vercel
+.vercel-xdg/
+.env*

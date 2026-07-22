@@ -27,7 +27,6 @@ const preview = {
       storySort: {
         method: "alphabetical",
         order: [
-          "Introduction",
           "Foundations",
           ["Colors", "Typography", "Spacing & Elevation"],
           "Atoms",

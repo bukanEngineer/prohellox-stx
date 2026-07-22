@@ -56,21 +56,17 @@ The workflow uses `onlyChanged: true` (TurboSnap) so only stories whose dependen
 
 ## Stable Storybook URL (Vercel)
 
-Chromatic build URLs change per run. For a **fixed** Storybook link that updates on every push to `main`, deploy the static Storybook to Vercel (`vercel.json` already points the build at `npm run build-storybook` → `storybook-static/`).
+Production Storybook (stable URL): **https://prohellox-stx.vercel.app**
 
-1. Go to [vercel.com/new](https://vercel.com/new) and import this GitHub repo (`bukanEngineer/prohellox-stx` or whichever remote you use).
-2. Leave Framework Preset as **Other**. Vercel will pick up `vercel.json` (build command + output directory).
-3. Confirm Node is **24.x** (matches `.nvmrc` / `package.json` `engines`) under Project Settings → General if needed.
-4. Deploy. Production URL stays stable (e.g. `https://your-project.vercel.app`); every push to `main` rebuilds and replaces it. PRs get preview URLs automatically.
+Chromatic build URLs change per run. Vercel serves the static Storybook and updates that same URL on every push to `main` (Git integration on `bukanEngineer/prohellox-stx`). PRs get preview URLs automatically.
 
-Optional local deploy (one-time login):
+Build is locked to Storybook via `vercel.json` and project settings:
 
-```bash
-npx vercel          # preview
-npx vercel --prod   # production
-```
+- Build Command: `npm run build-storybook`
+- Output Directory: `storybook-static`
+- Framework: Other (not the package `npm run build` → `dist/`)
 
-Keep Chromatic for visual regression; use Vercel as the shareable Storybook home.
+Chromatic (visual regression) and Vercel (hosted Storybook) both run from git pushes — they are independent. Local `npm run storybook` / Chromatic CLI does **not** update the Vercel URL; push to `main` (or open a PR for a preview).
 
 ## Project layout
 
@@ -93,11 +89,10 @@ testing-design-system/
 │   ├── fonts/                  ← Hanken Grotesk + Red Hat Display ttfs
 │   ├── assets/                 ← logomark SVGs
 │   ├── stories/
-│   │   ├── Introduction.mdx
 │   │   ├── Colors.stories.jsx
 │   │   ├── Typography.stories.jsx
 │   │   ├── Spacing.stories.jsx
-│   │   └── PersonalAccount.stories.jsx
+│   │   └── Examples.stories.jsx
 │   └── components/
 │       ├── Logomark/           ← Logomark.jsx + .stories.jsx
 │       ├── Button/             ← Button.{jsx,css,stories.jsx}

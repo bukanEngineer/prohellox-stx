@@ -211,7 +211,7 @@ export function BusinessDashboard() {
         </div>
 
         <div className="ex-bd__grid">
-          <div className="ex-bd__col">
+          <div className="ex-bd__col ex-bd__col--main">
             {/* Asset card */}
             <section className="ex-bd__asset-card">
               <div className="ex-bd__asset-header">
@@ -290,9 +290,9 @@ export function BusinessDashboard() {
             </section>
           </div>
 
-          {/* Right column */}
-          <div className="ex-bd__col">
+          <div className="ex-bd__col ex-bd__col--side">
             <CardSwap
+              className="ex-bd__swap"
               from={{
                 amount: swapFromAmount,
                 currency: swapFromCurrency,
@@ -311,7 +311,9 @@ export function BusinessDashboard() {
               }}
               rate={`1 ${swapToCurrency} ≈ 0.7233 ${swapFromCurrency}`}
             />
-            <OtcBanner />
+            <div className="ex-bd__otc">
+              <OtcBanner />
+            </div>
           </div>
         </div>
 
