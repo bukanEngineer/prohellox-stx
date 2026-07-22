@@ -21,18 +21,12 @@
   <script type="text/babel" src="EmptyState.jsx"></script>
   <script type="text/babel" src="TransferPanel.jsx"></script>
   <script type="text/babel" src="OtcBanner.jsx"></script>
-  <script type="text/babel" src="OnboardingSteps.jsx"></script>
 
   <script type="text/babel">
     const { useState } = React;
 
     function App() {
       const [active, setActive] = useState("home");
-      const [stepStates, setStepStates] = useState(["done", "active", "todo"]);
-
-      const advance = () => {
-        setStepStates(["done", "done", "active"]);
-      };
 
       return (
         <div className="sx-app" data-screen-label="01 Home">
@@ -43,8 +37,6 @@
             </div>
 
             <div className="sx-main__col" style={{ gap: 24 }}>
-              <OnboardingSteps stepStates={stepStates} onTakeAssessment={advance} />
-
               <div className="sx-main__grid">
                 <div className="sx-main__col">
                   <TransferPanel />

@@ -88,7 +88,6 @@ testing-design-system/
 │       ├── EmptyState/
 │       ├── Sidebar/
 │       ├── TopBar/
-│       ├── OnboardingSteps/
 │       ├── TransferPanel/
 │       └── OtcBanner/
 ├── examples/

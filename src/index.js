@@ -49,7 +49,6 @@ export { Coachmark } from "./components/Coachmark/Coachmark.jsx";
 // Composition (dashboard kit)
 export { Sidebar, DEFAULT_NAV_ITEMS } from "./components/Sidebar/Sidebar.jsx";
 export { TopNavigation } from "./components/TopNavigation/TopNavigation.jsx";
-export { OnboardingSteps } from "./components/OnboardingSteps/OnboardingSteps.jsx";
 export { OtcBanner } from "./components/OtcBanner/OtcBanner.jsx";
 
 // Brand

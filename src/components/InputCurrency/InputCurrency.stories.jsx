@@ -56,15 +56,6 @@ export const GroupedByCategory = {
   },
 };
 
-export const StaticSymbol = {
-  args: {
-    label: "Annual revenue",
-    position: "prefix",
-    defaultValue: "250,000.00",
-    asset: { symbol: "S$", dropdown: false },
-  },
-};
-
 export const WithHelper = {
   args: {
     label: "Amount",

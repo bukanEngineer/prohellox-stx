@@ -41,14 +41,13 @@ We've shipped **11 components** so far (≈25 % of what's in the Figma). The rem
 ### Components (`Components/*`)
 - [x] **Button** — primary / secondary / tertiary × lg / md / sm + disabled + focus
 - [x] **Tag** — positive / critical / warning / info / neutral / brand × default / pill
-- [x] **Input** — label + helper + error + prefix/suffix + disabled
+- [x] **Input** — label + helper + error + disabled
 - [x] **Card** — default / raised / ivy / teal surfaces
 - [x] **EmptyState** — title + sub, compact variant
 
 ### Composition (`Composition/*` — dashboard building blocks)
 - [x] **Sidebar** — left nav with active state, tag badges
 - [x] **TopBar** — notifications + user identity
-- [x] **OnboardingSteps** — 3-step verification card
 - [x] **TransferPanel** — tabbed shell (In / Out / Swap)
 - [x] **OtcBanner** — dark teal promo with diagonal-stripe decoration
 
@@ -114,7 +113,7 @@ Sorted by **priority** (P1 = blocking real product work, P2 = nice-to-have, P3 =
 | # | Component | Figma page | Frames | Priority | Notes |
 |---|---|---|---|---|---|
 | 24 | **Table** | `/Table` | 5 | **P1** | Transaction History, statements. Bulky but high-value. |
-| 25 | **Steps (multi-step wizard)** | `/Steps` | 7 | P2 | OnboardingSteps covers one shape; Figma has a broader stepper. |
+| 25 | **Steps (multi-step wizard)** | `/Steps` | 7 | P2 | Figma has a broader stepper than the current `Steps` component. |
 | 26 | **Page Title** | `/Page-Title` | 2 | P2 | Standard heading + actions row. |
 | 27 | **Error Response** | `/Error-Reponse` (sic) | 4 | P2 | Full-page error states (404, 500, KYC rejected). |
 | 28 | **Empty State (illustrated variants)** | `/Empty-State` | 1 | P3 | We have text-only; Figma includes illustrated empties. Waiting on illustration set. |

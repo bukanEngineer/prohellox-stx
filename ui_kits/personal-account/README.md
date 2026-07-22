@@ -4,12 +4,11 @@ Recreation of the StraitsX Personal Account dashboard's "Home" surface, built fr
 
 ## What's here
 
-`index.html` — single dashboard screen that pulls in all components below. Click the sidebar items to switch the active item; click "Take Assessment" to advance the onboarding step.
+`index.html` — single dashboard screen that pulls in all components below. Click the sidebar items to switch the active item.
 
 Components (one file each, React/JSX, loaded via Babel):
 - `Sidebar.jsx` — left nav with the StraitsX logo at top, Material-icon nav items, active state, and a "New" tag pattern.
 - `TopBar.jsx` — notifications bell + user identity block (top-right).
-- `OnboardingSteps.jsx` — the three-step "Welcome to StraitsX!" card with progress connector and step illustrations.
 - `TransferPanel.jsx` — tab strip (Transfer In / Out / Swap) with an empty-state inside.
 - `OtcBanner.jsx` — the dark Secure-Teal "StraitsX OTC Desk" promo card with the diagonal-stripe decoration.
 - `EmptyState.jsx` — magnifier-with-cogs illustration + heading + sub used in both the transfer panel and the notification panel.
@@ -22,7 +21,6 @@ Components (one file each, React/JSX, loaded via Babel):
 
 ## Visual references
 
-- Figma page `/Illustration-Set/New-Illustration/DashboardNewUser` for the onboarding step illustrations.
 - Figma page `/Bank-Blockchain-Logo/StraitsX-Logo` for the lockup.
 - Figma page `/Top-Navigation` for the top bar.
 - Brand Guidelines 2025 p.20–21 for colour usage.

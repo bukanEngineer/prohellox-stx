@@ -58,7 +58,7 @@ export const Welcome = {
         <ul style={{ font: "var(--body-medium)", color: "var(--text-primary)", paddingLeft: 20, lineHeight: 1.7 }}>
           <li><strong>Tokens</strong> — colours (primary, secondary, stablecoin, semantic, surface), typography, spacing, radii, elevation.</li>
           <li><strong>Components</strong> — Button, Tag, Input, Card, EmptyState.</li>
-          <li><strong>Composition</strong> — Sidebar, TopNavigation, OnboardingSteps, OtcBanner.</li>
+          <li><strong>Composition</strong> — Sidebar, TopNavigation, OtcBanner.</li>
           <li><strong>Examples</strong> — the full Personal Account dashboard, composed from the above.</li>
         </ul>
       </Section>

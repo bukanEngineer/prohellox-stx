@@ -5,8 +5,6 @@ export function Input({
   label,
   helper,
   error,
-  prefix,
-  suffix,
   type = "text",
   size = "large",
   disabled = false,
@@ -61,7 +59,6 @@ export function Input({
         {isSearch && (
           <span className="material-symbols-rounded input__lead" aria-hidden="true">search</span>
         )}
-        {prefix && !isSearch && <span className="input__prefix">{prefix}</span>}
         <input
           id={id}
           type={effectiveType}
@@ -90,7 +87,6 @@ export function Input({
             <span className="material-symbols-rounded">{reveal ? "visibility_off" : "visibility"}</span>
           </button>
         )}
-        {suffix && !isSearch && !isPassword && <span className="input__suffix">{suffix}</span>}
         {trailingButton && (
           <button
             type="button"

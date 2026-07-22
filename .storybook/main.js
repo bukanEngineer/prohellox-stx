@@ -3,7 +3,6 @@ const config = {
   stories: [
     "../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../src/components/**/*.mdx",
   ],
   // Storybook 10: docs, controls, actions, viewport, backgrounds, toolbars,
   // measure, outline, highlight and test/interactions are built into core.

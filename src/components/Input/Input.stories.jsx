@@ -10,8 +10,6 @@ export default {
     label: { control: "text" },
     helper: { control: "text" },
     error: { control: "text" },
-    prefix: { control: "text" },
-    suffix: { control: "text" },
     placeholder: { control: "text" },
     disabled: { control: "boolean" },
     size: { control: "inline-radio", options: ["large", "small"] },
@@ -25,10 +23,6 @@ export const Default = {
     helper: "We'll send your verification code here.",
     placeholder: "hello@straitsx.com",
   },
-};
-
-export const WithSuffix = {
-  args: { label: "Amount", suffix: "SGD", defaultValue: "1,250.00" },
 };
 
 export const Password = {
@@ -45,10 +39,6 @@ export const WithTrailingButton = {
     placeholder: "Enter code",
     trailingButton: { label: "Apply", onClick: () => {} },
   },
-};
-
-export const WithPrefix = {
-  args: { label: "Annual revenue", prefix: "S$", defaultValue: "250,000.00" },
 };
 
 export const ErrorState = {
@@ -77,8 +67,6 @@ export const Sizes = {
     <div style={{ display: "grid", gap: 16, maxWidth: 360 }}>
       <Input size="large" label="Large (48px)" placeholder="hello@straitsx.com" />
       <Input size="small" label="Small (36px)" placeholder="hello@straitsx.com" />
-      <Input size="large" label="Large + suffix" suffix="SGD" defaultValue="1,250.00" />
-      <Input size="small" label="Small + suffix" suffix="SGD" defaultValue="1,250.00" />
     </div>
   ),
 };
@@ -92,8 +80,6 @@ export const States = {
       <Input label="Error" defaultValue="0xa1B…f2" error="Address checksum doesn't match." />
       <Input label="Disabled" defaultValue="0123 4567 8901" disabled />
       <Input label="Small" size="small" placeholder="Compact 36px field" />
-      <Input label="With prefix" prefix="S$" defaultValue="250,000.00" />
-      <Input label="With suffix" suffix="SGD" defaultValue="1,250.00" />
     </div>
   ),
 };
@@ -102,7 +88,6 @@ export const Composition = {
   render: () => (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 560 }}>
       <Input label="Email" placeholder="hello@straitsx.com" />
-      <Input label="Amount" suffix="SGD" defaultValue="1,250.00" />
       <Input label="Wallet address" defaultValue="0xa1B…f2" error="Address checksum doesn't match." />
       <Input label="Account number" defaultValue="0123 4567 8901" disabled />
     </div>

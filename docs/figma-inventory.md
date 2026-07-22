@@ -46,7 +46,7 @@ via the Figma MCP `get_metadata`/`get_screenshot` instead).
 | `2169:22056` | ↳ Bottom Sheet | BottomSheet (header/slot/button group), Network Selection | `BottomSheet` | migrate + variants |
 | `5122:41055` | Page Title | Page Title (desktop/mobile) | `PageTitle` | migrate |
 | `1777:29087` | QR | QR (160×160) | `QR` | migrate |
-| `1574:46859` | Steps | Horizontal Steps, Vertical Steps, Badge Steps | `Steps`/`OnboardingSteps` | migrate; add vertical |
+| `1574:46859` | Steps | Horizontal Steps, Vertical Steps, Badge Steps | `Steps` | migrate; add vertical |
 | `2851:10153` | ↳ Coachmark | Coachmark (4 beak positions), step dots | `Coachmark` | migrate + placements |
 | `1861:34295` | ↳ Breadcrumb | Breadcrumbs (3–6 items) | `Breadcrumb` | migrate (⚠️ Figma note: "might not be used in future") |
 | `2904:26415` | ↳ Copybox | Non-Editable Field / Copybox (action/error) | `Copybox` | migrate + variants |
@@ -71,4 +71,4 @@ via the Figma MCP `get_metadata`/`get_screenshot` instead).
 - `1777:29088` Empty State — page contains only a header, no component artwork.
 
 ## Repo components with no clear Figma page yet
-`TransferPanel`, `OnboardingSteps` (vs Figma "Steps"), `EmptyState` (Figma page empty) — confirm intent.
+`TransferPanel`, `EmptyState` (Figma page empty) — confirm intent.

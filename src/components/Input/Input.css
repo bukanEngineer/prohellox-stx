@@ -57,14 +57,6 @@
 }
 .input input::placeholder { color: var(--input-placeholder); }
 
-.input__prefix,
-.input__suffix {
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  white-space: nowrap;
-}
-
 .input__lead {
   color: var(--text-secondary);
   font-size: 20px;

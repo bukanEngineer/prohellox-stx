@@ -144,7 +144,7 @@ const SWAP_CURRENCY_OPTIONS = [
 ];
 
 export function BusinessDashboard() {
-  const [active, setActive] = useState("home");
+  const [activeItemId, setActiveItemId] = useState("home");
   const [assetTab, setAssetTab] = useState("stable");
   const [showBanner, setShowBanner] = useState(true);
   const [swapFromAmount, setSwapFromAmount] = useState("20");
@@ -161,8 +161,8 @@ export function BusinessDashboard() {
           account="business"
           company={{ name: "Acme Pte. Ltd.", type: "Company" }}
           items={NAV_ITEMS}
-          active={active}
-          onSelect={(id) => { setActive(id); setNavOpen(false); }}
+          activeItemId={activeItemId}
+          onSelect={(id) => { setActiveItemId(id); setNavOpen(false); }}
         />
         <IconButton
           icon="close"

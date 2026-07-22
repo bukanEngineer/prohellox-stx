@@ -160,7 +160,7 @@ may not be tokenized in Figma yet, or live in a separate primitive collection no
 | `DateInput` | `Date Picker` | name + likely scope (calendar) |
 | `Tag` (`tone`, `shape`) | `Static Tag - Filled`, `Static Tag - Outlined`, `Clickable Tag`, `Removable Tag` | git has only static; clickable/removable missing |
 | `Breadcrumb` | `Breadcrumbs` | pluralization |
-| `Steps` / `OnboardingSteps` | `Horizontal Steps`, `Vertical Steps`, `Vertical Steps - Group`, `Badge Steps` | git naming ≠ Figma's orientation-based split |
+| `Steps` | `Horizontal Steps`, `Vertical Steps`, `Vertical Steps - Group`, `Badge Steps` | git naming ≠ Figma's orientation-based split |
 | `TopNavigation` | `Top Navigation / Dropdown` | name + scope |
 | `Sidebar` | `Sidebar - Base`, `Sidebar - Products`, `Sidebar - Legacy (Old)` | git generic; Figma has 3 explicit sets (Products is mandated per Apr-2026 note) |
 | `Card` | `Card / Asset`, `/ Swap`, `/ Status`, `/ Summary`, `/ Checklist`, `/ Attribute`, `/ Steps` | git generic Card ≠ Figma's 7 purpose-built card sets |

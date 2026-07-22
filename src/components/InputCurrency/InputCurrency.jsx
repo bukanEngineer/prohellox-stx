@@ -94,6 +94,7 @@ export function InputCurrency({
 
   const displayLogo = selectedOption?.logo ?? assetLogo;
   const displaySymbol = selectedOption?.symbol ?? assetSymbol;
+  const hasAdornment = hasOptions || !!displaySymbol || !!displayLogo;
   const adornmentDisabled = disabled || assetDisabled;
 
   const wrapCls = [
@@ -181,9 +182,9 @@ export function InputCurrency({
         </div>
       )}
       <div className={wrapCls}>
-        {isPrefix && adornment}
+        {hasAdornment && isPrefix && adornment}
         {field}
-        {!isPrefix && adornment}
+        {hasAdornment && !isPrefix && adornment}
       </div>
       {(helper || error) && (
         <span className={"field__helper" + (isError ? " is-error" : "")}>

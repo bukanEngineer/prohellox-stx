@@ -1,8 +1,39 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Logo } from "../Logo/Logo.jsx";
 import { CompanyProfileMenu } from "../CompanyProfileMenu/CompanyProfileMenu.jsx";
 import "./Sidebar.css";
+
+/**
+ * @typedef {Object} SidebarSubItem
+ * @property {string} id Unique id; passed to `onSelect` and matched against `activeItemId`.
+ * @property {string} label Visible text.
+ * @property {string} [href] If set, the sub-item renders as a link (`<a>` by default).
+ * @property {import("react").ElementType} [as] Custom element/component to render instead
+ *   (e.g. a router `Link`). Overrides the sidebar-level `linkComponent`.
+ * @property {Object} [linkProps] Extra props spread onto the rendered link element.
+ */
+
+/**
+ * @typedef {Object} SidebarNavItem
+ * @property {string} id Unique id; passed to `onSelect` and matched against `activeItemId`.
+ * @property {string} label Visible text.
+ * @property {import("react").ReactNode} [icon] A Material Symbols name (string) or any React
+ *   node (e.g. an inline SVG). Sub-items are text-only.
+ * @property {import("react").ReactNode} [tag] Optional trailing badge content.
+ * @property {SidebarSubItem[]} [subItems] Expandable sub-items. Presence turns the row into a
+ *   toggle instead of a link/leaf.
+ * @property {boolean} [autoSelectFirstSubItem] When the group expands, also select its first sub-item.
+ * @property {string} [href] Leaf-only: render the row as a link. Ignored when `subItems` is set.
+ * @property {import("react").ElementType} [as] Leaf-only: custom element/component for the link.
+ * @property {Object} [linkProps] Leaf-only: extra props spread onto the rendered link element.
+ */
+
+/**
+ * @typedef {Object} SidebarCompany
+ * @property {string} name Company display name.
+ * @property {string} type Secondary line (e.g. "Business Account").
+ */
 
 export const DEFAULT_NAV_ITEMS = [
   { id: "home", icon: "home", label: "Home" },
@@ -27,6 +58,16 @@ const ACCOUNT_LABEL = {
   sandbox: "Sandbox",
 };
 
+// A string icon is a Material Symbols glyph name; anything else is rendered
+// as-is (e.g. an inline SVG) inside a fixed-size, color-inheriting slot.
+function renderIcon(icon) {
+  if (icon == null) return null;
+  if (typeof icon === "string") {
+    return <span className="material-symbols-rounded" aria-hidden="true">{icon}</span>;
+  }
+  return <span className="nav-item__icon" aria-hidden="true">{icon}</span>;
+}
+
 export function Sidebar({
   account = "personal",
   company,
@@ -35,19 +76,18 @@ export function Sidebar({
   companyActions,
   onSwitchCompany,
   onCompanyAction,
-  defaultMenuOpen = false,
   items = DEFAULT_NAV_ITEMS,
-  active,
-  activeSubItem,
-  hoveredItem, // id of a nav item to render in its hovered state (stories/Chromatic)
+  activeItemId,
   onSelect,
   loading = false,
   loadingCount = 8,
+  linkComponent,
 }) {
   const isSandbox = account === "sandbox";
   const hasMenu = !!(companies || companyActions);
-  const [menuOpen, setMenuOpen] = useState(defaultMenuOpen);
+  const [menuOpen, setMenuOpen] = useState(false);
   const companyTriggerRef = useRef(null);
+  const companyMenuRef = useRef(null);
   const [companyMenuRect, setCompanyMenuRect] = useState(null);
 
   // Popover is portaled to <body> so it can escape .sidebar__top's
@@ -66,14 +106,31 @@ export function Sidebar({
       window.removeEventListener("scroll", measure, true);
     };
   }, [menuOpen]);
-  const [expanded, setExpanded] = useState(() => {
-    const init = {};
-    items.forEach((i) => {
-      if (i.subItems && (i.id === active || i.subItems.some((s) => s.id === activeSubItem))) init[i.id] = true;
-    });
-    return init;
-  });
-  const toggle = (id) => setExpanded((e) => ({ ...e, [id]: !e[id] }));
+
+  // Dismiss the company dropdown on outside-click or Escape, mirroring the
+  // shared <Menu> behavior. The menu is portaled to <body>, so an outside
+  // click is one that lands on neither the trigger nor the portaled menu.
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onClickAway = (e) => {
+      if (companyMenuRef.current && companyMenuRef.current.contains(e.target)) return;
+      if (companyTriggerRef.current && companyTriggerRef.current.contains(e.target)) return;
+      setMenuOpen(false);
+    };
+    const onKey = (e) => { if (e.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("mousedown", onClickAway);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClickAway);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const activeGroupId = items.find(
+    (item) => item.subItems && (item.id === activeItemId || item.subItems.some((sub) => sub.id === activeItemId))
+  )?.id;
+  const [expanded, setExpanded] = useState({});
+  const toggle = (id, isOpen) => setExpanded((current) => ({ ...current, [id]: !isOpen }));
 
   return (
     <aside className={"sidebar" + (isSandbox ? " is-sandbox" : "")}>
@@ -104,6 +161,7 @@ export function Sidebar({
               </button>
               {hasMenu && menuOpen && companyMenuRect && createPortal(
                 <div
+                  ref={companyMenuRef}
                   className="sidebar__company-menu"
                   style={{
                     top: companyMenuRect.top,
@@ -138,23 +196,38 @@ export function Sidebar({
                 ))
               : items.map((item) => {
                   const hasSub = item.subItems && item.subItems.length > 0;
-                  const isOpen = !!expanded[item.id];
-                  const isActive = active === item.id && !(hasSub && item.subItems.some((s) => s.id === activeSubItem));
+                  const isOpen = expanded[item.id] ?? item.id === activeGroupId;
+                  const isActive = activeItemId === item.id;
+
+                  // Groups (with sub-items) are always toggle buttons. A leaf
+                  // becomes a link when it has `href`/`as` (or a sidebar-level
+                  // `linkComponent`); otherwise it stays a button.
+                  const Item = hasSub
+                    ? "button"
+                    : item.href
+                    ? item.as || linkComponent || "a"
+                    : item.as || "button";
+                  const isButton = Item === "button";
+                  const itemProps = {
+                    className: "nav-item" + (isActive ? " is-active" : ""),
+                    onClick: () => {
+                      if (hasSub) {
+                        const willOpen = !isOpen;
+                        toggle(item.id, isOpen);
+                        if (willOpen && item.autoSelectFirstSubItem && onSelect) onSelect(item.subItems[0].id);
+                      } else if (onSelect) onSelect(item.id);
+                    },
+                    ...(isButton ? { type: "button" } : {}),
+                    ...(hasSub ? { "aria-expanded": isOpen } : {}),
+                    ...(!hasSub && isActive ? { "aria-current": "page" } : {}),
+                    ...(item.href ? { href: item.href } : {}),
+                    ...item.linkProps,
+                  };
+
                   return (
                     <div key={item.id} className="sidebar__group">
-                      <button
-                        type="button"
-                        className={"nav-item" + (isActive ? " is-active" : "") + (hoveredItem === item.id ? " is-hovered" : "")}
-                        aria-expanded={hasSub ? isOpen : undefined}
-                        onClick={() => {
-                          if (hasSub) {
-                            const willOpen = !isOpen;
-                            toggle(item.id);
-                            if (willOpen && item.autoSelectFirstSubItem && onSelect) onSelect(item.subItems[0].id);
-                          } else if (onSelect) onSelect(item.id);
-                        }}
-                      >
-                        <span className="material-symbols-rounded" aria-hidden="true">{item.icon}</span>
+                      <Item {...itemProps}>
+                        {renderIcon(item.icon)}
                         <span className="nav-item__label">{item.label}</span>
                         {item.tag && <span className="nav-item__tag">{item.tag}</span>}
                         {hasSub && (
@@ -162,19 +235,29 @@ export function Sidebar({
                             keyboard_arrow_down
                           </span>
                         )}
-                      </button>
+                      </Item>
                       {hasSub && isOpen && (
                         <div className="sidebar__subnav">
-                          {item.subItems.map((sub) => (
-                            <button
-                              key={sub.id}
-                              type="button"
-                              className={"subitem" + (activeSubItem === sub.id ? " is-active" : "")}
-                              onClick={() => onSelect && onSelect(sub.id)}
-                            >
-                              {sub.label}
-                            </button>
-                          ))}
+                          {item.subItems.map((sub) => {
+                            const subActive = activeItemId === sub.id;
+                            const SubItem = sub.href
+                              ? sub.as || linkComponent || "a"
+                              : sub.as || "button";
+                            const subIsButton = SubItem === "button";
+                            const subProps = {
+                              className: "subitem" + (subActive ? " is-active" : ""),
+                              onClick: () => onSelect && onSelect(sub.id),
+                              ...(subIsButton ? { type: "button" } : {}),
+                              ...(subActive ? { "aria-current": "page" } : {}),
+                              ...(sub.href ? { href: sub.href } : {}),
+                              ...sub.linkProps,
+                            };
+                            return (
+                              <SubItem key={sub.id} {...subProps}>
+                                {sub.label}
+                              </SubItem>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
