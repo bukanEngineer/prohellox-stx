@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { userEvent, within } from "storybook/test";
 import { Sidebar, DEFAULT_NAV_ITEMS } from "./Sidebar.jsx";
+import { IconButton } from "../IconButton/IconButton.jsx";
+import "./Sidebar.stories.css";
 
 export default {
   title: "Components/Sidebar",
@@ -218,6 +220,57 @@ export const Loading = {
           {loading ? "Nav items loading…" : "Nav items loaded"}
         </div>
       </Frame>
+    );
+  },
+};
+
+// Sidebar has no built-in mobile/hamburger behavior of its own — the
+// consuming screen owns the topbar trigger and the open/close state, and
+// wraps Sidebar in a drawer that slides in over a backdrop (see
+// `BusinessDashboard`, which this story's chrome mirrors). Viewport defaults
+// to mobile1 and the drawer starts open so the pattern is visible without
+// interaction; the hamburger toggles it closed/open from there.
+export const Mobile = {
+  parameters: { viewport: { defaultViewport: "mobile1" } },
+  render: () => {
+    const [navOpen, setNavOpen] = useState(true);
+    const [activeItemId, setActiveItemId] = useState("home");
+    return (
+      <div className="sidebar-mobile-demo">
+        <div className={"sidebar-mobile-demo__sidebar-wrap" + (navOpen ? " is-open" : "")}>
+          <Sidebar
+            account="business"
+            company={{ name: "ABC Pte. Ltd", type: "Company" }}
+            items={NAV_ITEMS}
+            activeItemId={activeItemId}
+            onSelect={(id) => { setActiveItemId(id); setNavOpen(false); }}
+          />
+          <IconButton
+            icon="close"
+            variant="tertiary"
+            label="Close menu"
+            className="sidebar-mobile-demo__close"
+            onClick={() => setNavOpen(false)}
+          />
+        </div>
+        {navOpen && (
+          <button
+            type="button"
+            className="sidebar-mobile-demo__backdrop"
+            aria-label="Close navigation"
+            onClick={() => setNavOpen(false)}
+          />
+        )}
+        <div className="sidebar-mobile-demo__main">
+          <header className="sidebar-mobile-demo__topbar">
+            <IconButton icon="menu" variant="tertiary" label="Open menu" onClick={() => setNavOpen(true)} />
+            <span className="sidebar-mobile-demo__topbar-title">Dashboard</span>
+          </header>
+          <div className="sidebar-mobile-demo__content">
+            Tap the hamburger to open the navigation drawer.
+          </div>
+        </div>
+      </div>
     );
   },
 };

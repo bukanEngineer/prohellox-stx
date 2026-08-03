@@ -1,0 +1,79 @@
+/* Mobile drawer chrome for the Sidebar "Mobile" story only. Sidebar itself
+ * has no built-in mobile/hamburger behavior — the consuming screen owns the
+ * topbar trigger and open/close state, and wraps Sidebar in a drawer (see
+ * `BusinessDashboard`, which this mirrors). Scoped to the story so it
+ * doesn't leak drawer opinions into the reusable Sidebar.css. */
+.sidebar-mobile-demo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  background: var(--background);
+  overflow: hidden;
+}
+
+.sidebar-mobile-demo__sidebar-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.sidebar-mobile-demo__sidebar-wrap.is-open {
+  transform: translateX(0);
+}
+
+.sidebar-mobile-demo__close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+/* Push the Sidebar's own logo/brand block down so it clears the close
+   icon above it (12px inset + 48px lg icon = 60px) with a 24px gap. */
+.sidebar-mobile-demo__sidebar-wrap .sidebar__scroll {
+  padding-top: calc(12px + 48px + var(--space-6));
+}
+
+.sidebar-mobile-demo__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 40;
+}
+
+.sidebar-mobile-demo__main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-mobile-demo__topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-mobile-demo__topbar-title {
+  font: var(--body-bold-medium);
+  color: var(--text-primary);
+}
+
+.sidebar-mobile-demo__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  color: var(--text-secondary);
+  text-align: center;
+}
